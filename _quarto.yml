@@ -1,19 +1,31 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "sbconnor"
+  title: "Stephen Connor"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-
+      - href: publications.qmd
+        text: Publications
+      - href: presentations.qmd
+        text: Presentations
+      - href: outreach.qmd
+        text: Outreach
+      - href: knitting.qmd
+        text: Knitting
+        
 format:
   html:
-    theme: cosmo
+    theme: 
+      light: minty
+      dark: solar
     css: styles.css
     toc: true
+    page-layout: full
 
 
-
+## Allow for \(...\) and \[..\]
+from: markdown+tex_math_single_backslash

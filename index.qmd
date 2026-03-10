@@ -1,11 +1,51 @@
 ---
-title: "sbconnor"
+title: "Stephen Connor"
+description: "<br>I'm a Reader in the [Statistics and Probability Group](http://www.york.ac.uk/maths/research/statistics-probability) 
+<br>in the [Department of Mathematics](http://maths.york.ac.uk/www/Home) at the [University of York](http://www.york.ac.uk), UK."
+image: images/SBC.jpg
+toc: false
+about: 
+  template: trestles
+  image-shape: round
+  links:
+    - text: Email
+      href: mailto:stephen.connor@york.ac.uk
+    - text: Mastodon
+      icon: mastodon
+      url: "https://mathstodon.xyz/@stephenconnor"
+    - text: GitHub
+      icon: github
+      href: https://github.com/sbconnor
+comments: false
 ---
 
-This is a Quarto website.
+::: {.column-page}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+## Bio
 
-```{r}
-1 + 1
-```
+I’m an environmental technologist, working at the US Geological Survey on improving how we deliver water data to the public. In prior roles, I split my time between predictive modeling
+(to [monitor forest carbon sequestration across New York State](https://cafri-ny.org/new-york-forest-carbon-assessment/), 
+[track the development of early-successional forests](https://doi.org/10.1080/01431161.2022.2155086), 
+and more) and visualization (including
+[using game engines as a GIS](https://www.researchgate.net/profile/Richard-Smardon/publication/355972101_VRSC_2021_Conference_Proceedings_VRSC_2021_Conference_Proceedings/links/6186bf0e07be5f31b74fa3c1/VRSC-2021-Conference-Proceedings-VRSC-2021-Conference-Proceedings.pdf#page=74) and
+[making it easier to make reproducible VR environments for research](https://doi.org/10.21105/joss.04388)).
+By training I'm either an ecologist (specializing in landscape and 
+translational ecology) or environmental scientist; professionally, I've worked
+as a data analyst, software engineer, and chicken farmer.
+
+On this site I keep a list of [my publications](papers), [presentations](talks), 
+and [my CV](cv.pdf), as well as a [technical blog](blog.html).
+
+<p></p>
+
+## Selected Projects
+
+#### R Packages
+
+**[rsi](https://github.com/Permian-Global-Research/rsi)** | Efficiently Retrieve and Process Satellite Imagery | 2024
+**[waywiser](https://mikemahoney218.github.io/waywiser/)** | Ergonomic Methods for Assessing Spatial Models | 2023  
+**[spatialsample](spatialsample.tidymodels.org/)** | Spatial Resampling Infrastructure | 2022  
+**[unifir](https://github.com/mikemahoney218/unifir)** | A Unifying API for Working with Unity in R | 2022  
+**[terrainr](https://github.com/ropensci/terrainr)** | Retrieve Data from the USGS National Map and Transform it for 3D Landscape Visualizations | 2021  
+
+:::

@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications",
+    "section": "",
+    "text": "Optimal coupling of jumpy Brownian motion on the circle\nS.B. Connor and R. Merli\nJournal of Applied Probability 61(1) (2024) 18-32 ArXiv\nIntegrals of incomplete beta functions, with applications to order statistics, random walks and string enumeration\nS.B. Connor and C.J. Fewster\nBrazilian Journal of Probability and Statistics 36(1) (2022) 185-198 ArXiv\nCutoff for a one-sided transposition shuffle\nM.E. Bate, S.B. Connor and O. Matheau-Raven\nThe Annals of Applied Probability 31(4) (2021) 1746-1773\nWhen to switch? Index policies for resource scheduling in emergency response\nL. Ding, D. Li and S.B. Connor\nProduction and Operations Management 29(2) (2020) 241-262\nOmnithermal perfect simulation for multi-server queues\nS.B. Connor\nACM Transactions on Modeling and Computer Simulation 30(1) (2020)\nMixing times for exclusion processes on hypergraphs\nS.B. Connor and R.J. Pymar\nElectronic Journal of Probability 24 (2019)\nMixing time and cutoff for a random walk on the ring of integers mod n\nM.E. Bate and S.B. Connor\nBernoulli 24(2) (2018) 993-1009\nPerfect simulation of M/G/c queues\nS.B. Connor and W.S. Kendall\nAdvances in Applied Probability 47(4) (2015) 1039-1063\nOptimal co-adapted coupling for a random walk on the hyper-complete graph\nS.B. Connor\nJournal of Applied Probability 50(4) (2013) 1117-1130\nSeparation and coupling cutoffs for tuples of independent Markov processes\nS.B. Connor\nLatin American Journal of Probability and Mathematical Statistics 7 (2010) 65-77\nState-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains\nS.B. Connor and G. Fort\nStochastic Processes and their Applications 119(12) (2009) 4176-4193\nOptimal co-adapted coupling for the symmetric random walk on the hypercube\nS.B. Connor and S. Jacka\nJournal of Applied Probability 45(1) (2008) 703-713\nPerfect simulation for a class of positive recurrent Markov chains\nS.B. Connor and W.S. Kendall\nThe Annals of Applied Probability 17(3) (2007) 781-808 (with correction, 1808-1810)"
+  },
+  {
+    "objectID": "publications.html#journal-papers",
+    "href": "publications.html#journal-papers",
+    "title": "Publications",
+    "section": "",
+    "text": "Optimal coupling of jumpy Brownian motion on the circle\nS.B. Connor and R. Merli\nJournal of Applied Probability 61(1) (2024) 18-32 ArXiv\nIntegrals of incomplete beta functions, with applications to order statistics, random walks and string enumeration\nS.B. Connor and C.J. Fewster\nBrazilian Journal of Probability and Statistics 36(1) (2022) 185-198 ArXiv\nCutoff for a one-sided transposition shuffle\nM.E. Bate, S.B. Connor and O. Matheau-Raven\nThe Annals of Applied Probability 31(4) (2021) 1746-1773\nWhen to switch? Index policies for resource scheduling in emergency response\nL. Ding, D. Li and S.B. Connor\nProduction and Operations Management 29(2) (2020) 241-262\nOmnithermal perfect simulation for multi-server queues\nS.B. Connor\nACM Transactions on Modeling and Computer Simulation 30(1) (2020)\nMixing times for exclusion processes on hypergraphs\nS.B. Connor and R.J. Pymar\nElectronic Journal of Probability 24 (2019)\nMixing time and cutoff for a random walk on the ring of integers mod n\nM.E. Bate and S.B. Connor\nBernoulli 24(2) (2018) 993-1009\nPerfect simulation of M/G/c queues\nS.B. Connor and W.S. Kendall\nAdvances in Applied Probability 47(4) (2015) 1039-1063\nOptimal co-adapted coupling for a random walk on the hyper-complete graph\nS.B. Connor\nJournal of Applied Probability 50(4) (2013) 1117-1130\nSeparation and coupling cutoffs for tuples of independent Markov processes\nS.B. Connor\nLatin American Journal of Probability and Mathematical Statistics 7 (2010) 65-77\nState-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains\nS.B. Connor and G. Fort\nStochastic Processes and their Applications 119(12) (2009) 4176-4193\nOptimal co-adapted coupling for the symmetric random walk on the hypercube\nS.B. Connor and S. Jacka\nJournal of Applied Probability 45(1) (2008) 703-713\nPerfect simulation for a class of positive recurrent Markov chains\nS.B. Connor and W.S. Kendall\nThe Annals of Applied Probability 17(3) (2007) 781-808 (with correction, 1808-1810)"
+  },
+  {
+    "objectID": "publications.html#book-chapters",
+    "href": "publications.html#book-chapters",
+    "title": "Publications",
+    "section": "Book chapters",
+    "text": "Book chapters\n\nPerfect sampling\nS.B. Connor\nWiley StatsRef: Statistics Reference Online (2015)\nPerfect sampling\nS.B. Connor\nEncyclopedia of Statistics in Quality and Reliability (2007)"
+  },
+  {
+    "objectID": "publications.html#dissertations",
+    "href": "publications.html#dissertations",
+    "title": "Publications",
+    "section": "Dissertations",
+    "text": "Dissertations\n\nCoupling: cutoffs, CFTP and tameness\nS.B. Connor\nPhD Thesis, University of Warwick (2007)\nSimulation and solving substitution codes\nS.B. Connor\nMMathStat Dissertation (3rd year), University of Warwick (2002)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Stephen Connor",
+    "section": "",
+    "text": "I’m an environmental technologist, working at the US Geological Survey on improving how we deliver water data to the public. In prior roles, I split my time between predictive modeling (to monitor forest carbon sequestration across New York State, track the development of early-successional forests, and more) and visualization (including using game engines as a GIS and making it easier to make reproducible VR environments for research). By training I’m either an ecologist (specializing in landscape and translational ecology) or environmental scientist; professionally, I’ve worked as a data analyst, software engineer, and chicken farmer.\nOn this site I keep a list of my publications, presentations, and my CV, as well as a technical blog.\n\n\n\n\n\n\n\nrsi | Efficiently Retrieve and Process Satellite Imagery | 2024 waywiser | Ergonomic Methods for Assessing Spatial Models | 2023\nspatialsample | Spatial Resampling Infrastructure | 2022\nunifir | A Unifying API for Working with Unity in R | 2022\nterrainr | Retrieve Data from the USGS National Map and Transform it for 3D Landscape Visualizations | 2021"
+  },
+  {
+    "objectID": "index.html#bio",
+    "href": "index.html#bio",
+    "title": "Stephen Connor",
+    "section": "",
+    "text": "I’m an environmental technologist, working at the US Geological Survey on improving how we deliver water data to the public. In prior roles, I split my time between predictive modeling (to monitor forest carbon sequestration across New York State, track the development of early-successional forests, and more) and visualization (including using game engines as a GIS and making it easier to make reproducible VR environments for research). By training I’m either an ecologist (specializing in landscape and translational ecology) or environmental scientist; professionally, I’ve worked as a data analyst, software engineer, and chicken farmer.\nOn this site I keep a list of my publications, presentations, and my CV, as well as a technical blog."
+  },
+  {
+    "objectID": "index.html#selected-projects",
+    "href": "index.html#selected-projects",
+    "title": "Stephen Connor",
+    "section": "",
+    "text": "rsi | Efficiently Retrieve and Process Satellite Imagery | 2024 waywiser | Ergonomic Methods for Assessing Spatial Models | 2023\nspatialsample | Spatial Resampling Infrastructure | 2022\nunifir | A Unifying API for Working with Unity in R | 2022\nterrainr | Retrieve Data from the USGS National Map and Transform it for 3D Landscape Visualizations | 2021"
+  }
+]
