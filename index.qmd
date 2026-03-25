@@ -16,9 +16,6 @@ about:
       href: https://scholar.google.co.uk/citations?user=Gq3EcGYAAAAJ
     - text: "{{< iconify fa6-brands orcid>}} Orcid"
       href: https://orcid.org/0000-0002-9785-2159
-    - text: Mastodon
-      icon: mastodon
-      href: https://mathstodon.xyz/@stephenconnor
 comments: false
 ---
 

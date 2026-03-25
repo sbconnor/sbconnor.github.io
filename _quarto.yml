@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Stephen Connor"
-#  favicon: 
+  site-url: https://sbconnor.github.io/
   navbar:
     left:
       - href: index.qmd
@@ -17,6 +17,16 @@ website:
         text: Outreach
       - href: knitting.qmd
         text: Knitting
+    right:
+      - icon: mastodon
+        href: https://mathstodon.xyz/@stephenconnor
+        target: _blank
+      - icon: github
+        href: https://github.com/sbconnor
+        target: _blank
+  page-footer: 
+    right: Created with {{< iconify simple-icons:quarto>}} [Quarto](https://quarto.org/){target=_blank} and {{< iconify mdi:github>}} [GitHub](https://github.com/sbconnor/sbconnor.github.io){target=_blank}.
+
         
 format:
   html:
@@ -24,7 +34,6 @@ format:
     css: styles.css
     toc: true
     page-layout: full
-
 
 ## Allow for \(...\) and \[..\]
 from: markdown+tex_math_single_backslash

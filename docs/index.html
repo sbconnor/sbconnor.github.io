@@ -110,6 +110,18 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Knitting</span></a>
   </li>  
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://mathstodon.xyz/@stephenconnor" target="_blank"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sbconnor" target="_blank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
@@ -145,10 +157,6 @@ ul.task-list li input[type="checkbox"] {
   </a>
   <a href="https://orcid.org/0000-0002-9785-2159" class="about-link" rel="" target="">
      <span class="about-link-text"><iconify-icon role="img" inline="" icon="fa6-brands:orcid" aria-label="Icon orcid from fa6-brands Iconify.design set." title="Icon orcid from fa6-brands Iconify.design set."></iconify-icon> Orcid</span>
-  </a>
-  <a href="https://mathstodon.xyz/@stephenconnor" class="about-link" rel="" target="">
-    <i class="bi bi-mastodon"></i>
-     <span class="about-link-text">Mastodon</span>
   </a>
 </div>
   </div>
@@ -273,7 +281,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/sbconnor\.github\.io\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -601,6 +609,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Created with <iconify-icon role="img" inline="" icon="simple-icons:quarto" aria-label="Icon quarto from simple-icons Iconify.design set." title="Icon quarto from simple-icons Iconify.design set."></iconify-icon> <a href="https://quarto.org/" target="_blank">Quarto</a> and <iconify-icon role="img" inline="" icon="mdi:github" aria-label="Icon github from mdi Iconify.design set." title="Icon github from mdi Iconify.design set."></iconify-icon> <a href="https://github.com/sbconnor/sbconnor.github.io" target="_blank">GitHub</a>.</p>
+</div>
+  </div>
+</footer>
 
 
 
