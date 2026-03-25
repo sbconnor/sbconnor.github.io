@@ -4,14 +4,15 @@ project:
 
 website:
   title: "Stephen Connor"
+#  favicon: 
   navbar:
     left:
       - href: index.qmd
         text: Home
       - href: publications.qmd
         text: Publications
-      - href: presentations.qmd
-        text: Presentations
+      - href: talks.qmd
+        text: Talks
       - href: outreach.qmd
         text: Outreach
       - href: knitting.qmd
@@ -19,9 +20,7 @@ website:
         
 format:
   html:
-    theme: 
-      light: minty
-      dark: solar
+    theme: superhero
     css: styles.css
     toc: true
     page-layout: full

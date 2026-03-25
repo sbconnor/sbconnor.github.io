@@ -1,0 +1,72 @@
+---
+title: "Outreach"
+subtitle: "School visits and public lectures"
+---
+
+I regularly run outreach sessions at local schools, and have given a number of 
+public lectures on the mathematics of card shuffling.\
+Below you can find a selection of sessions which I've delivered. 
+If you'd be interested in getting me to run one of these (or something else), 
+[get in touch](mailto:stephen.connor@york.ac.uk)
+
+:::: {.columns}
+::: {.column width="40%"}
+### Growth
+How fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\
+{{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 2
+
+***
+
+### The prosecutor’s fallacy
+This session demonstrates how a little knowledge of relatively simple statistics can help in real-life situations.\
+We consider the interpretation of medical tests for (fictitious) rare diseases and of (real) statistical evidence presented in a court room, and seek to understand commonly made mistakes.\
+{{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 3 / 4 / 5
+
+***
+
+### Surprising uses of randomness
+A look at how random numbers are generated, and some of their surprising uses. These include calculating areas of complicated shapes, image restoration, and decoding substitution codes.\
+{{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 4 / 5
+
+***
+
+### Card shuffling
+How many times should you shuffle a pack of cards? A gentle introduction to the mathematics of card shuffling, involving probability, permutations and possibly a little magic!\
+{{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 4 / 5
+
+***
+:::
+
+::: {.column width="10%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="40%"}
+### Secret keeping
+An easy introduction to the mathematics of codes, from simple Caesar cyphers to modern-day cryptography.\
+{{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 2 / 3
+
+***
+
+### Penney ante
+
+Penney Ante is a simple coin-tossing game with some very counter-intuitive properties! This session explores these properties, and shows how to use binary numbers to work out optimal game strategies.\
+{{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 3 / 4 / 5
+
+***
+
+### Patterns and problem solving
+A workshop in which students are challenged to spot patterns and conjecture solutions to problems involving cake cutting, drawing graphs, and sharing gold between pirates\
+{{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 5
+
+***
+
+### Mathematical proof
+This workshop inroduces students to the idea of mathematical proof. 
+We talk about why mathematicians care so much about proof, and see examples of some famous theorems. 
+We then look at proof by contradiction and by induction, with the students working through plenty of examples of each type.\
+{{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 5
+
+***
+:::
+::::

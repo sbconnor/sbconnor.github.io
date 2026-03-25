@@ -9,57 +9,79 @@ Journal papers
     S.B. Connor and R. Merli\
     [Journal of Applied Probability](https://doi.org/10.1017/jpr.2023.38) 
     61(1) (2024) 18-32 
-    <a href="http://arxiv.org/abs/2203.14791" class="btn btn-sm btn-outline-primary">ArXiv</a>
+    &nbsp;[arXiv](http://arxiv.org/abs/2203.14791){.btn-sm .btn-outline-primary .btn role="button"} 
+
 
 -   **Integrals of incomplete beta functions, with applications to order statistics, random walks and string enumeration**\
     S.B. Connor and C.J. Fewster\
-    [Brazilian Journal of Probability and Statistics](http://dx.doi.org/10.1214/21-BJPS522) 
+    {{< iconify simple-icons:openaccess title="Open access">}} [Brazilian Journal of Probability and Statistics](http://dx.doi.org/10.1214/21-BJPS522) 
     36(1) (2022) 185-198
-    <a href="http://arxiv.org/abs/2104.12216" class="btn btn-sm btn-outline-primary">ArXiv</a>
+    &nbsp;[arXiv](http://arxiv.org/abs/2104.12216){.btn-sm .btn-outline-primary .btn role="button"} 
+
 
 -   **Cutoff for a one-sided transposition shuffle**\
     M.E. Bate, S.B. Connor and O. Matheau-Raven\
-    The Annals of Applied Probability 31(4) (2021) 1746-1773
+    {{< iconify simple-icons:openaccess title="Open access">}} [The Annals of Applied Probability](https://projecteuclid.org/journals/annals-of-applied-probability/volume-31/issue-4/Cutoff-for-a-one-sided-transposition-shuffle/10.1214/20-AAP1632.full) 31(4) (2021) 1746-1773 
+    &nbsp;[arXiv](https://arxiv.org/abs/1907.12074){.btn-sm .btn-outline-primary .btn role="button"} 
+
 
 -   **When to switch? Index policies for resource scheduling in emergency response**\
     L. Ding, D. Li and S.B. Connor\
-    Production and Operations Management 29(2) (2020) 241-262
+    [Production and Operations Management](http://onlinelibrary.wiley.com/doi/full/10.1111/poms.13105) 29(2) (2020) 241-262
+
 
 -   **Omnithermal perfect simulation for multi-server queues**\
     S.B. Connor\
-    ACM Transactions on Modeling and Computer Simulation 30(1) (2020)
+    {{< iconify simple-icons:openaccess title="Open access">}} [ACM Transactions on Modeling and Computer Simulation](http://dl.acm.org/doi/10.1145/3361743) 30(1) (2020)
+    &nbsp;[arXiv](http://arxiv.org/abs/1610.06012){.btn-sm .btn-outline-primary .btn role="button"} 
+
 
 -   **Mixing times for exclusion processes on hypergraphs**\
     S.B. Connor and R.J. Pymar\
-    Electronic Journal of Probability 24 (2019)
-
+    {{< iconify simple-icons:openaccess title="Open access">}} [Electronic Journal of Probability](http://doi.org/10.1214/19-EJP332) 24 (2019)
+    &nbsp;[arXiv](http://arxiv.org/abs/1606.02703){.btn-sm .btn-outline-primary .btn role="button"} 
+    
+    
 -   **Mixing time and cutoff for a random walk on the ring of integers mod n**\
     M.E. Bate and S.B. Connor\
-    Bernoulli 24(2) (2018) 993-1009
+    {{< iconify simple-icons:openaccess title="Open access">}} [Bernoulli](http://projecteuclid.org/euclid.bj/1505980886) 24(2) (2018) 993-1009
+    &nbsp;[arXiv](http://arxiv.org/abs/1407.3580){.btn-sm .btn-outline-primary .btn role="button"} 
+
 
 -   **Perfect simulation of M/G/c queues**\
     S.B. Connor and W.S. Kendall\
-    Advances in Applied Probability 47(4) (2015) 1039-1063
+    [Advances in Applied Probability](http://projecteuclid.org/euclid.aap/1449859799) 47(4) (2015) 1039-1063
+    &nbsp;[arXiv](http://arxiv.org/abs/1402.7248){.btn-sm .btn-outline-primary .btn role="button"} 
     
+
 -   **Optimal co-adapted coupling for a random walk on the hyper-complete graph**\
     S.B. Connor\
-    Journal of Applied Probability 50(4) (2013) 1117-1130
-   
+    [Journal of Applied Probability](http://projecteuclid.org/euclid.jap/1389370103) 50(4) (2013) 1117-1130
+    &nbsp;[arXiv](http://arxiv.org/abs/0908.2038){.btn-sm .btn-outline-primary .btn role="button"} 
+
+
 -   **Separation and coupling cutoffs for tuples of independent Markov processes**\
     S.B. Connor\
-    Latin American Journal of Probability and Mathematical Statistics 7 (2010) 65-77
+    {{< iconify simple-icons:openaccess title="Open access">}} [Latin American Journal of Probability and Mathematical Statistics](https://alea.impa.br/english/index_v7.htm) 7 (2010) 65-77
+    &nbsp;[arXiv](http://arxiv.org/abs/0802.2641){.btn-sm .btn-outline-primary .btn role="button"} 
+
 
 -   **State-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains**\
     S.B. Connor and G. Fort\
-    Stochastic Processes and their Applications 119(12) (2009) 4176-4193
+     {{< iconify simple-icons:openaccess title="Open access">}} [Stochastic Processes and their Applications](http://doi.org/10.1016/j.spa.2009.10.001) 119(12) (2009) 4176-4193
+    &nbsp;[arXiv](http://arxiv.org/abs/0901.24534){.btn-sm .btn-outline-primary .btn role="button"} 
+
   
 -   **Optimal co-adapted coupling for the symmetric random walk on the hypercube**\
     S.B. Connor and S. Jacka\
-    Journal of Applied Probability 45(1) (2008) 703-713
+    [Journal of Applied Probability](http://www.jstor.org/stable/27595981) 45(1) (2008) 703-713
+    &nbsp;[arXiv](http://arxiv.org/abs/arXiv:0801.1220v2){.btn-sm .btn-outline-primary .btn role="button"} 
+
 
 -   **Perfect simulation for a class of positive recurrent Markov chains**\
     S.B. Connor and W.S. Kendall\
-    The Annals of Applied Probability 17(3) (2007) 781-808 (with correction, 1808-1810)
+    [The Annals of Applied Probability](http://www.jstor.org/stable/25442862) 17(3) (2007) 781-808 (with correction, 1808-1810)
+    &nbsp;[arXiv](http://arxiv.org/abs/math/0601174){.btn-sm .btn-outline-primary .btn role="button"} 
 
 
 Book chapters
@@ -67,11 +89,13 @@ Book chapters
 
 -   **Perfect sampling**\
     S.B. Connor\
-    Wiley StatsRef: Statistics Reference Online (2015)
+    [Wiley StatsRef: Statistics Reference Online](http://onlinelibrary.wiley.com/doi/10.1002/9781118445112.stat03880.pub2/full) (2015)
+ 
  
 -   **Perfect sampling**\
     S.B. Connor\
-    Encyclopedia of Statistics in Quality and Reliability (2007)
+    [Encyclopedia of Statistics in Quality and Reliability](http://eu.wiley.com/WileyCDA/WileyTitle/productCd-0470018615.html) (2007)
+
 
 Dissertations
 --------------
@@ -79,7 +103,10 @@ Dissertations
 -   **Coupling: cutoffs, CFTP and tameness**\
     S.B. Connor\
     PhD Thesis, University of Warwick (2007)
-
+    &nbsp;[{{< iconify tabler:download >}} Download](SBC-thesis.pdf){.btn-sm .btn-outline-primary .btn role="button"}
+    
+    
 -   **Simulation and solving substitution codes**\
     S.B. Connor\
     MMathStat Dissertation (3rd year), University of Warwick (2002)
+    &nbsp;[{{< iconify tabler:download >}} Download](decode.pdf){.btn-sm .btn-outline-primary .btn role="button"}

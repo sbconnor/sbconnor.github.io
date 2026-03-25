@@ -1,51 +1,57 @@
 ---
 title: "Stephen Connor"
-description: "<br>I'm a Reader in the [Statistics and Probability Group](http://www.york.ac.uk/maths/research/statistics-probability) 
-<br>in the [Department of Mathematics](http://maths.york.ac.uk/www/Home) at the [University of York](http://www.york.ac.uk), UK."
+subtitle: "[stephen.connor@york.ac.uk](mailto:stephen.connor@york.ac.uk)"
+description: "<br>
+  Department of Mathematics<br> 
+  Ian Wand Building<br>
+  University of York<br>
+  York, YO10 5GH, UK"
 image: images/SBC.jpg
 toc: false
 about: 
   template: trestles
-  image-shape: round
+  image-shape: rounded
   links:
-    - text: Email
-      href: mailto:stephen.connor@york.ac.uk
+    - text: "{{< iconify fa6-brands google-scholar>}} Scholar"
+      href: https://scholar.google.co.uk/citations?user=Gq3EcGYAAAAJ
+    - text: "{{< iconify fa6-brands orcid>}} Orcid"
+      href: https://orcid.org/0000-0002-9785-2159
     - text: Mastodon
       icon: mastodon
-      url: "https://mathstodon.xyz/@stephenconnor"
-    - text: GitHub
-      icon: github
-      href: https://github.com/sbconnor
+      href: https://mathstodon.xyz/@stephenconnor
 comments: false
 ---
 
-::: {.column-page}
+## About me 
+I'm a Reader in the 
+[Statistics and Probability Group](http://www.york.ac.uk/maths/research/statistics-probability) 
+in the [Department of Mathematics](http://maths.york.ac.uk/www/Home) at the [University of York](http://www.york.ac.uk), UK.
 
-## Bio
+***
 
-I’m an environmental technologist, working at the US Geological Survey on improving how we deliver water data to the public. In prior roles, I split my time between predictive modeling
-(to [monitor forest carbon sequestration across New York State](https://cafri-ny.org/new-york-forest-carbon-assessment/), 
-[track the development of early-successional forests](https://doi.org/10.1080/01431161.2022.2155086), 
-and more) and visualization (including
-[using game engines as a GIS](https://www.researchgate.net/profile/Richard-Smardon/publication/355972101_VRSC_2021_Conference_Proceedings_VRSC_2021_Conference_Proceedings/links/6186bf0e07be5f31b74fa3c1/VRSC-2021-Conference-Proceedings-VRSC-2021-Conference-Proceedings.pdf#page=74) and
-[making it easier to make reproducible VR environments for research](https://doi.org/10.21105/joss.04388)).
-By training I'm either an ecologist (specializing in landscape and 
-translational ecology) or environmental scientist; professionally, I've worked
-as a data analyst, software engineer, and chicken farmer.
+### {{< iconify streamline:dice-5-remix>}}&nbsp; Research
 
-On this site I keep a list of [my publications](papers), [presentations](talks), 
-and [my CV](cv.pdf), as well as a [technical blog](blog.html).
+My research interests are primarily in applied probability. In particular:
 
-<p></p>
+  - mixing times of Markov chains
+  - perfect simulation
+  - coupling theory
+  - interacting particle systems.
+  
+{{< iconify mdi:arrow-right-bottom>}} Here are a list of my [publications](publications.qmd) and some selected [talks](talks.qmd).
 
-## Selected Projects
+***
 
-#### R Packages
+### {{< iconify system-uicons:speech-bubble>}}&nbsp; Outreach
 
-**[rsi](https://github.com/Permian-Global-Research/rsi)** | Efficiently Retrieve and Process Satellite Imagery | 2024
-**[waywiser](https://mikemahoney218.github.io/waywiser/)** | Ergonomic Methods for Assessing Spatial Models | 2023  
-**[spatialsample](spatialsample.tidymodels.org/)** | Spatial Resampling Infrastructure | 2022  
-**[unifir](https://github.com/mikemahoney218/unifir)** | A Unifying API for Working with Unity in R | 2022  
-**[terrainr](https://github.com/ropensci/terrainr)** | Retrieve Data from the USGS National Map and Transform it for 3D Landscape Visualizations | 2021  
+I regularly run [outreach sessions](outreach.qmd) at local schools, and from 2017 - 2020 I was a London Mathematical Society [Holgate Session Leader](https://www.lms.ac.uk/events/lectures/holgate-lectures-and-workshops).
 
-:::
+***
+
+### {{< iconify vaadin:exit>}}&nbsp; External
+
+  - I co-founded the [Probability in the North East (PiNE)](https://www.maths.dur.ac.uk/PiNE/) research network
+  - I'm an editor for the [Applied Probability Trust journals](https://www.appliedprobability.org/home)
+  - I'm a member of the Research Grants Committee of the [London Mathematical Society](https://www.lms.ac.uk)
+  - From 2020 - 2024 I was an external member of the Academic Steering and Management Group for the [Scottish Mathematical Sciences Training Centre](https://smstc.ac.uk)
+  - For most of 2009 - 2019 I was a lecturer of the Applied Stochastic Processes module for the [Academy for PhD Training in Statistics (APTS](http://apts.ac.uk)

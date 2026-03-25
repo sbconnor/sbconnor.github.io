@@ -1,17 +1,38 @@
 [
   {
+    "objectID": "talks.html",
+    "href": "talks.html",
+    "title": "Talks",
+    "section": "",
+    "text": "Shuffling cards via one-sided transpositions\n\n\n Relevant paper: Cutoff for a one-sided transposition shuffle\nConsider shuffling a deck of \\(n\\) cards as follows. Choose one card uniformly at random with your Right hand; choose a card uniformly at random with your Left hand, conditioned not to be above your Right hand’s choice; transpose the chosen cards.\nHow many of these shuffles does it take to randomise the deck? This can be answered using a mixture of representation theory of the symmetric group, and a variation of some classical probability arguments.\n\n\n\n\n \n\n\n\n\nOmnithermal perfect simulation\n\n\n Relevant paper: Omnithermal perfect simulation for multi-server queues\nSuppose that we want to sample from the equilibriun distribution of a Markov chain, which depends on some underlying parameter. In some situations it is possible to modify a perfect simulation algorithm so as to sample simultaneously from all distributions for which the corresponding parameter lies in a given range: we call this omnithermal simulation. Here we give an overview of a few of these algorithms.\n\n\n\n \n\n\n\n\nOmnithermal perfect simulation for M/G/c queues\n\n\n Relevant paper: Perfect simulation of M/G/c queues\n Relevant paper: Omnithermal perfect simulation for multi-server queues\nA number of perfect simulation algorithms allow the user to sample from the equilibrium distribution of the Kiefer-Wolfowitz workload vector for stable \\(M/G/c\\) and \\(GI/GI/c\\) queues. This talk looks at how some dominated Coupling From The Past algorithms may be modified to carry out this sampling simultaneously for a range of values of \\(c\\) (the number of servers).\n\n\n\n \n\n\n\n\nPerfect simulation for M/G/c queues\n\n\n Relevant paper: Perfect simulation of M/G/c queues\nThis talk gives an overview of dominated Coupling From The Past, and then considers the problem of designing such an algorithm to obtain perfect samples from the equilibrium distribution of the workload vector of a multiserver (\\(M/G/c\\)) queue. Some careful coupling between “First-come first-served” and “Random assignment” service regimes leads to an implementable algorithm, whose properties are explored.\n\n\n\n \n\n\n\n\nState-dependent Foster-Lyapunov criteria\n\n\n Relevant paper: State-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains\nDrift conditions are a theoretical tool for establishing the convergence rate of a Markov chain. Typically such a criterion only looks at a single step of the chain; here we explore what can be inferred if a geometric drift condition is known to hold for a subsampled chain, for which the subsampling rate is state-dependent. Applications of the results include perfect simulation algorithms, queueing theory and network stability.\n\n\n\n \n\n\n\n\nCoupling: co-adapted vs. maximal\n\n\n Relevant paper: Optimal co-adapted coupling for the symmetric random walk on the hypercube\n Relevant paper: Optimal co-adapted coupling for a random walk on the hyper-complete graph\nSuppose that we have two copies of a continuous-time random walk on the hypercube \\(\\mathbb{Z}_2^n\\), and we wish to couple them so that they meet as quickly as possible. What’s the best way to do this, under the assumption that neither is allowed to “cheat” by looking ahead at what the other is going to do?"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Stephen Connor",
+    "section": "",
+    "text": "I’m a Reader in the Statistics and Probability Group in the Department of Mathematics at the University of York, UK.\n\n\n\nMy research interests are primarily in applied probability. In particular:\n\nmixing times of Markov chains\nperfect simulation\ncoupling theory\ninteracting particle systems.\n\n Here are a list of my publications and some selected talks.\n\n\n\n\nI regularly run outreach sessions at local schools, and from 2017 - 2020 I was a London Mathematical Society Holgate Session Leader.\n\n\n\n\n\nI co-founded the Probability in the North East (PiNE) research network\nI’m an editor for the Applied Probability Trust journals\nI’m a member of the Research Grants Committee of the London Mathematical Society\nFrom 2020 - 2024 I was an external member of the Academic Steering and Management Group for the Scottish Mathematical Sciences Training Centre\nFor most of 2009 - 2019 I was a lecturer of the Applied Stochastic Processes module for the Academy for PhD Training in Statistics (APTS"
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Stephen Connor",
+    "section": "",
+    "text": "I’m a Reader in the Statistics and Probability Group in the Department of Mathematics at the University of York, UK.\n\n\n\nMy research interests are primarily in applied probability. In particular:\n\nmixing times of Markov chains\nperfect simulation\ncoupling theory\ninteracting particle systems.\n\n Here are a list of my publications and some selected talks.\n\n\n\n\nI regularly run outreach sessions at local schools, and from 2017 - 2020 I was a London Mathematical Society Holgate Session Leader.\n\n\n\n\n\nI co-founded the Probability in the North East (PiNE) research network\nI’m an editor for the Applied Probability Trust journals\nI’m a member of the Research Grants Committee of the London Mathematical Society\nFrom 2020 - 2024 I was an external member of the Academic Steering and Management Group for the Scottish Mathematical Sciences Training Centre\nFor most of 2009 - 2019 I was a lecturer of the Applied Stochastic Processes module for the Academy for PhD Training in Statistics (APTS"
+  },
+  {
     "objectID": "publications.html",
     "href": "publications.html",
     "title": "Publications",
     "section": "",
-    "text": "Optimal coupling of jumpy Brownian motion on the circle\nS.B. Connor and R. Merli\nJournal of Applied Probability 61(1) (2024) 18-32 ArXiv\nIntegrals of incomplete beta functions, with applications to order statistics, random walks and string enumeration\nS.B. Connor and C.J. Fewster\nBrazilian Journal of Probability and Statistics 36(1) (2022) 185-198 ArXiv\nCutoff for a one-sided transposition shuffle\nM.E. Bate, S.B. Connor and O. Matheau-Raven\nThe Annals of Applied Probability 31(4) (2021) 1746-1773\nWhen to switch? Index policies for resource scheduling in emergency response\nL. Ding, D. Li and S.B. Connor\nProduction and Operations Management 29(2) (2020) 241-262\nOmnithermal perfect simulation for multi-server queues\nS.B. Connor\nACM Transactions on Modeling and Computer Simulation 30(1) (2020)\nMixing times for exclusion processes on hypergraphs\nS.B. Connor and R.J. Pymar\nElectronic Journal of Probability 24 (2019)\nMixing time and cutoff for a random walk on the ring of integers mod n\nM.E. Bate and S.B. Connor\nBernoulli 24(2) (2018) 993-1009\nPerfect simulation of M/G/c queues\nS.B. Connor and W.S. Kendall\nAdvances in Applied Probability 47(4) (2015) 1039-1063\nOptimal co-adapted coupling for a random walk on the hyper-complete graph\nS.B. Connor\nJournal of Applied Probability 50(4) (2013) 1117-1130\nSeparation and coupling cutoffs for tuples of independent Markov processes\nS.B. Connor\nLatin American Journal of Probability and Mathematical Statistics 7 (2010) 65-77\nState-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains\nS.B. Connor and G. Fort\nStochastic Processes and their Applications 119(12) (2009) 4176-4193\nOptimal co-adapted coupling for the symmetric random walk on the hypercube\nS.B. Connor and S. Jacka\nJournal of Applied Probability 45(1) (2008) 703-713\nPerfect simulation for a class of positive recurrent Markov chains\nS.B. Connor and W.S. Kendall\nThe Annals of Applied Probability 17(3) (2007) 781-808 (with correction, 1808-1810)"
+    "text": "Optimal coupling of jumpy Brownian motion on the circle\nS.B. Connor and R. Merli\nJournal of Applied Probability 61(1) (2024) 18-32  arXiv\nIntegrals of incomplete beta functions, with applications to order statistics, random walks and string enumeration\nS.B. Connor and C.J. Fewster\n Brazilian Journal of Probability and Statistics 36(1) (2022) 185-198  arXiv\nCutoff for a one-sided transposition shuffle\nM.E. Bate, S.B. Connor and O. Matheau-Raven\n The Annals of Applied Probability 31(4) (2021) 1746-1773  arXiv\nWhen to switch? Index policies for resource scheduling in emergency response\nL. Ding, D. Li and S.B. Connor\nProduction and Operations Management 29(2) (2020) 241-262\nOmnithermal perfect simulation for multi-server queues\nS.B. Connor\n ACM Transactions on Modeling and Computer Simulation 30(1) (2020)  arXiv\nMixing times for exclusion processes on hypergraphs\nS.B. Connor and R.J. Pymar\n Electronic Journal of Probability 24 (2019)  arXiv\nMixing time and cutoff for a random walk on the ring of integers mod n\nM.E. Bate and S.B. Connor\n Bernoulli 24(2) (2018) 993-1009  arXiv\nPerfect simulation of M/G/c queues\nS.B. Connor and W.S. Kendall\nAdvances in Applied Probability 47(4) (2015) 1039-1063  arXiv\nOptimal co-adapted coupling for a random walk on the hyper-complete graph\nS.B. Connor\nJournal of Applied Probability 50(4) (2013) 1117-1130  arXiv\nSeparation and coupling cutoffs for tuples of independent Markov processes\nS.B. Connor\n Latin American Journal of Probability and Mathematical Statistics 7 (2010) 65-77  arXiv\nState-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains\nS.B. Connor and G. Fort\n Stochastic Processes and their Applications 119(12) (2009) 4176-4193  arXiv\nOptimal co-adapted coupling for the symmetric random walk on the hypercube\nS.B. Connor and S. Jacka\nJournal of Applied Probability 45(1) (2008) 703-713  arXiv\nPerfect simulation for a class of positive recurrent Markov chains\nS.B. Connor and W.S. Kendall\nThe Annals of Applied Probability 17(3) (2007) 781-808 (with correction, 1808-1810)  arXiv"
   },
   {
     "objectID": "publications.html#journal-papers",
     "href": "publications.html#journal-papers",
     "title": "Publications",
     "section": "",
-    "text": "Optimal coupling of jumpy Brownian motion on the circle\nS.B. Connor and R. Merli\nJournal of Applied Probability 61(1) (2024) 18-32 ArXiv\nIntegrals of incomplete beta functions, with applications to order statistics, random walks and string enumeration\nS.B. Connor and C.J. Fewster\nBrazilian Journal of Probability and Statistics 36(1) (2022) 185-198 ArXiv\nCutoff for a one-sided transposition shuffle\nM.E. Bate, S.B. Connor and O. Matheau-Raven\nThe Annals of Applied Probability 31(4) (2021) 1746-1773\nWhen to switch? Index policies for resource scheduling in emergency response\nL. Ding, D. Li and S.B. Connor\nProduction and Operations Management 29(2) (2020) 241-262\nOmnithermal perfect simulation for multi-server queues\nS.B. Connor\nACM Transactions on Modeling and Computer Simulation 30(1) (2020)\nMixing times for exclusion processes on hypergraphs\nS.B. Connor and R.J. Pymar\nElectronic Journal of Probability 24 (2019)\nMixing time and cutoff for a random walk on the ring of integers mod n\nM.E. Bate and S.B. Connor\nBernoulli 24(2) (2018) 993-1009\nPerfect simulation of M/G/c queues\nS.B. Connor and W.S. Kendall\nAdvances in Applied Probability 47(4) (2015) 1039-1063\nOptimal co-adapted coupling for a random walk on the hyper-complete graph\nS.B. Connor\nJournal of Applied Probability 50(4) (2013) 1117-1130\nSeparation and coupling cutoffs for tuples of independent Markov processes\nS.B. Connor\nLatin American Journal of Probability and Mathematical Statistics 7 (2010) 65-77\nState-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains\nS.B. Connor and G. Fort\nStochastic Processes and their Applications 119(12) (2009) 4176-4193\nOptimal co-adapted coupling for the symmetric random walk on the hypercube\nS.B. Connor and S. Jacka\nJournal of Applied Probability 45(1) (2008) 703-713\nPerfect simulation for a class of positive recurrent Markov chains\nS.B. Connor and W.S. Kendall\nThe Annals of Applied Probability 17(3) (2007) 781-808 (with correction, 1808-1810)"
+    "text": "Optimal coupling of jumpy Brownian motion on the circle\nS.B. Connor and R. Merli\nJournal of Applied Probability 61(1) (2024) 18-32  arXiv\nIntegrals of incomplete beta functions, with applications to order statistics, random walks and string enumeration\nS.B. Connor and C.J. Fewster\n Brazilian Journal of Probability and Statistics 36(1) (2022) 185-198  arXiv\nCutoff for a one-sided transposition shuffle\nM.E. Bate, S.B. Connor and O. Matheau-Raven\n The Annals of Applied Probability 31(4) (2021) 1746-1773  arXiv\nWhen to switch? Index policies for resource scheduling in emergency response\nL. Ding, D. Li and S.B. Connor\nProduction and Operations Management 29(2) (2020) 241-262\nOmnithermal perfect simulation for multi-server queues\nS.B. Connor\n ACM Transactions on Modeling and Computer Simulation 30(1) (2020)  arXiv\nMixing times for exclusion processes on hypergraphs\nS.B. Connor and R.J. Pymar\n Electronic Journal of Probability 24 (2019)  arXiv\nMixing time and cutoff for a random walk on the ring of integers mod n\nM.E. Bate and S.B. Connor\n Bernoulli 24(2) (2018) 993-1009  arXiv\nPerfect simulation of M/G/c queues\nS.B. Connor and W.S. Kendall\nAdvances in Applied Probability 47(4) (2015) 1039-1063  arXiv\nOptimal co-adapted coupling for a random walk on the hyper-complete graph\nS.B. Connor\nJournal of Applied Probability 50(4) (2013) 1117-1130  arXiv\nSeparation and coupling cutoffs for tuples of independent Markov processes\nS.B. Connor\n Latin American Journal of Probability and Mathematical Statistics 7 (2010) 65-77  arXiv\nState-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains\nS.B. Connor and G. Fort\n Stochastic Processes and their Applications 119(12) (2009) 4176-4193  arXiv\nOptimal co-adapted coupling for the symmetric random walk on the hypercube\nS.B. Connor and S. Jacka\nJournal of Applied Probability 45(1) (2008) 703-713  arXiv\nPerfect simulation for a class of positive recurrent Markov chains\nS.B. Connor and W.S. Kendall\nThe Annals of Applied Probability 17(3) (2007) 781-808 (with correction, 1808-1810)  arXiv"
   },
   {
     "objectID": "publications.html#book-chapters",
@@ -25,27 +46,62 @@
     "href": "publications.html#dissertations",
     "title": "Publications",
     "section": "Dissertations",
-    "text": "Dissertations\n\nCoupling: cutoffs, CFTP and tameness\nS.B. Connor\nPhD Thesis, University of Warwick (2007)\nSimulation and solving substitution codes\nS.B. Connor\nMMathStat Dissertation (3rd year), University of Warwick (2002)"
+    "text": "Dissertations\n\nCoupling: cutoffs, CFTP and tameness\nS.B. Connor\nPhD Thesis, University of Warwick (2007)   Download\nSimulation and solving substitution codes\nS.B. Connor\nMMathStat Dissertation (3rd year), University of Warwick (2002)   Download"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Stephen Connor",
+    "objectID": "knitting.html",
+    "href": "knitting.html",
+    "title": "Knitting and Crochet",
     "section": "",
-    "text": "I’m an environmental technologist, working at the US Geological Survey on improving how we deliver water data to the public. In prior roles, I split my time between predictive modeling (to monitor forest carbon sequestration across New York State, track the development of early-successional forests, and more) and visualization (including using game engines as a GIS and making it easier to make reproducible VR environments for research). By training I’m either an ecologist (specializing in landscape and translational ecology) or environmental scientist; professionally, I’ve worked as a data analyst, software engineer, and chicken farmer.\nOn this site I keep a list of my publications, presentations, and my CV, as well as a technical blog.\n\n\n\n\n\n\n\nrsi | Efficiently Retrieve and Process Satellite Imagery | 2024 waywiser | Ergonomic Methods for Assessing Spatial Models | 2023\nspatialsample | Spatial Resampling Infrastructure | 2022\nunifir | A Unifying API for Working with Unity in R | 2022\nterrainr | Retrieve Data from the USGS National Map and Transform it for 3D Landscape Visualizations | 2021"
+    "text": "No matching items"
   },
   {
-    "objectID": "index.html#bio",
-    "href": "index.html#bio",
-    "title": "Stephen Connor",
+    "objectID": "knitting.html#pictures",
+    "href": "knitting.html#pictures",
+    "title": "Knitting",
     "section": "",
-    "text": "I’m an environmental technologist, working at the US Geological Survey on improving how we deliver water data to the public. In prior roles, I split my time between predictive modeling (to monitor forest carbon sequestration across New York State, track the development of early-successional forests, and more) and visualization (including using game engines as a GIS and making it easier to make reproducible VR environments for research). By training I’m either an ecologist (specializing in landscape and translational ecology) or environmental scientist; professionally, I’ve worked as a data analyst, software engineer, and chicken farmer.\nOn this site I keep a list of my publications, presentations, and my CV, as well as a technical blog."
+    "text": "A Lovely Image\n\n\n\n\n\nAnother Lovely Image\n\n\n\n\n\nThe Last Lovely Image\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)"
   },
   {
-    "objectID": "index.html#selected-projects",
-    "href": "index.html#selected-projects",
-    "title": "Stephen Connor",
+    "objectID": "knitting2.html",
+    "href": "knitting2.html",
+    "title": "Knitting and Crochet",
     "section": "",
-    "text": "rsi | Efficiently Retrieve and Process Satellite Imagery | 2024 waywiser | Ergonomic Methods for Assessing Spatial Models | 2023\nspatialsample | Spatial Resampling Infrastructure | 2022\nunifir | A Unifying API for Working with Unity in R | 2022\nterrainr | Retrieve Data from the USGS National Map and Transform it for 3D Landscape Visualizations | 2021"
+    "text": "No matching items"
+  },
+  {
+    "objectID": "outreach.html",
+    "href": "outreach.html",
+    "title": "Outreach",
+    "section": "",
+    "text": "I regularly run outreach sessions at local schools, and have given a number of public lectures on the mathematics of card shuffling.\nBelow you can find a selection of sessions which I’ve delivered. If you’d be interested in getting me to run one of these (or something else), get in touch\n\n\n\nGrowth\nHow fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2\n\n\n\nThe prosecutor’s fallacy\nThis session demonstrates how a little knowledge of relatively simple statistics can help in real-life situations.\nWe consider the interpretation of medical tests for (fictitious) rare diseases and of (real) statistical evidence presented in a court room, and seek to understand commonly made mistakes.\n Suitable for: Key Stage 3 / 4 / 5\n\n\n\nSurprising uses of randomness\nA look at how random numbers are generated, and some of their surprising uses. These include calculating areas of complicated shapes, image restoration, and decoding substitution codes.\n Suitable for: Key Stage 4 / 5\n\n\n\nCard shuffling\nHow many times should you shuffle a pack of cards?A gentle introduction to the mathematics of card shuffling, involving probability, permutations and possibly a little magic!\n Suitable for: Key Stage 4 / 5\n\n\n\n\n\n\nSecret keeping\nAn easy introduction to the mathematics of codes, from simple Caesar cyphers to modern-day cryptography.\n Suitable for: Key Stage 2 / 3\n\n\n\nPenney ante\nPenney Ante is a simple coin-tossing game with some very counter-intuitive properties! This session explores these properties, and shows how to use binary numbers to work out optimal game strategies.\n Suitable for: Key Stage 3 / 4 / 5\n\n\n\nPatterns and problem solving\nA workshop in which students are challenged to spot patterns and conjecture solutions to problems involving cake cutting, drawing graphs, and sharing gold between pirates\n Suitable for: Key Stage 5\n\n\n\nMathematical proof\nThis workshop inroduces students to the idea of mathematical proof. We talk about why mathematicians care so much about proof, and see examples of some famous theorems. We then look at proof by contradiction and by induction, with the students working through plenty of examples of each type.\n Suitable for: Key Stage 5"
+  },
+  {
+    "objectID": "outreach.html#section",
+    "href": "outreach.html#section",
+    "title": "Outreach",
+    "section": "",
+    "text": "How fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2"
+  },
+  {
+    "objectID": "outreach.html#section-1",
+    "href": "outreach.html#section-1",
+    "title": "Outreach",
+    "section": "",
+    "text": "How fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2"
+  },
+  {
+    "objectID": "outreach.html#growth",
+    "href": "outreach.html#growth",
+    "title": "Outreach",
+    "section": "",
+    "text": "How fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2"
+  },
+  {
+    "objectID": "outreach.html#growth-1",
+    "href": "outreach.html#growth-1",
+    "title": "Outreach",
+    "section": "Growth",
+    "text": "Growth\n\nHow fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2"
   }
 ]

@@ -1,0 +1,16 @@
+---
+title: "Knitting and Crochet"
+subtitle: "Some things that I've made (of varying quality)..."
+page-layout: full
+listing:
+  id: listing-gallery
+  template: gallery.ejs
+  contents:
+    - knitting/*.jpg
+  sort-ui: false
+  filter-ui: false
+  categories: false
+---
+
+::: {#listing-gallery}
+:::
