@@ -1,0 +1,96 @@
+\usepackage{xspace}
+\usepackage[notcite,color]{showkeys}
+
+\newcommand{\structure}[1]{\emph{\textcolor{DarkBlue}{#1}}}
+
+            \newcommand{\Area}{\operatorname{Area}}
+            \newcommand{\Expect}[1]{\operatorname{\mathbb{E}}\left[#1\right]}
+            \newcommand{\Integers}{\mathbb{Z}}
+            \newcommand{\Law}[1]{\mathcal{L}\left({#1}\right)}
+            \newcommand{\NaturalNumbers}{\mathbb{N}}
+            \newcommand{\Prob}[1]{\operatorname{\mathbb{P}}\left[#1\right]}
+            \newcommand{\Reals}{\mathbb{R}}
+            \newcommand{\TimelineSpace}{\mathcal{T}}
+            \renewcommand{\d}{\,\operatorname{d}}
+            \newcommand{\eps}{\varepsilon}
+            \newcommand{\half}{\tfrac{1}{2}}
+            
+            \newcommand{\CFTP}{\structure{CFTP}\xspace}
+            \newcommand{\CRemoval}{\mathcal{C}}
+            \newcommand{\coalescencetime}{{\tau^\text{coal}}}
+            \newcommand{\domCFTP}{\structure{domCFTP}\xspace}
+%             \newcommand{\Epidemic}{\text{\structure{EPI}}}
+            \newcommand{\Epidemic}{\textup{EP}}
+            \newcommand{\Indicator}[1]{\operatorname{\mathbb{I}}_{#1}}
+            \newcommand{\Infection}{\mathcal{I}}
+%             \newcommand{\InnovInf}{\Pi^\text{inf}}
+%             \newcommand{\InnovInfMarkedA}[1]{\Pi^{\text{inf},#1}}
+%             \newcommand{\InnovInfMarkedB}[2]{\Pi^{\text{inf},#1,#2}}
+%             \newcommand{\InnovInfMarkedC}[3]{\Pi^{\text{inf},#1,#2,#3}}
+            \newcommand{\InnovInf}{\Pi^\textup{inf}}
+            \newcommand{\InnovInfMarkedA}[1]{\Pi^{\textup{inf},#1}}
+            \newcommand{\InnovInfMarkedB}[2]{\Pi^{\textup{inf},#1,#2}}
+            \newcommand{\InnovInfMarkedC}[3]{\Pi^{\textup{inf},#1,#2,#3}}
+            \newcommand{\InnovRem}{\Pi^\text{rem}}
+            \newcommand{\InnovRemC}{\Pi^\text{rem}_{\CRemoval}}
+            \newcommand{\InnovRemR}{\Pi^\text{rem}_{\Removal}}
+            \newcommand{\InnovRemMarked}[1]{\Pi^{\textup{rem},#1}}
+%             \newcommand{\InnovRemMarked}[1]{\Pi^{\text{rem},#1}}
+            \newcommand{\InnovRemMarkedC}[1]{\Pi^{\textup{rem},#1}_{\CRemoval}}
+            \newcommand{\InnovRemMarkedR}[1]{\Pi^{\textup{rem},#1}_{\Removal}}
+            \newcommand{\InnovResampling}{Z}
+            \newcommand{\itp}{\textup{ITP}}
+            \newcommand{\ITP}{\text{\structure{ITP}}\xspace}
+            \newcommand{\Julia}{\structure{julia}\xspace}
+            %\newcommand{\length}{\operatorname{length}\xspace}
+            \newcommand{\length}[1]{|#1|}
+            \newcommand{\lfe}{\textup{LFE}}
+            \newcommand{\LFE}{\text{\structure{LFE}}\xspace}
+            \newcommand{\MCMC}{\structure{MCMC}\xspace}
+            \newcommand{\nfz}{\textup{NFZ}}
+            \newcommand{\NFZ}{\text{\structure{NFZ}}\xspace}
+            \newcommand{\occludedCFTP}{\structure{occluded CFTP}\xspace}
+            \newcommand{\PInfection}{\mathcal{P}}
+            \newcommand{\pixel}{\mathfrak{p}}
+            \newcommand{\pixelA}{{\mathfrak{p}^{(1)}}}
+            \newcommand{\pixelB}{{\mathfrak{p}^{(2)}}}
+            \newcommand{\pixelC}{{\mathfrak{p}^{(3)}}}
+            \newcommand{\ProjEpi}{X}
+            \newcommand{\R}{\structure{R}\xspace}
+            \newcommand{\Removal}{\mathcal{R}}
+            \newcommand{\SIR}{\structure{S-I-R}\xspace}
+            \newcommand{\support}{\textup{supp}}
+% Ordering of epidemics
+            \newcommand{\faster}[1]{\hat{#1}}
+            \newcommand{\fastest}[1][]{{}^{\textup{fastest}#1}}
+            \newcommand{\slower}[1]{#1}
+            \newcommand{\slowest}[1][]{{}^{\textup{slowest}#1}}
+
+% Optionally coloured
+            \newcommand{\Duration}{T}
+            \newcommand{\Population}{N}
+            \newcommand{\TotalRemovals}{k}
+            \newcommand{\infectee}{j}
+            \newcommand{\infector}{i}
+            \newcommand{\target}{i}
+            \newcommand{\targetm}{i'}
+
+            \newif\ifColourIncidents
+\ColourIncidentstrue  %% Comment this line to remove colouring of incidents
+            \ifColourIncidents
+              \renewcommand{\Duration}{{\color{red}T}}
+              \renewcommand{\Population}{{{\color{red}N}}}
+              \renewcommand{\TotalRemovals}{{\color{red}k}}
+              \renewcommand{\infectee}{{\color{red}j}}
+              \renewcommand{\infector}{{\color{red}i}}
+              \renewcommand{\target}{{\color{red}i}}
+              \renewcommand{\targetm}{{\color{red}i'}}
+            \fi
+
+
+            
+% Colours
+            \newcommand{\InfectionColor}{orange\xspace}
+            \newcommand{\RemovalColor}{light-brown\xspace}
+            \newcommand{\PInfectionColor}{green\xspace}
+            \newcommand{\CRemovalColor}{purple\xspace}

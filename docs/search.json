@@ -1,10 +1,17 @@
 [
   {
-    "objectID": "talks.html",
-    "href": "talks.html",
-    "title": "Talks",
+    "objectID": "outreach.html",
+    "href": "outreach.html",
+    "title": "Outreach",
     "section": "",
-    "text": "Shuffling cards via one-sided transpositions\n\n\n Relevant paper: Cutoff for a one-sided transposition shuffle\nConsider shuffling a deck of \\(n\\) cards as follows. Choose one card uniformly at random with your Right hand; choose a card uniformly at random with your Left hand, conditioned not to be above your Right hand’s choice; transpose the chosen cards.\nHow many of these shuffles does it take to randomise the deck? This can be answered using a mixture of representation theory of the symmetric group, and a variation of some classical probability arguments.\n\n\n\n\n \n\n\n\n\nOmnithermal perfect simulation\n\n\n Relevant paper: Omnithermal perfect simulation for multi-server queues\nSuppose that we want to sample from the equilibriun distribution of a Markov chain, which depends on some underlying parameter. In some situations it is possible to modify a perfect simulation algorithm so as to sample simultaneously from all distributions for which the corresponding parameter lies in a given range: we call this omnithermal simulation. Here we give an overview of a few of these algorithms.\n\n\n\n \n\n\n\n\nOmnithermal perfect simulation for M/G/c queues\n\n\n Relevant paper: Perfect simulation of M/G/c queues\n Relevant paper: Omnithermal perfect simulation for multi-server queues\nA number of perfect simulation algorithms allow the user to sample from the equilibrium distribution of the Kiefer-Wolfowitz workload vector for stable \\(M/G/c\\) and \\(GI/GI/c\\) queues. This talk looks at how some dominated Coupling From The Past algorithms may be modified to carry out this sampling simultaneously for a range of values of \\(c\\) (the number of servers).\n\n\n\n \n\n\n\n\nPerfect simulation for M/G/c queues\n\n\n Relevant paper: Perfect simulation of M/G/c queues\nThis talk gives an overview of dominated Coupling From The Past, and then considers the problem of designing such an algorithm to obtain perfect samples from the equilibrium distribution of the workload vector of a multiserver (\\(M/G/c\\)) queue. Some careful coupling between “First-come first-served” and “Random assignment” service regimes leads to an implementable algorithm, whose properties are explored.\n\n\n\n \n\n\n\n\nState-dependent Foster-Lyapunov criteria\n\n\n Relevant paper: State-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains\nDrift conditions are a theoretical tool for establishing the convergence rate of a Markov chain. Typically such a criterion only looks at a single step of the chain; here we explore what can be inferred if a geometric drift condition is known to hold for a subsampled chain, for which the subsampling rate is state-dependent. Applications of the results include perfect simulation algorithms, queueing theory and network stability.\n\n\n\n \n\n\n\n\nCoupling: co-adapted vs. maximal\n\n\n Relevant paper: Optimal co-adapted coupling for the symmetric random walk on the hypercube\n Relevant paper: Optimal co-adapted coupling for a random walk on the hyper-complete graph\nSuppose that we have two copies of a continuous-time random walk on the hypercube \\(\\mathbb{Z}_2^n\\), and we wish to couple them so that they meet as quickly as possible. What’s the best way to do this, under the assumption that neither is allowed to “cheat” by looking ahead at what the other is going to do?"
+    "text": "I regularly run outreach sessions at local schools, and have given a number of public lectures on the mathematics of card shuffling.\nBelow you can find a selection of sessions which I’ve delivered. If you’d be interested in getting me to run one of these (or something else), get in touch\n\n\n\nGrowth\nHow fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2\n\n\n\nThe prosecutor’s fallacy\nThis session demonstrates how a little knowledge of relatively simple statistics can help in real-life situations.\nWe consider the interpretation of medical tests for (fictitious) rare diseases and of (real) statistical evidence presented in a court room, and seek to understand commonly made mistakes.\n Suitable for: Key Stage 3 / 4 / 5\n\n\n\nSurprising uses of randomness\nA look at how random numbers are generated, and some of their surprising uses. These include calculating areas of complicated shapes, image restoration, and decoding substitution codes.\n Suitable for: Key Stage 4 / 5\n\n\n\nCard shuffling\nHow many times should you shuffle a pack of cards? A gentle introduction to the mathematics of card shuffling, involving probability, permutations and possibly a little magic!\n Suitable for: Key Stage 4 / 5\n\n\n\n\n\n\nSecret keeping\nAn easy introduction to the mathematics of codes, from simple Caesar cyphers to modern-day cryptography.\n Suitable for: Key Stage 2 / 3\n\n\n\nPenney ante\nPenney Ante is a simple coin-tossing game with some very counter-intuitive properties! This session explores these properties, and shows how to use binary numbers to work out optimal game strategies.\n Suitable for: Key Stage 3 / 4 / 5\n\n\n\nPatterns and problem solving\nA workshop in which students are challenged to spot patterns and conjecture solutions to problems involving cake cutting, drawing graphs, and sharing gold between pirates\n Suitable for: Key Stage 5\n\n\n\nMathematical proof\nThis workshop inroduces students to the idea of mathematical proof. We talk about why mathematicians care so much about proof, and see examples of some famous theorems. We then look at proof by contradiction and by induction, with the students working through plenty of examples of each type.\n Suitable for: Key Stage 5"
+  },
+  {
+    "objectID": "knitting.html",
+    "href": "knitting.html",
+    "title": "Knitting and Crochet",
+    "section": "",
+    "text": "No matching items"
   },
   {
     "objectID": "index.html",
@@ -49,59 +56,10 @@
     "text": "Dissertations\n\nCoupling: cutoffs, CFTP and tameness\nS.B. Connor\nPhD Thesis, University of Warwick (2007)   Download\nSimulation and solving substitution codes\nS.B. Connor\nMMathStat Dissertation (3rd year), University of Warwick (2002)   Download"
   },
   {
-    "objectID": "knitting.html",
-    "href": "knitting.html",
-    "title": "Knitting and Crochet",
+    "objectID": "talks.html",
+    "href": "talks.html",
+    "title": "Talks",
     "section": "",
-    "text": "No matching items"
-  },
-  {
-    "objectID": "knitting.html#pictures",
-    "href": "knitting.html#pictures",
-    "title": "Knitting",
-    "section": "",
-    "text": "A Lovely Image\n\n\n\n\n\nAnother Lovely Image\n\n\n\n\n\nThe Last Lovely Image\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)\n\n\nCan Lis - et af Utzons mesterværker på Mallorca. (© Morten Lorenzen)"
-  },
-  {
-    "objectID": "knitting2.html",
-    "href": "knitting2.html",
-    "title": "Knitting and Crochet",
-    "section": "",
-    "text": "No matching items"
-  },
-  {
-    "objectID": "outreach.html",
-    "href": "outreach.html",
-    "title": "Outreach",
-    "section": "",
-    "text": "I regularly run outreach sessions at local schools, and have given a number of public lectures on the mathematics of card shuffling.\nBelow you can find a selection of sessions which I’ve delivered. If you’d be interested in getting me to run one of these (or something else), get in touch\n\n\n\nGrowth\nHow fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2\n\n\n\nThe prosecutor’s fallacy\nThis session demonstrates how a little knowledge of relatively simple statistics can help in real-life situations.\nWe consider the interpretation of medical tests for (fictitious) rare diseases and of (real) statistical evidence presented in a court room, and seek to understand commonly made mistakes.\n Suitable for: Key Stage 3 / 4 / 5\n\n\n\nSurprising uses of randomness\nA look at how random numbers are generated, and some of their surprising uses. These include calculating areas of complicated shapes, image restoration, and decoding substitution codes.\n Suitable for: Key Stage 4 / 5\n\n\n\nCard shuffling\nHow many times should you shuffle a pack of cards?A gentle introduction to the mathematics of card shuffling, involving probability, permutations and possibly a little magic!\n Suitable for: Key Stage 4 / 5\n\n\n\n\n\n\nSecret keeping\nAn easy introduction to the mathematics of codes, from simple Caesar cyphers to modern-day cryptography.\n Suitable for: Key Stage 2 / 3\n\n\n\nPenney ante\nPenney Ante is a simple coin-tossing game with some very counter-intuitive properties! This session explores these properties, and shows how to use binary numbers to work out optimal game strategies.\n Suitable for: Key Stage 3 / 4 / 5\n\n\n\nPatterns and problem solving\nA workshop in which students are challenged to spot patterns and conjecture solutions to problems involving cake cutting, drawing graphs, and sharing gold between pirates\n Suitable for: Key Stage 5\n\n\n\nMathematical proof\nThis workshop inroduces students to the idea of mathematical proof. We talk about why mathematicians care so much about proof, and see examples of some famous theorems. We then look at proof by contradiction and by induction, with the students working through plenty of examples of each type.\n Suitable for: Key Stage 5"
-  },
-  {
-    "objectID": "outreach.html#section",
-    "href": "outreach.html#section",
-    "title": "Outreach",
-    "section": "",
-    "text": "How fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2"
-  },
-  {
-    "objectID": "outreach.html#section-1",
-    "href": "outreach.html#section-1",
-    "title": "Outreach",
-    "section": "",
-    "text": "How fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2"
-  },
-  {
-    "objectID": "outreach.html#growth",
-    "href": "outreach.html#growth",
-    "title": "Outreach",
-    "section": "",
-    "text": "How fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2"
-  },
-  {
-    "objectID": "outreach.html#growth-1",
-    "href": "outreach.html#growth-1",
-    "title": "Outreach",
-    "section": "Growth",
-    "text": "Growth\n\nHow fast do things grow? An interactive session looking at fingernails, knitting, croissants and epidemics.\n Suitable for: Key Stage 2"
+    "text": "Shuffling cards via one-sided transpositions\n\n\n Relevant paper: Cutoff for a one-sided transposition shuffle\nConsider shuffling a deck of \\(n\\) cards as follows. Choose one card uniformly at random with your Right hand; choose a card uniformly at random with your Left hand, conditioned not to be above your Right hand’s choice; transpose the chosen cards.\nHow many of these shuffles does it take to randomise the deck? This can be answered using a mixture of representation theory of the symmetric group, and a variation of some classical probability arguments.\n\n\n\n\n \n\n\n\n\nOmnithermal perfect simulation\n\n\n Relevant paper: Omnithermal perfect simulation for multi-server queues\nSuppose that we want to sample from the equilibriun distribution of a Markov chain, which depends on some underlying parameter. In some situations it is possible to modify a perfect simulation algorithm so as to sample simultaneously from all distributions for which the corresponding parameter lies in a given range: we call this omnithermal simulation. Here we give an overview of a few of these algorithms.\n\n\n\n \n\n\n\n\nOmnithermal perfect simulation for M/G/c queues\n\n\n Relevant paper: Perfect simulation of M/G/c queues\n Relevant paper: Omnithermal perfect simulation for multi-server queues\nA number of perfect simulation algorithms allow the user to sample from the equilibrium distribution of the Kiefer-Wolfowitz workload vector for stable \\(M/G/c\\) and \\(GI/GI/c\\) queues. This talk looks at how some dominated Coupling From The Past algorithms may be modified to carry out this sampling simultaneously for a range of values of \\(c\\) (the number of servers).\n\n\n\n \n\n\n\n\nPerfect simulation for M/G/c queues\n\n\n Relevant paper: Perfect simulation of M/G/c queues\nThis talk gives an overview of dominated Coupling From The Past, and then considers the problem of designing such an algorithm to obtain perfect samples from the equilibrium distribution of the workload vector of a multiserver (\\(M/G/c\\)) queue. Some careful coupling between “First-come first-served” and “Random assignment” service regimes leads to an implementable algorithm, whose properties are explored.\n\n\n\n \n\n\n\n\nState-dependent Foster-Lyapunov criteria\n\n\n Relevant paper: State-dependent Foster-Lyapunov criteria for subgeometric convergence of Markov chains\nDrift conditions are a theoretical tool for establishing the convergence rate of a Markov chain. Typically such a criterion only looks at a single step of the chain; here we explore what can be inferred if a geometric drift condition is known to hold for a subsampled chain, for which the subsampling rate is state-dependent. Applications of the results include perfect simulation algorithms, queueing theory and network stability.\n\n\n\n \n\n\n\n\nCoupling: co-adapted vs. maximal\n\n\n Relevant paper: Optimal co-adapted coupling for the symmetric random walk on the hypercube\n Relevant paper: Optimal co-adapted coupling for a random walk on the hyper-complete graph\nSuppose that we have two copies of a continuous-time random walk on the hypercube \\(\\mathbb{Z}_2^n\\), and we wish to couple them so that they meet as quickly as possible. What’s the best way to do this, under the assumption that neither is allowed to “cheat” by looking ahead at what the other is going to do?"
   }
 ]

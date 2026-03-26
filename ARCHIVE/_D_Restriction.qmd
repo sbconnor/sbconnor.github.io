@@ -1,0 +1,127 @@
+"Conditioning\(=\)restriction" _Ansatz_^[[_NOT FOR PUBLICATION_]{.mark}] {#sec-restriction}
+=======================================
+
+We shall work only in discrete time and discrete state-space: extension
+to continuous state-space is easily deduced using the concise exposition in @Tierney-1998.
+
+Detailed balance and reversibility {- .unlisted}
+----------------------------------
+Consider a Markov chain with transition matrix \(p_{i,j}\). 
+We say it satisfies _detailed balance_ (with respect to the
+equilibrium distribution \(\pi_i\) for states \(i\)) if
+\begin{equation}
+\pi_i p_{i,j} \quad=\quad \pi_j p_{j,i}
+\qquad \text{ for all states }i,j\,.
+\label{eq-detailed-balance}
+\end{equation}
+
+Let \(C\) be a subset of state-space, and consider the modified
+Markov chain with transition matrix
+\[
+\hat{p}_{i,j} \quad=\quad
+\begin{cases}
+p_{i,j}                             &\text{ if } i\neq j\in C\,,\\
+p_{i,i} + \sum_{k\not\in C} p_{i,k} &\text{ if } i\in C\,,\\
+0                                   &\text{ if } i\not\in C\,.
+\end{cases}
+\]
+So the original transition matrix \(P\) is viewed as producing
+proposals for moves, which are accepted only when the move
+both starts in and ends in \(C\).
+Clearly
+\[
+\pi_i \hat{p}_{i,j} \quad=\quad \pi_j \hat{p}_{j,i}
+\qquad \text{ for all states }i,j\in C\,,
+\]
+and so this modified chain is reversible on \(C\)
+with respect to the _renormalized_ probability distribution
+\(\pi_i/\sum_{k\in C}\pi_k\) for \(k\in C\).
+And this renormalized probability distribution is exactly
+the distribution \(\pi\) conditioned to lie in \(C\).
+The \Ansatz holds.
+
+Detailed balance is required: a counterexample {- .unlisted}
+----------------------------------------------
+Consider the three-state Markov chain with transition matrix
+\[
+P \quad=\quad
+\begin{pmatrix}
+\tfrac{5}{12} & \tfrac{1}{2}  & \tfrac{1}{12}  \\
+\tfrac{1}{2}  & \tfrac{1}{2}  &  0             \\
+ 0            & \tfrac{1}{12} & \tfrac{11}{12} 
+\end{pmatrix}\,.
+\]
+By direct computation (solve \(\pi P = \pi\) for probability distribution \(\pi\)) its equilibrium distribution is given
+by the measure
+\[
+\pi \quad=\quad
+\begin{pmatrix}
+\tfrac{6}{19} & \tfrac{7}{19}  & \tfrac{6}{19}  
+\end{pmatrix}\,.
+\]
+Consider the effect of restricting to state-space \(C=\{1,2\}\).
+The new transition matrix is
+\[
+\hat{P} \quad=\quad
+\begin{pmatrix}
+\tfrac{5}{12} + \tfrac{1}{12} & \tfrac{1}{2}  \\
+\tfrac{1}{2}  & \tfrac{1}{2}  
+\end{pmatrix}
+\quad=\quad
+\begin{pmatrix}
+\tfrac{1}{2}  & \tfrac{1}{2}  \\
+\tfrac{1}{2}  & \tfrac{1}{2}  
+\end{pmatrix}
+\,,
+\]
+so the \(\hat{P}\) equilibrium distribution
+is \[
+\hat{\pi} \quad=\quad
+\begin{pmatrix}
+\tfrac{1}{2} & \tfrac{1}{2}  
+\end{pmatrix}\,,
+\]
+which is _not_ the renormalization of the restriction
+\[
+\pi \quad=\quad
+\begin{pmatrix}
+\tfrac{6}{19} & \tfrac{7}{19}
+\end{pmatrix}\,.
+\]
+Here are calculations which check this counterexample using `python/numpy`:
+```{python}
+#| echo: false
+import numpy as np
+
+p = np.array([[5,  6,  1],
+              [6,  6,  0],
+              [0,  1, 11]], dtype=int)/12
+print("Transition matrix P\n",      p)
+print("12 x Transition matrix P\n", 12 * p)
+
+eqm = np.array([6, 7, 6], dtype=int)/19
+print("Equilibrium distribution pi\n",      eqm)
+print("19 x Equilibrium distribution pi\n", 19 * eqm)
+
+print("Computation of 19 x pi P\n", 19 * np.matmul(eqm,p))
+```
+
+So the "conditioning\(=\)restriction" _Ansatz_ can fail if detailed balance
+does not hold.
+
+Dynamic reversibility {- .unlisted}
+---------------------
+However there is a significant generalization of the
+"conditioning\(=\)restriction" _Ansatz_. Suppose the state-space
+possesses an involution \(\sigma\) whose square \(\sigma\circ\sigma\)
+is the identity transformation on state-space,
+and _dynamic reversibility_ (using \(\sigma\))
+holds:
+\begin{equation}
+\pi_i p_{i,j} \quad=\quad \pi_{\sigma j} p_{\sigma j,\sigma i}
+\qquad \text{ for all states }i,j\,.
+\label{eq-dynamic-detailed-balance}
+\end{equation}
+Evidently 
+the "conditioning\(=\)restriction" _Ansatz_ holds for restriction to 
+\(C\) if the involution \(\sigma\) maps \(C\) to \(C\).

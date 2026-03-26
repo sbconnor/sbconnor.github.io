@@ -1,0 +1,186 @@
+    Notes towards monotonicity and \CFTP^[\textcolor{red}{Notes for last sub-section of} @sec-monotonicity-CFTP: @sec-epidemic-monotonicity] {#sec-epidemic-monotonicity-notes}
+======================
+
+
+Monotonicity for the epidemic {- .unlisted}
+-----------------------------
+The \LFE, illustrated in @fig-illustration(a), and \NFZ, illustrated in @fig-illustration(b), 
+are constructed using the proposals of (respectively)
+new \removals and new \infections. These are obtained from the \history of the previous epidemic; the constructions also use
+
+(i) (for the \NFZ) the set of new in\activated \removals,
+(ii) and (for the \LFE) the set of new in\activated \infections.
+
+For simplicity we assume no conditioned removal at process-time \(0\).
+
+:::{.callout-warning #wrn-no-conditioned-removal}
+### Assumption of "no conditioned removal"
+**\textcolor{red}{Can this assumption be lifted without pain?}**
+:::
+
+### Choice of initial number of \infectives  {.unnumbered}
+We focus on the slow epidemic (the same arguments also work for the fast epidemic,
+_mutatis mutandis_).
+Consider the accept-reject procedure for deriving the initial number \({}^\text{slow}I_{0-,1}\)
+of \infectives for the slow epidemic at algorithmic time \(2\Duration\). This
+is controlled by
+\({}^\text{slow}\LFE\) and \({}^\text{slow}\NFZ\).
+
+Specifically, 
+let 
+\({}^\text{slow \LFE}I_{0-}\) be the number of initial \infectives
+for \({}^\text{slow}\LFE\)
+and let
+\({}^\text{slow \NFZ}I_{0-}\) be the lowest number of initial \infectives
+for one of the (non-empty) shards making up \({}^\text{slow}\NFZ\).
+
+If the proposed \({}^\text{slow}I_{0-,1}\) lies outwith the
+half-open interval
+\([{}^\text{slow \LFE}I_{0-}, {}^\text{slow \NFZ}I_{0-})\)
+then the proposal has to be rejected for the following reasons: 
+
+(a) an epidemic begun at
+\({}^\text{slow}I_{0-,1}<{}^\text{slow \LFE}I_{0-}\)
+will fail to \activate at least one conditioned \removal,
+for all epidemics activating all conditioned removals
+must \(\triangleleft\)-dominate \LFE, by @def-LFE;
+(b) while an epidemic begun at
+\({}^\text{slow}I_{0-,1}\geq {}^\text{slow \NFZ}I_{0-}\)
+will \activate an un-conditioned \removal, since by construction
+it will at process-time \(0\) infect at least one timeline
+intersecting \NFZ, hence (@def-NFZ) at least one timeline
+intersecting some shard \(\Shard{z}\) for an available in\activated \removal \(z{\in}\InnovRemAvailR\), 
+hence (@def-shard) will have
+to lead to the activation of \(z\).
+
+:::{.callout-note #nte-notation-for-LFE-NFZ}
+### Notation for LFE and NFZ **DONE**
+Check consistency of notation for definitions of
+\({}^\text{slow \LFE}I_{0-}\),
+\({}^\text{slow \NFZ}I_{0-}\).
+In particular, check that \({}^\text{slow}\LFE\)
+and \({}^\text{slow}\NFZBoundary\) both have an `.init` component.
+
+As indicated, the above remarks follow from the definitions of \NFZ and \LFE
+respectively.
+:::
+
+On the other hand suppose \({}^\text{slow}I_{0-,1}\) lies within
+the
+half-open interval
+\([{}^\text{slow \LFE}I_{0-}, {}^\text{slow \NFZ}I_{0-})\).
+Then there is certainly an epidemic with restricted inventory
+which stays at initial level 
+\({}^\text{slow}I_{0-,1}\)
+till it hits \({}^\text{slow \LFE}\)
+then follows \({}^\text{slow \LFE}\)
+(and therefore infects all conditioned removals, and doesn't hit
+\({}^\text{slow \NFZ}\)).
+Consequently there will be a (possibly faster) epidemic starting from
+\({}^\text{slow}I_{0-,1}\), infecting all conditioned removals,
+and (by construction) not hitting \({}^\text{slow \NFZ}\) and therefore
+not activating any \removals \(z{\in}\InnovRemAvailR\).
+
+:::{.callout-warning #wrn-clarity}
+### Check clarity
+Supply more details here. Do we need to be precise about
+"a (possibly faster) epidemic starting from
+\({}^\text{slow}I_{0-,1}\), infecting all conditioned removals"?
+:::
+
+:::{.callout-caution}
+### \textcolor{red}{\textbf{NEARLY DONE!!}}
+This section moderately complete to this point.
+The remaining text needs some re-working.
+:::
+
+Suppose the previous number of \infectives satisfies
+\[
+{}^\text{old slow}I^*_{0-} \quad\leq\quad {}^\text{old fast}I^*_{0-}\,.
+\]
+Assuming the proposal mechanism for \({}^\text{slow}I^*_{0,1}\), 
+\({}^\text{fast}I^*_{0,1}\) is \CFTP-monotonic (@def-initial-monotonicity), 
+then the
+corresponding proposals satisfy
+\[
+{}^\text{slow}I^*_{0,1} \quad\leq\quad {}^\text{fast}I^*_{0,1}\,,
+\]
+and therefore, using monotonicity of \NFZ and \LFE,
+it follows that the same is true of the _accepted_ values.
+
+:::{.callout-warning #wrn-more-discussion}
+### **\textcolor{red}{More discussion needed here!}**
+:::
+
+:::{.callout-warning #wrn-proposal-properties}
+### Properties for proposals
+It is vital  for random walk Metropolis sampling that
+the random walk is skip-free; otherwise it is not hard 
+to construct counterexamples
+to monotonicity resulting from accept-reject.
+
+Refer back to discussion after @def-state-and-free-innovation.
+:::
+
+### Monotonicity of epidemic {.unnumbered}
+At the start the new slow and fast epidemics have initial \infectives
+\({}^\text{slow}I_{0,1} \leq {}^\text{fast}I_{0,1}\).
+Running the two epidemics through process-time,
+and bearing in mind that the number of \infectives changes by \(\pm1\)
+at each step,
+it suffices
+to show that this inequality is maintained for the next step
+after an incident at which 
+\[
+{}^\text{slow}I \quad=\quad {}^\text{fast}I\,.
+\]
+
+If the current incident is an \activated \removal, 
+then it must add \({-}1\) to both slow and fast numbers of \infectives, so
+monotonicity is preserved.
+
+If the current incident is in\activated, monotonicity is clearly 
+preserved.
+
+If at the current incident 
+\[
+{}^\text{fast}\LFE(\text{infectives}) \quad<\quad
+{}^\text{slow}I \quad=\quad {}^\text{fast}I
+\quad<\quad 
+{}^\text{slow}\NFZBoundary(\text{infectives}) - 1\,,
+\]
+and the fast epidemic 
+then an \activated infection will add \({+}1\) to both slow and fast numbers of \infectives, so again
+monotonicity is preserved.
+
+:::{.callout-warning #wrn-more-better-notation}
+### **\textcolor{red}{Again better notation is required.}**
+Use the \(\Update\) operator!
+:::
+
+There remain just two significant cases to consider: at the current incident
+
+1) \({}^\text{slow}\LFE(\text{infectives})={}^\text{slow}I={}^\text{fast}I\).
+Since \({}^\text{slow}\LFE\preceq{}^\text{fast}\LFE\),
+while  \({}^\text{fast}\LFE\) is \(\preceq\)-less than the fast epidemic
+if \({}^\text{slow}\LFE\) has a perpetuated \infection here then so must \({}^\text{fast}\LFE\),
+and thus the perpetuated \infection would add \({+}1\) to both \({}^\text{slow}I\) and
+\({}^\text{fast}I\). Whether or not there is an \infection 
+to be \activated for \({}^\text{slow}I\),
+monotonicity would be preserved.
+
+:::{.callout-warning #wrn-economical-argument}
+### **\textcolor{red}{Need an economical and coherent argument in the above!}**
+(From "There remain just two significant cases" ...)
+The \(\Update\) operator can be used expressively here!
+:::
+
+
+2) or \({}^\text{slow}I={}^\text{fast}I={}^\text{slow}\NFZBoundary(\text{infectives})-1\).
+In this case an \infection might be \activated for the fast epidemic
+but might be forbidden by \({}^\text{slow}\NFZ\) for the slow epidemic,
+but then again monotonicity would be preserved.
+
+So these notes indicate a no-crossover result holds,
+from which monotonicity for epidemics will follow!
+

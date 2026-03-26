@@ -1,0 +1,49 @@
+
+Conditioning for Poisson processes^[[_NOT FOR PUBLICATION_]{.mark}] {#sec-poisson}
+==================================
+
+The following example illustrates the need for precise and
+careful specification when conditioning
+on locations of points of Poisson point processes.
+
+Consider a Poisson point process \(N\) of points in \((0,\Duration)\).
+
+1. Condition on \(N\) placing at least one point in \((0,\Duration)\).
+\[
+\Prob{N(\Duration)=n\;|\; N(\Duration)>0}
+\quad=\quad
+\left(
+\frac{\Duration^n}{n!} e^{-\Duration}
+\right)/\left(1-e^{-\Duration}\right)
+\quad=\quad
+\frac{\Duration^n}{n!} \frac{e^{-\Duration}}{1-e^{-\Duration}}
+\]
+and so the conditional mean number of points in \((0,\Duration)\) is
+\[
+\sum_{n=1}^\infty \; n \times \frac{\Duration^n}{n!} \frac{e^{-\Duration}}{1-e^{-\Duration}}
+\quad=\quad
+T \sum_{n=1}^\infty \frac{\Duration^{n-1}}{(n-1)!} \frac{e^{-\Duration}}{1-e^{-\Duration}}
+\quad=\quad
+\frac{\Duration}{1-e^{-\Duration}}\,.
+\]
+Observe that as \(\Duration\to\infty\) so
+\[
+\frac{\Duration}{1-e^{-\Duration}} - \Duration \quad=\quad \Duration \frac{e^{-\Duration}}{1-e^{-\Duration}} \quad\to\quad0\,,
+\]
+while
+\[
+1+\Duration   - \frac{\Duration}{1-e^{-\Duration}} 
+\quad=\quad 1 - \frac{\Duration e^{-\Duration}}{1-e^{-\Duration}}
+\quad=\quad 1 - \frac{\Duration }{e^{\Duration}-1}
+\quad>\quad 0\,.
+\]
+
+2. On the other hand we can apply the Slivnyak-Mecke theorem on the Palm distribution for a Poisson point process 
+[@ChiuStoyanKendallMecke-2013, Example 4.3]; under Palm conditioning on there being a point at location \(t\in[0,\Duration)\),
+the remaining assembly of points still has the distribution of \(N\)
+(intuitively clear from the independence properties of a Poisson point process!).
+Thus the (Palm)-conditional mean is \(1+\Duration\), strictly greater than the mean computed above.
+
+The Slivnyak-Mecke approach is the one appropriate for our purposes, as we need to condition
+on specific points (times of activated removals). This arises in the zero-width limit when we condition
+on there being points in each of a fixed number of intervals of specified width.

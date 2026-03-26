@@ -41,6 +41,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-108ab2cef994e0e2be421e436af2fca6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
 <script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -171,6 +172,13 @@ window.Quarto = {
   <li class="nav-item">
     <a class="nav-link active" href="./knitting.html" aria-current="page"> 
 <span class="menu-text">Knitting</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://mathstodon.xyz/@stephenconnor" target="_blank"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -316,9 +324,6 @@ img.grid-item:hover {
 </div>
 <div>
 <p><a href="./knitting/mini_wreaths.jpg" class="lightbox" data-gallery="quarto-grid-gallery"><img src="./knitting/mini_wreaths.jpg" class="grid-item img-fluid" loading="lazy"></a></p>
-</div>
-<div>
-<p><a href="./knitting/minion.jpg" class="lightbox" data-gallery="quarto-grid-gallery"><img src="./knitting/minion.jpg" class="grid-item img-fluid" loading="lazy"></a></p>
 </div>
 <div>
 <p><a href="./knitting/minions.jpg" class="lightbox" data-gallery="quarto-grid-gallery"><img src="./knitting/minions.jpg" class="grid-item img-fluid" loading="lazy"></a></p>
@@ -471,7 +476,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/sbconnor\.github\.io\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -799,6 +804,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Created with <iconify-icon role="img" inline="" icon="simple-icons:quarto" aria-label="Icon quarto from simple-icons Iconify.design set." title="Icon quarto from simple-icons Iconify.design set."></iconify-icon> <a href="https://quarto.org/" target="_blank">Quarto</a> and <iconify-icon role="img" inline="" icon="mdi:github" aria-label="Icon github from mdi Iconify.design set." title="Icon github from mdi Iconify.design set."></iconify-icon> <a href="https://github.com/sbconnor/sbconnor.github.io" target="_blank">GitHub</a>.</p>
+</div>
+  </div>
+</footer>
 <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;

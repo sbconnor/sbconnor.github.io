@@ -1,0 +1,276 @@
+The \LFE, illustrated in @fig-illustration(a), and \NFZ, illustrated in @fig-illustration(b), 
+are constructed using the proposals of (respectively)
+new \removals and new \infections. These are obtained from the \history of the previous epidemic; the constructions also use
+
+(i) (for the \NFZ) the set of new in\activated \removals,
+(ii) and (for the \LFE) the set of new in\activated \infections.
+
+
+::: {#fig-illustration layout="[[1,1]]"}
+
+![Updating to new \removals and new \NFZ.](fig-update-removals){#fig-update-removals}
+
+![Updating to new \infections and new \LFE.](fig-update-infections){#fig-update-infections}
+
+Illustration of interaction of \NFZ and new \removals, 
+and \LFE and new \infections.
+:::
+
+
+For simplicity we assume no conditioned removal at process-time \(0\).
+
+:::{.callout-warning #wrn-no-conditioned-removal}
+### Assumption of "no conditioned removal"
+**\textcolor{red}{Can this assumption be lifted without pain?}**
+
+(See also @cau-first-removal!)
+:::
+
+### Choice of initial number of \infectives
+
+The first step is to show that the requirement for an initial number of infectives to generate an
+epidemic activating precisely the conditioned \removals is that:
+
+(a) the initial number is not less than the initial number of \LFE infectives  
+\({}^\text{slow \LFE}I_{0-}{=}{}^\text{slow}\LFEInit\);
+(b) the initial number is strictly less than the intersection of \NFZ with the \(t{=}0-\) axis,
+namely \({}^\text{slow \NFZ}I_{0-}\), the lowest number of initial \infectives
+for the (non-empty) shards whose union makes up \({}^\text{slow}\NFZ\).
+
+Focus on the slow epidemic (the arguments also work for the fast epidemic,
+_mutatis mutandis_).
+
+Consider the accept-reject procedure for deriving the initial number \({}^\text{slow}I_{0-,1}\)
+of \infectives for the slow epidemic at algorithmic time \(2\Duration\). 
+If the proposed \({}^\text{slow}I_{0-,1}\) lies outwith the
+half-open interval
+\([{}^\text{slow}\LFEInit, {}^\text{slow \NFZ}I_{0-})\)
+then the proposal has to be rejected for one of the following reasons: 
+
+(a) an epidemic begun at
+\({}^\text{slow}I_{0-,1}<{}^\text{slow \LFE}I_{0-}\)
+fails to \activate at least one conditioned \removal,
+since epidemics activating all conditioned removals
+\(\trianglelefteq\)-dominate \LFE, by @def-LFE;
+(b) while an epidemic begun at
+\({}^\text{slow}I_{0-,1}\geq {}^\text{slow \NFZ}I_{0-}\)
+will \activate an un-conditioned \removal, since by construction
+at process-time \(0\) it will infect at least one timeline
+intersecting \NFZ, hence (@def-NFZ) at least one timeline
+intersecting some \(\Shard{z}\) (for available in\activated \removals \(z{\in}\InnovRemAvailR\)). 
+By @def-shard this would
+\activate the in\activated \removal \(z\).
+
+On the other hand suppose \({}^\text{slow}I_{0-,1}\) lies within
+\([{}^\text{slow \LFE}I_{0-}, {}^\text{slow \NFZ}I_{0-})\).
+Consider the epidemic based on an inventory
+made up of \({}^\text{slow}\InnovRemCB\)
+and the subset of \(\InnovInfAvail\sqcup{}^\text{slow}\OldPerpetuates\) used for the \({}^\text{slow \LFE}I_{0-}\);
+this stays at initial level 
+\({}^\text{slow}I_{0-,1}\)
+till it hits \({}^\text{slow \LFE}\)
+then follows \({}^\text{slow \LFE}\).
+It dominates \({}^\text{slow \LFE}\), so
+infects all of \({}^\text{slow}\InnovRemCB\);
+by construction it will not hit
+\({}^\text{slow \NFZ}\).
+Consider the (potentially faster) epidemic starting from
+\({}^\text{slow}I_{0-,1}\), augmenting the above inventory 
+with _all_ \infections from \(\InnovInfAvail\) whose infectee marks do not lie in \({}^\text{slow \NFZ}\)
+(so therefore the epidemic cannot
+activate any \removals in \(\InnovRemAvailR\)).
+This will infect all conditioned \removals of \({}^\text{slow}\InnovRemCB\) (as it dominates the previous epidemic and therefore 
+\({}^\text{slow}\LFE\)).
+Therefore in this case \({}^\text{slow}I_{0-,1}\) will be accepted.
+
+Monotonicity of the number of initial infectives is now immediate under \CFTPmonotonicity.
+
+:::{#thm-initial-monotonicity}
+Suppose  the proposal mechanism for \({}^\text{slow}I^*_{0-,1}\), 
+\({}^\text{fast}I^*_{0-,1}\) is \CFTPmonotonic,
+and the previous initial numbers of \infectives satisfy
+\[
+{}^\text{old slow}I_{0-} \quad\leq\quad {}^\text{old fast}I_{0-}\,.
+\]
+Then the current _accepted_ initial numbers of \infectives satisfy
+\[
+{}^\text{slow}I_{0-,1} \quad\leq\quad {}^\text{fast}I_{0-,1}\,.
+\]
+:::
+
+:::{.proof}
+
+
+This follows from the preceding argument and \CFTPmonotonicity
+(@def-initial-monotonicity),
+using
+\begin{align*}
+{}^\text{slow}\lambda\quad=\quad{}^\text{slow \LFE}I_{0-}\,,
+&\qquad
+{}^\text{slow}\mu\quad=\quad{}^\text{slow \NFZ}I_{0-}\,,
+\\
+{}^\text{fast}\lambda\quad=\quad{}^\text{fast \LFE}I_{0-}\,,
+&\qquad
+{}^\text{fast}\mu\quad=\quad{}^\text{fast \NFZ}I_{0-}\,.
+\end{align*}
+
+:::
+
+:::{.callout-warning #wrn-proposal-properties}
+### Properties for proposals
+It is vital  for random walk Metropolis sampling that
+the random walk is skip-free; otherwise it is not hard 
+to construct counterexamples
+to monotonicity resulting from accept-reject.
+
+Refer back to discussion after @def-state-and-free-innovation:
+the relevant results need to be developed thereabouts.
+:::
+
+
+### Monotonicity for epidemics
+The key theorem for \CFTP for epidemics can now be proved
+by showing that \(\trianglelefteq\)-domination
+of a slow epidemic by a fast epidemic is preserved
+under a single step of evolution in \algorithmictime
+if the same \ExtendedInnovation is used for both epidemics.
+
+::: {#thm-nocrossover}
+## Monotonicity for epidemics
+Suppose that at a given algorithmic time
+the \history of the slow epidemic
+is \(\trianglelefteq\)-dominated by
+the \history of the fast epidemic.
+Then the same is true at the next epoch
+(\(2\Duration\) later) of \algorithmictime.
+:::
+
+:::{.proof}
+Using the accept-reject procedure analyzed in @thm-initial-monotonicity, 
+the slow and fast epidemics have initial \infectives
+\({}^\text{slow}I_{0-,1} \leq {}^\text{fast}I_{0-,1}\).
+Let the \histories of the slow and fast epidemics be \({}^\text{slow}\History\)
+and \({}^\text{fast}\History\),
+so \({}^\text{slow}\HistoryInit={}^\text{slow}I_{0-,1}\)
+and
+\({}^\text{fast}\HistoryInit={}^\text{fast}I_{0-,1}\).
+We analyze the relationship between the two epidemics
+by using an argument iterating through the \chronology
+\[
+\Chronology\quad=\quad\InnovInfAvail\cup{}^\text{slow}\HistoryList \cup {}^\text{fast}\HistoryList
+\,.
+\]
+Note that this chronology contains conditioned removals
+\({}^\text{slow}\InnovRemCB\cup{}^\text{fast}\InnovRemCB\):
+thus for some \removal times there will be two _different_ conditioned \removals, 
+one from \({}^\text{slow}\InnovRemCB\) for the slow epidemic
+and one from \({}^\text{fast}\InnovRemCB\) for the fast epidemic.
+For such a distinct pair, the conditioned \removal from the slow epidemic will \(\preceq\)-precede
+the conditioned removal from the fast epidemic, as the re-marking of the fast \removal
+will give a higher target mark than for the slow \removal
+(this follows because of monotonic dependence of \LFE and \NFZ on the previous epidemic).
+
+:::{.callout-warning #wrn-conditional-removal-pair}
+### Pair of conditioned removals, fast and slow
+Spell out why fast \(\preceq\)-precedes slow as a consequence of monotonic dependence of \LFE and \NFZ on the previous epidemic.
+:::
+
+Tracing the evolution of these coupled epidemics through process-time
+along the chronology \(\Chronology\),
+and bearing in mind that the difference of the numbers of \infectives changes by no more than \(\pm1\)
+at each step,
+it suffices
+to show the inequality \({}^\text{slow}I \leq {}^\text{fast}I\)
+is maintained at
+an incident \(z\in\Chronology\) if, just \(\preceq\)-before \(z\) in \(\Chronology\),
+\[
+{}^\text{slow}I \quad=\quad {}^\text{fast}I\,.
+\]
+This follows from a case-by-case analysis of \(z\).
+
+(a) Suppose \(z\) is a \removal present in both of the \histories
+(hence \activated in both, hence one of the conditioned \removals occurring in both). 
+Then both \({}^\text{slow}I\) and \({}^\text{fast}I\) are decremented by \(1\)
+at \(z\) and thus \({}^\text{slow}I = {}^\text{fast}I\)
+remains true at \(z\).
+
+(b) Suppose \(z\) is a \removal present in the slow \history
+but not the fast \history.
+Then \({}^\text{slow}I\) is decremented by \(1\)
+at \(z\) while \({}^\text{fast}I\) is unchanged.
+Thus \({}^\text{slow}I < {}^\text{fast}I\)
+at \(z\).  
+Note that the case "\(z\) is a \removal present in the fast \history
+but not the slow \history" cannot arise, as this would imply the 
+immediately \(\preceq\)-preceding incident \(z'\) would be the paired \removal at the same time, 
+belonging to the slow \history
+but not the fast \history, and therefore inductively  \({}^\text{slow}I < {}^\text{fast}I\)
+at \(z'\) and so the same would be true just \(\preceq\)-before \(z\)!
+
+(c) Suppose \(z\) is an \infection present in both \histories
+(and therefore \activated in both). Now both \({}^\text{slow}I\) and \({}^\text{fast}I\) are incremented by \(1\)
+at \(z\) and thus \({}^\text{slow}I = {}^\text{fast}I\)
+remains true at \(z\).
+
+(d) An \infection \(z\) need not be present in both histories: there are two ways in which
+this may happen, and the first of these is that \(z\) is perpetuated in one epidemic and not in the other.
+
+    (i) If \(z\) is perpetuated in the fast epidemic and not present in the slow,
+   then \({}^\text{fast}I\) will be incremented by \(1\)
+   at \(z\) while \({}^\text{slow}I\) stays constant: thus \({}^\text{slow}I < {}^\text{fast}I\) at \(z\).
+    (ii) On the other hand, were \(z\) to be perpetuated in the slow epidemic
+   then it would actually have to perpetuated for the fast epidemic history too. This is because we know
+   \({}^\text{slow}\LFE \trianglelefteq {}^\text{fast}\LFE \trianglelefteq {}^\text{fast}\History\).
+   Indeed \({}^\text{slow}I = {}^\text{fast}I\) at \(z\), so \({}^\text{slow}\LFE = {}^\text{fast}\History\)
+   at \(z\), and therefore \({}^\text{slow}\LFE = {}^\text{fast}\LFE\) at \(z\). Since \(z\) is perpetuated and \activated in the
+   slow epidemic, it follows that the number of infectives for \({}^\text{slow}\LFE\) is incremented by \(1\) at \(z\);
+   if \(z\) is not perpetuated for the fast epidemic then the number of infectives for \({}^\text{fast}\LFE\) stays constant at \(z\);
+   this would lead to failure of \({}^\text{slow}\LFE \trianglelefteq {}^\text{fast}\LFE\) at \(z\),
+   contradicting @thm-LFE-monotonicity.  
+   We are forced to the conclusion that if \(z\) is perpetuated in the slow epidemic then it is perpetuated in the fast epidemic also,
+   and therefore \({}^\text{slow}I = {}^\text{fast}I\) at \(z\).
+
+(e) The second way in which an \infection \(z\) need not be present in both histories is that it is forbidden by \NFZ
+in one epidemic but not in the other.
+
+    (i) If \(z\) is forbidden by the \({}^\text{fast}\NFZ\) then it must also be forbidden by the \({}^\text{slow}\NFZ\).
+    This follows immediately from @thm-NFZ-monotonicity, since \({}^\text{slow}\NFZ\) is \(\trianglelefteq\)-dominated by \({}^\text{fast}\NFZ\).
+    Thus here \({}^\text{slow}I = {}^\text{fast}I\) at \(z\).
+    (ii) If \(z\) is forbidden by the \({}^\text{slow}\NFZ\) but not by the \({}^\text{fast}\NFZ\),
+    then at \(z\) we find \({}^\text{fast}I\) is incremented by \(1\) while \({}^\text{slow}I\) remains constant,
+    thus \({}^\text{slow}I<{}^\text{fast}I\) at \(z\).
+
+It follows that crossover to \({}^\text{slow}I>{}^\text{fast}I\) cannot occur, which completes the proof of the theorem.
+
+:::
+
+The standard \CFTP argument can now be used to return a perfect draw from the
+conditioned \SIR epidemic equilibrium: work with a sequence of 
+extended innovations running backwards in time,
+carry out starts at \algorithmictimes \(-2^n\Duration\) from the extreme states of fastest possible and slowest possible
+epidemics (these are specified at the end of @sec-graphical
+and illustrated in @fig-fastest-slowest),
+and cease once the resulting fast and slow epidemics at \algorithmictime \(0\)
+agree. 
+@thm-nocrossover shows that
+\(\trianglelefteq\)-domination
+will be maintained
+between successors of the 
+slowest possible and fastest possible epidemics.
+Moreover any other epidemic developed through 
+algorithmic time from algorithmic time \(-2^n\Duration\)
+using the same sequence of  \ExtendedInnovations
+will remain sandwiched between the successors
+of the slowest possible and fastest possible epidemics.
+
+Note that the small set of lag \(3\), described in @thm-convergence,
+guarantees eventual termination of this algorithm.
+Indeed, 
+let the probability of this small set occurring over times \(1-2^n\Duration,2-2^n\Duration,3-2^n\Duration\) be 
+\(p>0\) (perhaps small, but positive).
+If we start the \CFTP with \(n=2\) and increment \(n\) by \(1\) for each \CFTP
+cycle, then almost surely the small set will eventually occur, and then
+for that cycle 
+the fast and slow epidemics at \algorithmictime \(0\) will agree.
+(Of course in practice coalescence can be observed to occur at a much faster rate.)
+

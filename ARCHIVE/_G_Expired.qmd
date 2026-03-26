@@ -1,0 +1,67 @@
+Expired material^[[_PLACED HERE AS RESERVCE_]{.mark}] {#sec-old}
+================
+This material has been superseded!
+
+:::{#def-free-epidemic-expired}
+## Derivation of an epidemic from a \chronology
+Suppose given a \chronology \(\Chronology\) of incidents
+in \([0, \Duration)\),
+together with an initial \processstate 
+\((S_{0-},I_{0-},R_{0-})=(\Population{-}I_{0-},I_{0-},0)\).
+Then \(S_t\), \(I_t\) and \(R_t\) are defined
+for \(t\in[0,\Duration)\)
+by iterating over the \(\prec\)-ordered list \(\Chronology\) as follows.
+
+(i) 
+Set the initial _previous \processstate_
+to be \((\Population{-}I_{0-},I_{0-},0)\).
+Let \(z\) be the first incident of \(\Chronology\) in its \(\prec\)-ordering: 
+set the _previous time_ to be \(u{=}0\), and set the _current time_
+\(v\) to be the process-time of the first (\(\prec\)-ordered) incident \(z\in\Chronology\).
+(Note that \(u{=}v\) is possible.)
+If there is no first incident \(z\) (which is to say, 
+if \(\Chronology\) is empty)
+then 
+set \(S_u{=}S_0{\leftarrow}S_{0-}, I_u{=}I_0{\leftarrow}I_{0-}, R_u{=}R_0{\leftarrow}R_{0-}\) and 
+end the iteration
+using step (v) below.
+(ii) Assign \(S_t{\leftarrow}S_{u}, I_t{\leftarrow}I_{u}, R_t{\leftarrow}R_{v}\)
+for \(u{\leq}t{\leq}v\). 
+Note that the assignations of values to \(S_v, I_v, R_v\) are provisional
+and are updated in subsequent steps 
+if one or more potential incidents are activated at time \(v\).
+(iii) update the previous \processstate as follows: 
+  - **Activated Removal:** 
+  if the _current incident_ \(z\) is a potential removal with target mark \(\target\)
+  satisfying \(R_{v}{<}\target{\leq}R_{v}{+}I_{v}\),
+  then _activate_ it by updating
+  \(S_{v}{\leftarrow}S_{v}\), \(I_{v}{\leftarrow}I_{v}{-}1\), \(R_{v}{\leftarrow}R_{v}{+}1\),
+  corresponding to updating the _previous \processstate
+  by incrementing \(R\) by \(1\) and decrementing \(I\) by \(1\);
+  - **Activated Infection:**
+  if the _current incident_ \(z\) is a potential infection with target mark \(\target\)
+  and infectee mark \(\infectee\) satisfying
+  \(R_{v}{<}\target{\leq}R_{v}{+}I_{v}\)
+  and
+  \(\infectee{=}R_{v}{+}I_{v}{+}1\),
+  then _activate_ it by setting 
+  \(S_{v}{\leftarrow}S_{v}{-}1, I_{v}{\leftarrow}I_{v}{+}1, R_v{\leftarrow}R_{v}\)
+  corresponding to updating the _previous \processstate
+  by incrementing \(I\) by \(1\) and decrementing \(S\) by \(1\);
+  - **Inactivated incident:** otherwise the _current incident_  \(z\) is _inactivated_:
+  do not update the _previous \processstate_;
+  - In any case now update the _previous time_ by setting \(u\leftarrow v\).
+(iv) Suppose there exist incidents in \(\Chronology\) subsequent to \(z\) (in \(\prec\)-ordering):
+update the current incident \(z\) to be the least (in \(\prec\)-ordering) of these \(\prec\)-subsequent incidents, 
+and update the current time \(v\) to be the process-time of the new current incidents \(z\).
+Now go to step (ii)
+above.  
+If there are no such incidents then end the iteration
+using step (v).
+(v) Finally define \(S_t{=}S_{u}, I_t{=}I_{u}, R_t{=}R_{u}\)
+for \(t\in(u, \Duration)\) (the remaining \(t\) for which
+\(S_t, I_t, R_t\) are not yet defined).
+
+On completion of this iteration, the processes \(S_t, I_t, R_t\) are defined
+for all \(0{\leq}t{<}\Duration\).
+:::

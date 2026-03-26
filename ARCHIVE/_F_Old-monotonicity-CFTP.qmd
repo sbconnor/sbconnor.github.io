@@ -1,0 +1,1106 @@
+Monotonicity and \CFTP (old version)^[\textcolor{red}{THIS SECTION IS NOW SUPERSEDED}] {#sec-monotonicity-CFTP-OLD}
+======================
+
+
+Timeline features and the epidemic portrait {#sec:timeline-features}   {- .unlisted}
+-------------------------------------------
+Analysis of the four stages of the simplified "two-sweeps"
+construction (@thm-simplified-construction) leads us
+to identify 
+features permitting a succinct description of the construction.
+This will also facilitate a proof of monotonicity, central to \CFTP. 
+Recall the notation of
+Equations (-@eq-infections-collections,
+-@eq-removals-collections, -@eq-removals-vectors) in @def-notation, and the notions of \ITP and
+susceptible, infected and removed regions
+in @def-epidemic-attributes.
+For simplicity, assume throughout that \(R_{0-}{=}0\).
+
+:::{.callout-caution #cau-removals-at-zero}
+### Removals at zero
+Revisit the assumption that \(R_0{=}0\)?
+:::
+
+Consider the initial \State at \algorithmictime zero:
+\((\InnovRem{}^{(0)},\InnovInf{}^{(0)},I_{0-}{}^{(0)})\) yielding an epidemic with conditioned removals
+occurring precisely at times \(t_1{<\ldots<}t_\TotalRemovals\) in \([0,\Duration)\):
+\[
+\InnovRemC{}^{(0)} \quad=\quad \left\{\CRemoval_{t_1}^{\target_1}\,, \ldots\, \CRemoval_{t_\TotalRemovals}^{\target_\TotalRemovals}\right\}\,.
+\]
+The first step in \algorithmictime is made using an \ExtendedInnovation
+\((\InnovRemMarked{(*)}, \InnovInfMarkedA{(*)},I_{0-}^{(*)}, \InnovResampling^{(*)})\).
+Note that attention need only focus on the first 
+\(\TotalRemovals\) timelines. This is because
+the remaining 
+\(\Population{-}\TotalRemovals\) individuals remain susceptible throughout
+the process-time interval \([0,\Duration)\) of interest,
+thus playing no role in the development of the epidemic other than implicitly increasing
+overall infection rates. 
+
+
+**First stage** (replacing
+the initial in\activated removals in \(\InnovRemR{}^{(0)}\)).
+This is straightforward, because
+_in\activated_ removals do not affect the process-time evolution of the epidemic,
+so can be removed wholesale.
+New potential removals from \(\InnovRemMarked{(*)}\)
+can be introduced only if not immediately \activated, which is to say, if they do not lie in the infected region.
+In fact we may and do additionally _disregard_ all proposed removals lying in the removed region
+(this region is determined by the 
+conditioned removal times \(t_1{<\ldots<}t_\TotalRemovals\), 
+which are constant over all \algorithmictime).
+Such potential removals cannot affect the algorithm at any stage.
+So the first stage forms \(\InnovRemR{}^{(1)}\) by deleting all of 
+\(\InnovRemR{}^{(0)}\)
+(all current in\activated removals), and replacing them
+by those new in\activated removals 
+from \(\InnovRemMarked{(*)}\)
+whose tuples of (time \(t\), target mark \(\target\)) lie
+in the susceptible region. All replacements
+are in\activated removals
+but may later constrain new proposed infections.
+
+We note in passing that \(\InnovRemMarked{(*)}\)
+is a Poisson point process, so 
+almost surely all new potential removal proposals
+lie on straight components of the susceptible/infected region boundary.
+
+**Second stage** (proposing target mark changes for conditioned removals):
+the target marks of \(\InnovRemC{}^{(0)}\)
+are re-sampled using proposals \(m_1{,\ldots,}m_\TotalRemovals\)
+from \(\InnovResampling^*\). The target mark \(\target_r\) of \(\CRemoval_{t_r}^{\target_r}\)
+is replaced by \(m_r\) if \(R < m_r \leq R+I\), where
+\((S,I,R)\) is the \processstate in the epidemic \trajectory
+corresponding to the incident \(\InnovRemC{}^{(0)}\) in the epidemic \history
+incident list
+(for \trajectory and \history defined in @def-epidemic-attributes).
+This delivers the change from \(\InnovRemC{}^{(0)}\)
+to \(\InnovRemC{}^{(1)}\).
+
+:::{.callout-caution #cau-new-marks}
+Be explicit here and at @thm-simplified-construction
+about \(\InnovResampling^*\) delivering \(m_1{,\ldots,}m_\TotalRemovals\).
+:::
+
+It follows from these first two stages that after the first \algorithmictime step 
+\[
+\InnovRemMarkedR{\target}{}^{(1)} [t_\target,\Duration) \quad=\quad \emptyset\,,
+\qquad 
+\InnovRemMarkedC{\target}{}^{(1)} (t_\target,\Duration) \quad=\quad \emptyset\,;
+\]
+The equation for
+\(\InnovRemMarkedR{\target}{}^{(1)} [t_\target,\Duration)\)
+follows because we don't add in\activated removals to the removed region
+(\(\InnovRemMarked{(*)}\)
+is a Poisson point process, so no in\activated removals are proposed exactly at time \(t_\target\));
+the equation for
+\(\InnovRemMarkedC{\target}{}^{(1)} (t_\target,\Duration)\)
+holds since conditioned removal must not be located in the removed region.
+Likewise, no in\activated removals are added to initially infected timelines, so
+\[
+\InnovRemMarkedR{\target}{}^{(1)} \quad=\quad \emptyset \quad\text{for \(\target\le I_{0-}\).}
+\] {#eq-no-pot-removals-on-initial-infective}
+
+These first two stages exhibit a useful monotonicity: pointwise increase
+of the \(R+I\) \trajectory (implying increase of the infected region) forces drop-out of
+some of the replacement inactive removals
+produced in stage 1 for \(\InnovRemMarkedR{\target}{}^{(1)}\),
+while more stage 2 proposals for change of target mark
+will be accepted (and these extra accepted proposals
+will always be for mark increase).
+
+**Third stage** (processing the \(\prec\)-ordered list of infections):
+this is more involved. We may choose
+\[
+\InnovInfMarkedA{\infector<\infectee}{}^{(1)}(t_\infector,\Duration) \quad=\quad \emptyset\,,
+\]
+since \((t_\target, \Duration)\) belongs to the removed region;
+any infections added there would never be \activated and so would never affect the course of the epidemic.
+Generation of \(\InnovInfMarkedA{(1)}\) is based on two constructions:
+
+
+:::{.callout-caution #cau-monotonicity-notes}
+### \textcolor{red}{\textbf{TO HERE!!}}
+Revision needed in this section after this point.
+:::
+
+
+* The _laziest feasible epidemic_ (\LFE). 
+This can be informally described as the slowest possible epidemic 
+that can be created by deleting potential infections while 
+preserving the conditioned removals 
+(and avoiding the activation of any potential removals, as always). 
+The most transparent definition runs as follows:
+
+   - consider all possible epidemics arising from the union of the \algorithmictime-\(0\) epidemic \history with a subset of those potential infections from \(\InnovInfMarkedA{\infector<\infectee}{}^{(1)}\) whose infectee marks remain at or below the \algorithmictime-\(0\) \(\ITP\);
+   - restrict attention only to those epidemics which activate all the conditioned removals \(\InnovRemC{}^{(0)}\) (they won't activate any 
+   removals in \(\InnovRemR{}^{(0)}\) because they have been chosen to lie below the \algorithmictime-\(0\) \(\ITP\));
+   - there will be a slowest-possible epidemic among these (prove by mixing infections between different epidemics);
+   - the \(\ITP\) of this slowest-possible epidemic forms the \(\LFE\).
+
+* This \(\LFE\) can be characterized by an equation based on backwards-induction.
+
+* It is also monotonic in the initial value and the \algorithmictime-\(0\) \(\ITP\) (use simple arguments about set-inclusion).
+
+* The _no-fly zone_ (\NFZ\).
+This can be informally described as the subset of \Timelinespace \(\TimeLineSpace\)
+of points which, if infected, would entail activation of some in\activated removal from \(\InnovRemMarkedR{\target}{}^{(1)}\).
+
+   - For each in\activated removal in \(\InnovRemMarkedR{\target}{}^{(1)}\) one can trace backwards in process-time a path of potential infections using \(\InnovInfMarkedA{\infector<\infectee}{}^{(1)}\), and omitting all infections which would connect to the \algorithmictime-\(0\) \(\ITP\)) **needs better description!**. 
+   - Stop this once the path passes above a further in\activated removal in \(\InnovRemMarkedR{\target}{}^{(1)}\), in which case continue tracing backwards but starting from this new in\activated removal. The whole procedure ceases once process-time zero is achieved.
+   
+* This \(\NFZ\) can be characterized by an equation based on backwards-induction.
+
+* It is also monotonic in the initial value and the \algorithmictime-\(0\) \(\ITP\) (use simple arguments about set-inclusion and an observation
+that if an in\activated infection is made available in the higher rather than 
+the lower \(\NFZ\)) then the higher \(\NFZ\)) must be strictly higher than
+the lower).
+
+* Finally observe the \algorithmictime-\(1\) \(\ITP\) depends
+monotonically on the pair of \(\LFE\) and \(\NFZ\).
+
+--------------------------------
+
+Older remarks:
+
+(a) Follow stage 3 of @thm-simplified-construction by working backwards through the \(\prec\)-ordered infections \chronology \(\Chronology_2\)
+which is the result of \(\prec\)-sorting
+\(\InnovInfMarkedA{(0)}\sqcup\InnovInfMarkedA{(*)}\);
+(b) Consider only those \(\Infection_t^{\target<\infectee}\in\Chronology_2\)
+with \((t,\target)\) not lying in the removed region;
+(c) If a potential infection \(\Infection_t^{\target<\infectee}\)
+comes from \(\InnovInfMarkedA{(0)}\) then retain it in \(\InnovInfMarkedA{(1)}\) only if
+otherwise there would be a failure to activate one of the (possibly re-marked) conditioned removals
+at times \(t_1{<\ldots<}t_\TotalRemovals\). In this case convert \(\Infection_t^{\target<\infectee}\) to a _perpetuated_ infection
+\(\PInfection_t^{\target<\infectee}\);
+(d) If a potential infection comes from \(\InnovInfMarkedA{(*)}\) then add it to \(\InnovInfMarkedA{(1)}\) only if
+its addition would _not_ result in activation of one of the in\activated removals of \(\InnovRemMarkedR{(1)}\).
+
+Suppose we have reached \(z=\Infection_t^{\target<\infectee}\) and are considering the impact of remark (c).
+If \(z\) is not \activated in the epidemic of \algorithmictime \(\tau{=}0\) then its removal cannot damage the possibility of
+infecting all the conditioned removals. 
+If it _is_ \activated in the epidemic of \algorithmictime \(0\)
+then \(\target\) must belong to the \(\tau{=}0\) removed region 
+and \(\infectee\) must lie at the bottom of the \(\tau{=}0\) susceptible region.
+Both of these are determined by \(z\) together with \(\InnovRemMarkedC{(0)}[0,z)\)
+and \(\InnovInfMarkedA{(0)}[0,z)\): however \(\InnovRemMarkedC{(0)}[0,z)\) can be replaced by \(\InnovRemMarkedC{(1)}[0,z)\),
+since the re-marking to convert \(\InnovRemMarkedC{(0)}[0,z)\) to \(\InnovRemMarkedC{(1)}[0,z)\) will not alter activation
+of removals and hence will not alter the infected and removed regions up to incident \(z\).
+Removal of \(z\) will break the possibility of
+infecting all the conditioned removals if the epidemic started at time \(t\) with initial \processstate \((S_{t-},I_{t-},R_{t-})\)
+[(beware of times not incidents here! refer explicitly to]{.mark} \processstate, [and use \(\tau=0\))]{.mark}
+and using \(\InnovRemMarked{(1)}[z,\Duration)\)
+and \(\InnovInfMarkedA{(1)}[z,\Duration)\) fails to infect the conditioned removals in \(\InnovRemMarkedC{(1)}[z,\Duration)\).
+[This is \(\ITP\)-based. How to move to \(\LFE\)?]{.mark}
+
+**Work towards** the _laziest feasible epidemic_ (\LFE\): the lowest path of \activated infections
+that would activate all the \(\TotalRemovals\) conditioned removals in \(\InnovInfMarkedA{(1)}\).
+This can be created inductively while working backwards through \(\Chronology_2\).
+
+
+* Step (d\)  can be efficiently implemented using the _no-fly zone_ (\NFZ\), the subset of \(\Timelinespace\)
+of points which, if infected, would entail activation of some in\activated removal from \(\InnovRemMarkedR{\target}{}^{(1)}\).
+This can also be created inductively while working backwards through \(\Chronology_2\).
+
+:::{.callout-caution #cau-monotonicity}
+### \textcolor{red}{\textbf{TO HERE!!}}
+Revision needed in this section after this point. Notice:
+
+* _in\activated_ rather than potential removals;
+* use removals not times.
+This is more in accordance with the previous notation of Equations (-@eq-removals-collections),
+and a better fit with the basic algorithms of @sec-conditioning, which iterate over \(\prec\)-ordered lists of incidents!
+:::
+
+:::{.callout-caution #cau-removals-not-times}
+### Working with removals not times
+:::
+
+
+We now construct three useful regions of timeline-space, illustrated in @fig-NFZ-LFE. \label{use-of-timeline-space}
+
+(Here and throughout we use the convention that \(\max\emptyset=-\infty\)
+and \(\min\emptyset=\infty\).)\label{inequality-conventions}
+
+The first of these is the _no-fly zone_ (\NFZ): this is made up of initial portions of timelines, with the no-fly zone on timeline \(\infectee\) being written as \([-\infty,\nfz^\infectee]\), where \(\nfz^\infectee\) is defined in @def-no-fly-zone below. 
+The \NFZ is the zone within which 
+infection of a timeline point would result (later in process-time) in the activation of a previously in\activated removal, thus breaking the conditioning
+that removals are \activated only at \(t_1{<\ldots<}t_\TotalRemovals\).
+
+There are two possible ways in which this might occur: 
+
+1. either the infection might activate a hitherto in\activated removal on timeline \(\infectee\); 
+
+2. or (if \(\infectee{<}\TotalRemovals\)) the infection might activate a hitherto in\activated infection of a higher timeline in the no-fly zone,
+which would lead inductively to activation of an in\activated removal (perhaps on a still higher timeline).
+
+The first consideration leads to the requirement that \(\nfz^\infectee\) must lie to the right 
+of all in\activated removals with target mark \(\infectee\). This leads to
+\(\nfz^\infectee\geq\max\{t: \Removal_t^\infectee\in\InnovRemMarkedR{\infectee}\}\).
+(Bear in mind that we deem \(\InnovRemMarkedR{\infectee}[t_\infectee,\Duration)=\emptyset\).)
+However this strengthens to 
+\(\nfz^\infectee\geq\max_{r\leq \infectee}\max\{t: \Removal_t^r\in\InnovRemMarkedR{r}\}\).
+because infection of timeline \(\infectee\) at time \(t\) can happen only if there are prior infections
+of timelines lower than timeline \(\infectee\).
+
+The second consideration (applying only when \(\infectee{<}\TotalRemovals\)) leads inductively to the 
+requirement that \(\nfz^\infectee\) must lie to the right of all in\activated infections with target mark \(\target\) and infectee mark
+\(\infectee{+}1\) timed at or before both \(\nfz^{\infectee+1}\) and \(t_\target\).
+So
+\(\nfz^\infectee\geq\max_{r\leq \infectee}\max\{t: \Infection_t^{r<\infectee+1}\in\InnovInfMarkedA{r<\infectee+1}[0,\nfz^{\infectee+1}\wedge t_r]\}\).
+
+These considerations lead directly to the following definition:
+
+:::{#def-no-fly-zone}
+### No-fly zone
+The _no-fly zone_ (\NFZ) on timeline \(\infectee\) is \([-\infty,\nfz^\infectee]\), 
+defining \(\nfz^\infectee\) inductively: \(\nfz^\TotalRemovals =\max_{r\leq\TotalRemovals}\max\{t:\Removal_t^r\in \InnovRemMarkedR{r}\}\) 
+(the latest of all in\activated removals), while
+\[
+\nfz^\infectee = 
+\max_{r\leq \infectee}\max\{:t \Removal_t^r\in\InnovRemMarkedR{r}\}
+\vee 
+\max_{r\leq \infectee}\max\{t: \Infection_t^{r<\infectee+1}\in\InnovInfMarkedA{r<\infectee+1}[0,\nfz^{\infectee+1}\wedge t_r]\}\,,
+\]  {#eq-nfz-boundary} 
+for \(1{\leq}\infectee{<}\TotalRemovals\).
+We write \(\overrightarrow\nfz = (\nfz^1, \nfz^2, \dots, \nfz^\TotalRemovals)\) for the entire \NFZ.
+::: 
+
+
+
+By construction the no-fly zone boundary \(\nfz^\infectee\) is (weakly) increasing in \(\infectee\):
+the first maximum in Equation (-@eq-nfz-boundary), 
+\(\max_{r\leq \infectee}\max\{t: \Removal_t^r\in\InnovRemMarkedR{r}\}\), is non-decreasing in \(\infectee\)
+while the second is bounded above by \(\nfz^{\infectee+1}\). 
+Note that if the \State \((\InnovRem,\InnovInf,I_{0-})\) satisfies the conditioning
+then \(\nfz^\infectee\) equals \(-\infty\) for any timeline \(j\le I_{0-}\);
+since for \(\infectee\le I_{0-}\) in Equation (-@eq-nfz-boundary) both the sets over which the maximum is taken must necessarily be empty; 
+see the proof of @lem-portrait-inequalities below.
+
+
+
+The second timeline function is called the _infection transmission path_ (\ITP): this is determined by the set of (\activated) infection incidents belonging to the \history of a conditioned epidemic, and is composed of the process-times \(\itp^\infectee\) at which timeline \(\infectee\) becomes infected.
+The intuition here is that timeline \(\infectee >I_{0-}\) becomes infected at the time \(\itp^\infectee\)
+of the earliest infection \(\Infection_t^{\infector<\infectee}\) which:
+avoids the no-fly zone (\(t>\nfz^\infectee\));
+occurs in the interval \([\itp^{\infectee-1}, t_\infector]\) during which timelines \(\infectee{-}1\) and \(\infector\) are both infectious;
+and occurs before all _conditioned_ removals \(\InnovRemMarkedC{[\infectee:\TotalRemovals]}\) assigned to timeline \(\infectee\) or higher. 
+(If this last point were not satisfied, there would be some conditioned removal assigned to a timeline which is not infectious at the removal time; the removal would consequently not be \activated, breaking the conditioning.)
+
+Our ultimate aim is to perfectly sample from the joint distribuition of the \ITP and the number of initial infectives, \(I_{0-}\), 
+conditioned on \activated removals occurring at \(t_1,\ldots,t_\TotalRemovals\).
+
+:::{#def-infection-transmission-path}
+### Infection transmission path
+The _infection transmission path_ (\ITP) is composed of the process-times \(\itp^\infectee\) at which timeline \(\infectee\) becomes infected, and is defined inductively by
+\[
+\begin{aligned}
+\itp^\infectee \quad=&\quad -\infty\,, &\text{ if \(1\le \infectee\le I_{0-}\),}  
+\\ 
+\itp^\infectee \quad=&\quad \min\bigsqcup_{\infector < \infectee} \InnovInfMarkedA{\infector<\infectee}
+  [\itp^{\infectee{-}1}\vee \nfz^\infectee,\,\min\InnovRemMarkedC{[\infectee:\TotalRemovals]} \wedge t_\infector]\,,
+& \text{ if \(I_{0-} < \infectee \le \TotalRemovals\).}
+\end{aligned}
+\] {#eq-itp-boundary}  
+We write \(\overrightarrow\itp = (\itp^1, \itp^2, \dots, \itp^\TotalRemovals)\) for the entire \ITP.
+:::
+
+<!-- [SBC]: don't actually need reference to t_\infector in this definition, due to assumption above that there are no infections after removal time. Keeping it here for now, in case it's useful later on for monotonicity. -->
+
+Note that the event \(\{\itp^\infectee=\infty\}\) will not arise for any \(\infectee\), since we have assumed the \State \((\InnovRem,\InnovInf,I_{0-})\) to yield an epidemic with exactly \(\TotalRemovals\) conditioned removals at times \(t_1,\ldots,t_\TotalRemovals\):
+a proposal to either remove an infection, or to alter the value of \(I_{0-}\), in an epidemic satisfying this conditioning will not be allowed if this is a consequence.
+
+
+
+
+
+The final timeline function that we require is named the _laziest feasible epidemic_ (\LFE). This is the slowest possible (in process-time) epidemic that can be created by deleting potential infections while preserving the conditioned removals (and avoiding the activation of any potential removals, as always). 
+The rationale for the definition of \(\lfe^\infectee\) is that
+this will be the latest infection \(\Infection_t^{\infector<\infectee}\) which: occurs before the time 
+\(\lfe^{\infectee{+}1}\)
+at which the laziest feasible epidemic reaches timeline \(\infectee{+}1\); occurs before the \(\infector^\text{th}\) removal time, \(t_\infector\); and occurs before all conditioned removals assigned to timeline \(\infectee\) or higher. 
+
+:::{#def-laziest-feasible-epidemic}
+### Laziest feasible epidemic
+The _laziest feasible epidemic_ (\LFE) reaches timeline \(\infectee\)
+at time \(\lfe^\infectee\), defined inductively by
+setting \(\lfe^{\TotalRemovals+1}=t_\TotalRemovals\) and then defining
+\[
+\lfe^\infectee \quad=\quad \max\bigsqcup_{\infector < \infectee} \InnovInfMarkedA{\infector<\infectee}
+  [0,\, \lfe^{\infectee{+}1} \wedge \min\InnovRemMarkedC{[\infectee:\TotalRemovals]} \wedge t_\infector]\,,
+\quad 1\le \infectee\le \TotalRemovals \,.
+\] {#eq-lfe-boundary}
+
+We write \(\overrightarrow\lfe = (\lfe^1, \lfe^2, \dots, \lfe^\TotalRemovals)\) for the entire \LFE.
+:::
+
+
+<!-- Note that if timeline \(\infectee\) is conditioned to be removed at time  -->
+<!-- \(t_\infectee\) for all \(\infectee\), then for each \(\infectee>R_{0-}+I_{0-}\) there must be _some_ potential infection -->
+<!-- satisfying the conditions expressed in the supremum in Equation (-@eq-last-epidemic).  -->
+
+<!-- ![No-fly zone (blue), infection transmission path (orange), and laziest feasible epidemic (dark) for this graphical representation.](fig-NFZ-LFE){#fig-NFZ-LFE fig-scap="\NFZ (TO BE REMOVED)"} -->
+
+
+The three functions just introduced convey information about the essential structure of a conditioned epidemic; we gather them together, along with the vectors of in\activated and conditioned removals, and the number of initial infectives, to form the _epidemic portrait_.
+
+:::{#def-epidemic-portrait}
+### Epidemic portrait
+Given a \State \((\InnovRem,\InnovInf,I_{0-})\), the corresponding _epidemic portrait_ is given by
+\[
+\Epidemic \quad=\quad (\overrightarrow\InnovRem_{\Removal}, \overrightarrow\nfz,  I_{0-}, \overrightarrow\itp, \overrightarrow\lfe, \overrightarrow\InnovRem_{\CRemoval}) \,.
+\]
+:::
+
+Our final result of this section shows that the portrait corresponding to a conditioned epidemic satisfies some intuitive inequalities on each timeline.
+
+:::{#lem-portrait-inequalities}
+Let \((\InnovRem,\InnovInf,I_{0-})\) be a \State which yields an epidemic with \activated removals occurring precisely at times \(t_1{<\ldots<}t_\TotalRemovals\) in \([0,\Duration)\). The corresponding epidemic portrait satisfies the following inequalities on each timeline \(1\le \infectee \le \TotalRemovals\):
+\[
+\max \InnovRemMarkedR{[1:\infectee]} \le \nfz^\infectee
+\;\le\; \itp^\infectee
+\;\le\; \lfe^\infectee 
+\;\le\; \min \InnovRemMarkedC{[\infectee:\TotalRemovals]}
+\;\le\; t_\infectee \,.
+\] {#eq-event-order}
+:::
+
+That is, the time at which timeline \(\infectee\) becomes infected
+(\(\itp^\infectee\)) must lie outside of the no-fly zone (with boundary
+\(\nfz^\infectee\)), and occur no later than the laziest feasible epidemic time
+(\(\lfe^\infectee\)); this in turn must occur before the first
+conditioned removal assigned to that timeline or one of a higher index 
+(\(\min \InnovRemMarkedC{[\infectee:\TotalRemovals]}\)). 
+
+:::{.proof}
+For all timelines, the final inequality in (-@eq-event-order) is trivial (since \(t_\infectee \in \InnovRemMarkedC{[\infectee:\TotalRemovals]}\)), and the penultimate inequality follows from @def-laziest-feasible-epidemic. Similarly, the first inequality follows from 
+<!--(-@eq-no-pot-removals-on-initial-infective) and -->
+@def-no-fly-zone. We deal with the remaining inequalities (\( \nfz^\infectee \le \itp^\infectee \le \lfe^\infectee\)) by considering different values of \(\infectee\).
+
+For \(\infectee\le I_{0-}\), @def-infection-transmission-path shows that \(\itp^\infectee = -\infty\), and it therefore suffices to show that \(\nfz^\infectee\) also equals \(-\infty\). This follows from Equation (-@eq-no-pot-removals-on-initial-infective) and the observation that the set 
+\[
+\bigsqcup_{\infector\le\infectee} \InnovInfMarkedA{\infector<\infectee+1}[0,\nfz^{\infectee+1}\wedge t_\infector]
+\]
+appearing in @def-no-fly-zone is empty. 
+<!-- When \(\infectee\le R_{0-}\) this is guaranteed by @def-no-fly-zone; when \(R_{0-} <\infectee \le R_{0-}+I_{0-}\), the claim follows from Equation (-@eq-no-pot-removals-on-initial-infective) and the observation that the set 
+\[
+\bigsqcup_{\infector\le\infectee} \InnovInfMarkedA{\infector<\infectee+1}[0,\nfz^{\infectee+1}\wedge t_\infector]
+\]
+appearing in @def-no-fly-zone is empty. 
+-->
+For if not, it would contain a potential infection \(\Infection_t^{\infector<\infectee+1}\) with \(t\le\nfz^{\infectee+1}\), which would connect the \ITP to the \NFZ; such an infection is impossible under the conditioning (since it would necessarily lead to activation of a potential removal).
+
+Finally, we consider a timeline \(I_{0-} <\infectee\). Here the inequality \( \nfz^\infectee \le \itp^\infectee\) follows from the second equation in @def-infection-transmission-path. For the one remaining inequality we proceed by induction, starting from \(\infectee = \TotalRemovals\). First observe that a conditioned epidemic must certainly satisfy \(\itp^{\TotalRemovals-1} \le \itp^{\TotalRemovals} \le t_\TotalRemovals\), since the infection path has to reach timeline \(\TotalRemovals\) before the final conditioned removal time. @def-no-fly-zone and @def-laziest-feasible-epidemic show that 
+\(\nfz^\TotalRemovals = \max \InnovRemMarkedR{[1:\TotalRemovals]}\)
+and 
+\(\lfe^{\TotalRemovals+1} = t_\TotalRemovals \), 
+and therefore 
+\[
+\itp^{\TotalRemovals-1} \vee \nfz^\TotalRemovals \le \lfe^{\TotalRemovals+1} \,.
+\] {#eq-itp-lfe-order-help-1}  
+Looking again at @def-infection-transmission-path and @def-laziest-feasible-epidemic, and bearing in mind that a conditioned epidemic must have both \ITP and \LFE activating all removals designated as "conditioned", this implies that the set 
+\[
+\bigsqcup_{\infector < \TotalRemovals} \InnovInfMarkedA{\infector<\TotalRemovals}
+  [\itp^{\TotalRemovals{-}1}\vee \nfz^\TotalRemovals,\, \lfe^{\TotalRemovals{+}1} \wedge \min\InnovRemMarkedC{[\TotalRemovals:\TotalRemovals]} \wedge t_\infector]
+\] {#eq-itp-lfe-order-help-2}   
+is non-empty, and that \(\itp^\TotalRemovals\) and \(\lfe^\TotalRemovals\) will be the minimum and maximum (respectively) of this set. Thus \(\itp^\TotalRemovals \le \lfe^\TotalRemovals\). 
+
+The functions \(\itp^\infectee\) and \(\nfz^\infectee\) are necessarily non-decreasing in \(\infectee\), so
+\(\itp^{\TotalRemovals-2}\le \itp^\TotalRemovals\le \lfe^\TotalRemovals \) and 
+\(\nfz^{\TotalRemovals-1} \le \nfz^\TotalRemovals \le \lfe^\TotalRemovals\). 
+Thus Inequality (-@eq-itp-lfe-order-help-1) (and subsequent argument) holds with \(\TotalRemovals\) replaced by \(\TotalRemovals-1\). 
+Repeating this argument, it follows that \(\itp^\infectee \le \lfe^\infectee\) for all \(\infectee\), as required.
+:::
+
+
+
+
+:::{.callout-important #imp-not-sure}
+### Not for inclusion in submitted paper!
+I'm not sure that the previous definitions were quite right for what we want to happen with time-0 infections. We were losing information as to whether there are any time-0 infections in \(\InnovInf\) where the infector and infectee both take values \(\le I_{0-}\): the \ITP looks the same whether or not such infections are present, but their presence will potentially affect perpetuation events. 
+
+I think it would make sense to set \ITP and \LFE equal to \(-\infty\) for timelines \(\infectee\le I_{0-}\) **-- that change has now been implemented.**
+
+Using that modification, here are some potential scenarios to bear in mind:
+
+  - **Case 1**: \(\InnovRem_0 = \emptyset\), \(\InnovInf_0 = \emptyset\), \(I_{0-,0}=2\)
+  - **Case 2**: \(\InnovRem_0 = \emptyset\), \(\InnovInf_0 = \{\Infection_0^{1<2}\}\), \(I_{0-,0}=2\)
+  - **Case 3**: \(\InnovRem_0 = \emptyset\), \(\InnovInf_0 = \{\Infection_0^{1<2}\}\), \(I_{0-,0}=1\)
+  
+The corresponding epidemic portraits should have \(\nfz_0 = (-\infty,-\infty)\) in all three cases, and:
+
+  - **Case 1**: \(\itp_0 = (-\infty,-\infty)\), \(\lfe_0 = (-\infty,-\infty)\)
+  - **Case 2**: \(\itp_0 = (-\infty,-\infty)\), \(\lfe_0 = (-\infty,0)\)
+  - **Case 3**: \(\itp_0 = (-\infty, 0)\), \(\lfe_0 = (-\infty,0)\)
+
+Note that the \ITP and \LFE can now differentiate between the three cases (unlike the old definitions, in which they both would have equalled \((0,0)\) in all three cases).
+
+Now suppose that we update, with \(\InnovRemMarked{*}_1 = \InnovInfMarkedA{*}_1 = \emptyset\), and \(I^*_1 = 1\). In Cases 1 and 2 we get \(\InnovInf_1 = \emptyset\), but in Case 3 the time-0 infection is perpetuated, and \(\InnovInf_1 = \{\Infection_0^{1<2}\}\). This should lead to the following portraits:
+
+  - **Case 1**: \(\itp_1 = (-\infty,\infty)\), \(\lfe_1 = (-\infty,-\infty)\)
+  - **Case 2**: \(\itp_1 = (-\infty,\infty)\), \(\lfe_1 = (-\infty,-\infty)\)
+  - **Case 3**: \(\itp_1 = (-\infty, 0)\), \(\lfe_1 = (-\infty,0)\)
+
+In particular, this means that \(I_{0-,1}=I_{0-,0}\) in all three cases. (The new proposed value is rejected in the first two, since conditioning is broken; and in Case 3 there is no change.)
+
+:::
+
+
+Evolution of the epidemic portrait {#sec:portrait-evolution}  {- .unlisted}
+----------------------------------
+Recall the construction in @thm-simplified-construction, which described the \algorithmictime evolution 
+of a conditioned epidemic starting from initial \State
+\((\InnovRem_0, \InnovInf_0, I_{0-,0})\)
+and using the \ExtendedInnovation \((\InnovRemMarked{*}_1, \InnovInfMarkedA{*}_1, I^*_1, \InnovResampling^*_1)\) 
+-- where \(\InnovResampling^*_1 = (m_1,m_2,\ldots)\) is a sequence of independent uniform draws from the set \(\{1,\ldots,\Population\}\) --
+to arrive at \State 
+\((\InnovRem_1, \InnovInf_1, I_{0-,1})\).
+We now present a series of results which together permit a _direct_ 
+construction of the corresponding epidemic portrait \(\Epidemic_1\) as a function of \(\Epidemic_0\) and the \ExtendedInnovation; in particular, these show that the sequence of portraits \((\Epidemic_n)_n\) is in fact a Markov chain.
+
+
+:::{#lem-update-removals}
+The sets of in\activated removals in \(\Epidemic_1\) are given by 
+\[
+\InnovRemMarked{\target}_{\Removal,1} = \{t\,:\, \Removal_t^\target \in \InnovRemMarked{*}_1 [0, \itp^\target_0) \} \,.
+\]
+Furthermore, the sets of conditioned removals in \(\Epidemic_1\) are determined by working through the removal times \(t_1,\dots,t_\TotalRemovals\) in order. For removal time \(t_\infectee\), we first locate the timeline \(\target\) to which it is allocated in \(\Epidemic_0\) (i.e. the value of \(\target\) such that \(t_\infectee \in \InnovRemMarked{\target}_{\CRemoval,0}\)). We then consider the draw \(m_\infectee\in \InnovResampling^*_1\) and proceed as follows:
+
+  - if \(t_\infectee \in [\itp^{m_\infectee}_0 , t_{m_\infectee}] \), we allocate \(t_\infectee\) to timeline \(m_\infectee\) in \(\Epidemic_1\) (i.e. \(t_\infectee \in \InnovRemMarked{m_\infectee}_{\CRemoval,1}\));
+  - otherwise, \(t_\infectee\) remains allocated to timeline \(\target\) in \(\Epidemic_1\) (i.e. \(t_\infectee \in \InnovRemMarked{\target}_{\CRemoval,1}\)).
+:::
+
+
+::: {.proof}
+These follow directly from stages 1 and 2 of @thm-simplified-construction. In stage 1 all in\activated removals in \(\InnovRemMarked{\target}_{\Removal,0}\) are deleted, and replaced by exactly those potential removals in \(\InnovRemMarked{*}_{1}\) which have targets not lying in the infected region (and which therefore will not be \activated). In other words, only removals of the form \(\Removal_t^\target\) for which \(t<\itp^\target_0\) will be retained. In stage 2 we look to see whether timeline \(m_\infectee\) is infected at time \(t_\infectee\), i.e. whether \(\itp^{m_\infectee}_0 \le t_\infectee \le t_{m_\infectee} \): if so, the timeline to which the conditioned removal \(t_\infectee\) is assigned is updated to \(m_\infectee\); if not, the assignment remains unchanged.
+:::
+
+@fig-update-removals demonstrates these updates of in\activated and conditioned removals, beginning from the realisation in @fig-NFZ-LFE.
+
+<!-- ![Demonstration removals update, beginning from realisation in @fig-NFZ-LFE. Inactivated removals (brown-edged disks) are replaced by a new set of inactivated removals conditioned to avoid infected region; some conditioned removals (purple-edged disks) are reassigned to different timelines (\(t_1,t_2\) to timeline 3, \(t_3\) to timeline 4).](fig-update-removals){#fig-update-removals fig-scap="Removals update (TO BE REMOVED)"} -->
+
+
+We now turn our attention to the effect of updating infections, as in stage 3 of @thm-simplified-construction.
+Recall that this is done by iterating over \(z\in\InnovInf_0 \sqcup \InnovInfMarkedA{*}_1\) in reverse \(\prec\) order, to arrive at the new set of potential infections, \(\InnovInf_1\). 
+During this sweep we add new infections from \(\InnovInfMarkedA{*}_1\) to \(\InnovInf_1\) if doing so does not join the \ITP to the \NFZ (which would necessarily lead to the activation of a non-conditioned removal), and perpetuate an infection belonging to \(\InnovInf_0\) if removing it would cause the resulting \ITP not to activate every conditioned removal.
+
+<!-- ![Demonstration of the update of infections, beginning from the realisation in @fig-update-removals.](fig-update-infections){#fig-update-infections fig-scap="Infections update (TO BE REMOVED)"} -->
+
+@fig-update-infections demonstrates the effect of updating infections, 
+beginning from the realisation in @fig-update-removals. The new set of potential infections in \(\InnovInfMarkedA{*}_1\) are shown with orange and dark grey edges; those with dark grey edges have been censored. In this realisation there are also three perpetuated infections, 
+shown in dark green. Here follows a list of how infections have been updated in this realisation, 
+moving through the diagram from right to left.
+
+  1. The old infection \(\Infection_{11.0}^{4<5}\in\InnovInf_0\) is deleted as it is preceded by...
+  2. ...the next \(\Infection_{10.0}^{4<5}\in\InnovInf_0\), which is _perpetuated_
+	to ensure the two subsequent conditioned removals are \activated. (This means that \(\lfe_1^5 = 10.0\).)
+  3. But a new \(\Infection_{9.0}^{4<5}\in \InnovInfMarkedA{*}_1\) is then introduced, which 
+ends up as the time that the infection transmission path reaches timeline 5.
+  4. Infection \(\Infection_{7.2}^{4<5}\in \InnovInfMarkedA{*}_1\) is _censored_, as it would infect the 
+potential removal \(\Removal_{8.5}^{5}\).
+  5. Then \(\Infection_{7.0}^{3<4} \in \InnovInfMarkedA{*}_1\) is introduced; it is the laziest feasible 
+infection of timeline 4 (\(\lfe_1^4 = 7.0\)).
+  6. Various old infections are now deleted, because they don't play essential parts in
+the epidemic: in particular, the infections \(\Infection_{5.5}^{3<4}\) and \(\Infection_{5.0}^{2<4}\) can be deleted, becuase of the new infection \(\Infection_{7.0}^{3<4}\) which was just introduced.
+  7. The new infection \(\Infection_{4.2}^{3<4}\in \InnovInfMarkedA{*}_1\) doesn't connect the \ITP to the \NFZ, and so doesn't risk infecting a removal _not_ designated as "conditioned", and can safely be introduced; it actually turns
+out to form part of \(\itp_1\).
+  8. Attention now turns to timeline 3. The old infection \(\Infection_{3.0}^{1<3}\in\InnovInf_0\)
+is _perpetuated_ because at that stage it is the only possibility for infecting timeline 3 -- 
+and in fact no earlier new infections will do so.
+  9. Now the new infection \(\Infection_{2.2}^{4<5}\in \InnovInfMarkedA{*}_1\) will not have an effect
+(it lies completetely within the no-fly zone), and so can safely be introduced.
+  10. Old infection \(\Infection_{2.0}^{1<2}\in\InnovInf_0\) is _perpetuated_ to ensure timeline 2
+is infected, though \(\Infection_{1.5}^{1<2}\in \InnovInfMarkedA{*}_1\) turns out to 
+be the infection which causes \(\itp_1\) to reach timeline 2.
+  11. Infection \(\Infection_{1.0}^{2<3}\in \InnovInfMarkedA{*}_1\) can also be safely introduced, and extends the 
+no-fly zone \(\nfz_1\) since no earlier infection of timeline 2 can then be permitted.
+  12. Finally, the new potential infection \(\Infection_{0.5}^{1<2}\in \InnovInfMarkedA{*}_1\) is _censored_, since it 
+would connect the \ITP to \(\nfz_1\).
+
+
+
+The next few results describe the evolution of the laziest feasible epidemic, 
+no-fly zone and infection transmission path.
+
+:::{#lem-update-lfe}
+The laziest feasible epidemic in \(\Epidemic_1\), \(\overrightarrow\lfe_1\), can be determined as follows.
+Set \(\lfe^{\TotalRemovals+1}_1 = t_\TotalRemovals\) and use the following recursion for \(1{\leq}\infectee{\leq}\TotalRemovals\):
+\[
+\lfe^\infectee_1  \quad=\quad
+\itp^\infectee_0 \,\vee\,
+\max\bigsqcup_{\infector < \infectee} \InnovInfMarkedB{*}{\infector<\infectee}
+[0,\, \lfe^{\infectee{+}1}_1 \wedge \min\InnovRemMarked{[\infectee:\TotalRemovals]}_{\CRemoval,1} \wedge t_\infector]\,.
+\] {#eq-update_laziest-feasible}
+<!--(For timelines \(\infectee\le R_{0-}\), \(\lfe^{\infectee}_1 = -\infty\), by @def-laziest-feasible-epidemic.)--> 
+:::
+
+:::{.proof}
+This follows from a similar argument to the rationale behind Equation (-@eq-lfe-boundary). 
+Recall that when updating infections we work backwards through the process-time segment \([0, \Duration)\).
+The laziest feasible epidemic must infect timeline \(\infectee\) 
+before any conditioned removals currently assigned either to that timeline or 
+to any timeline of greater index
+(which is to say, no later than time \(\min\InnovRemMarked{[\infectee:\TotalRemovals]}_{\CRemoval,1}\)).
+Moreover the laziest feasible epidemic must reach timeline \(\infectee\) 
+no later than the time \(\lfe^{\infectee{+}1}_1\) at which 
+the laziest feasible epidemic reaches the timeline above (indexed by \(\infectee{+}1\)). 
+Finally, if the laziest feasible infection of timeline \(\infectee\)
+is an infection from timeline \(\infector<\infectee\), then this must happen
+before time \(t_\infector\) when timeline \(\infector\) is removed from the epidemic.
+
+Consequently, given the value of \(\lfe^{\infectee{+}1}_1\), 
+if the set \(\sqcup_{\infector<\infectee}\InnovInfMarkedB{*}{\infector<\infectee}\) contains at least one new potential infection incident of the form
+\(\Infection_t^{\infector< \infectee}\), with \(t\) in the interval 
+\[
+(\itp^\infectee_0\,,\;\lfe^{\infectee{+}1}_1 \wedge  \min\InnovRemMarked{[\infectee:\TotalRemovals]}_{\CRemoval,1} \wedge t_\infector]\,,
+\]
+then \(\lfe^\infectee_1\) will be the maximum of these times. If not, then 
+\(\lfe^\infectee_1 = \itp^\infectee_0\), either because of a perpetuated infection at process-time \(\itp^\infectee_0\), 
+or because \(\infectee \le I_{0-,0}\) and \(\itp^\infectee_0 = -\infty\).
+:::
+
+
+
+
+:::{#lem-update-nfz}
+The no-fly zone boundary in \(\Epidemic_1\) satisfies \(\nfz^\TotalRemovals_1 = \max \InnovRemMarked{[1:\TotalRemovals]}_{\Removal,1}\), and for \(\infectee < \TotalRemovals\):
+\[
+\nfz^\infectee_1 \quad=\quad 
+  \max \InnovRemMarked{[1:\infectee]}_{\Removal,1} \vee 
+  \max\bigsqcup_{\infector\le\infectee} \InnovInfMarkedB{*}{\infector<\infectee+1}_1
+  [0,\,\itp^\infectee_0\wedge\nfz^{\infectee+1}_1 \wedge t_\infector]\,.
+\] {#eq-update_no-fly_direct}
+Furthermore, the inequality \(\nfz^\infectee_1 \le \itp^\infectee_0 \le \lfe^\infectee_1\) holds almost surely for all timelines \(\infectee\), with the first inequality being strict when \(\infectee > I_{0-,0}\). 
+:::
+
+:::{.proof}
+The formula for \(\nfz^\TotalRemovals_1\) follows directly from @def-no-fly-zone. @lem-update-removals and @lem-update-lfe, along with the fact that the infection transmission path \(\itp_0^\infectee\) is weakly increasing in \(\infectee\), show that
+\[ 
+\nfz^\TotalRemovals_1 \quad =\quad
+\max \InnovRemMarked{[1:\TotalRemovals]}_{\Removal,1} \quad <\quad \itp^\TotalRemovals_0 \quad \le\quad \lfe^\TotalRemovals_1 \,.
+\]
+
+We proceed by induction. Suppose that  \(\nfz^{\infectee+1}_1 <\itp^{\infectee+1}_0 \le \lfe^{\infectee+1}_1\) for some \(I_{0-,0} < \infectee<\TotalRemovals\).
+Consideration of @def-no-fly-zone shows that Equation (-@eq-update_no-fly_direct) will follow if we can demonstrate that
+\[
+ \InnovInfMarkedA{\infector<\infectee+1}_1 [0,\nfz^{\infectee+1}_1]
+ \quad =\quad
+ \InnovInfMarkedB{*}{\infector<\infectee+1}_1
+  [0,\,\itp^\infectee_0\wedge\nfz^{\infectee+1}_1 ] 
+\]{#eq-update_no-fly_direct-equiv}
+for all \(\infector\le \infectee\). 
+Recall that the set 
+\(\InnovInf_1 \subset \InnovInf_0 \sqcup \InnovInfMarkedA{*}_1\) 
+is obtained by censoring any infection in \(\InnovInfMarkedA{*}_1\) which would cause the gap between the infection transmission path and the no-fly zone to be bridged, and also possibly perpetuating some infections belonging to the set 
+\(\InnovInf_0\). If an infection of the form \(\Infection_t^{\infector<\infectee+1} \in \InnovInf_0\) is perpetuated during this update, it will by definition occur at process-time \(t=\lfe^{\infectee+1}_1\), i.e. the time at which the laziest feasible epidemic reaches timeline \(\infectee+1\). By our inductive assumption, this is strictly greater than \(\nfz^{\infectee+1}_1\), and so no perpetuated infection features in the set on the left-hand side of 
+Equation (-@eq-update_no-fly_direct-equiv). This implies that
+\[
+\InnovInfMarkedA{\infector<\infectee+1}_1 [0,\nfz^{\infectee+1}_1]
+ \quad \subseteq \quad
+ \InnovInfMarkedB{*}{\infector<\infectee+1}_1
+  [0,\nfz^{\infectee+1}_1] \,.
+\]
+Now consider the effect of censoring. 
+The infections which are censored during this update are precisely those of the form 
+\(\Infection_t^{\infector<\infectee+1} \in \InnovInfMarkedB{*}{\infector<\infectee+1}_1\) for which \(t\) belongs to the (possibly empty) process-time interval \([\itp^{\infectee}_0, \nfz^{\infectee+1}_1]\), since any such infection would immediately join the infection transmission path to the no-fly zone on timeline \(\infectee+1\), and would thereby break our conditioning. It follows that Equation (-@eq-update_no-fly_direct-equiv), and hence Equation (-@eq-update_no-fly_direct), holds for timeline \(\infectee\).
+
+Finally, we recall once again from @lem-update-removals that \(\max \InnovRemMarked{[1:\infectee]}_{\Removal,1} < \itp^\infectee_0\). From equation (-@eq-update_no-fly_direct), @lem-update-lfe, and the fact that the Poisson process \(\InnovInfMarkedB{*}{\infector<\infectee+1}_1\) will almost surely not contain a potential infection at time \(t=\itp^\infectee_0\), we obtain:
+\[
+\nfz^\infectee_1  \quad < \quad \itp^\infectee_0 \quad\le \quad \lfe^\infectee_1 \,, \quad \text{a.s.}
+\]
+This shows that the required ordering holds on timeline \(\infectee\).
+
+For timelines \(\infectee\le I_{0-,0}\), we saw in the proof of @lem-portrait-inequalities that \(\nfz^\infectee_1 = \itp^\infectee_0=-\infty\), and so the required inequality trivially holds.
+:::
+
+
+
+The two components of \(\Epidemic_1\) yet to be determined are the inital number of infectives \(I_{0-,1}\) and the infection transmission path, \(\overrightarrow\itp_1\). Recall from step 4 of @thm-simplified-construction that the former of these is the result of a rejection-sampling update. A new value \(I^*_1\) 
+is generated from some proposal distribution with support \(\support(I^*)\): if the epidemic using this value has \activated removals precisely at times \(t_1<t_2<\ldots< t_\TotalRemovals\) then we set 
+\(I_{0-,1} = I^*_1\); otherwise we set 
+\(I_{0-,1} = I_{0-,0}\).
+Rephrasing in terms of the epidemic portrait, the value \(I^*_1\) is rejected if and only if the corresponding infection transmission path \(\overrightarrow\itp_1\) does not activate exactly the required set of removals; equivalently, if and only if the ordering in Equation (-@eq-event-order) is broken on some timeline. 
+In order to carry out this update, we therefore need to know how to calculate 
+\(\overrightarrow\itp_1\) for any possible value of \(I^*_1\). 
+
+
+:::{#lem-update-itp}
+For each \(i_0\in \support(I^*)\), 
+the infection trasmission path \(\overrightarrow\itp_1(i_0)\) corresponding to the \State \((\InnovRem_1,\InnovInf_1,I^*_1=i_0)\), 
+i.e. with \(i_0\) initial infectives, is given as follows. 
+
+For timelines \(\infectee\le i_0\): \(\itp^{\infectee}_1(i_0) = -\infty\). \
+ <!-- \begin{equation}
+\itp^{\infectee}_1(i_0) =  
+\begin{cases}
+    -\infty & \quad \text{if \(\nfz_1^\infectee = -\infty\)} \\
+    \infty & \quad \text{otherwise.}
+  \end{cases}
+ 
+\label{eq-update-itp-direct1}
+\end{equation}
+ --> 
+For timelines \(\infectee> i_0\):
+\[
+\itp^{\infectee}_1(i_0) =  
+  \begin{cases}
+    \min \bigsqcup_{\infector<\infectee} \InnovInfMarkedB{*}{\infector<\infectee}_1
+      		  [\itp^{\infectee-1}_1(i_0) \vee \nfz^\infectee_1,\, \min\InnovRemMarked{[\infectee:\TotalRemovals]}_{\CRemoval,1} \wedge t_\infector] \\
+      		  \hfill \text{if \(\lfe^\infectee_1 = -\infty\)} \\
+    \min \bigsqcup_{\infector<\infectee} \InnovInfMarkedB{*}{\infector<\infectee}_1
+        		  [\itp^{\infectee-1}_1(i_0) \vee \nfz^\infectee_1,\, \min\InnovRemMarked{[\infectee:\TotalRemovals]}_{\CRemoval,1} \wedge t_\infector]
+        		\wedge \lfe^\infectee_1 \\
+        		\hfill  \text{if \(\lfe^\infectee_1 \ge 0\).}
+  \end{cases}
+\] {#eq-update-itp-direct2}
+:::
+
+
+:::{.proof}
+For \(\infectee\le i_0\) the result follows immediately from @def-infection-transmission-path.
+For \(i_0{<}\infectee{\leq}\TotalRemovals\), @def-infection-transmission-path shows that the infection transmission path on timeline \(\infectee\) is given by
+\[
+\itp^\infectee_1(i_0) \quad=\quad \min\bigsqcup_{\infector < \infectee} \InnovInfMarkedA{\infector<\infectee}_1
+  [\itp^{\infectee{-}1}_1(i_0) \vee \nfz^\infectee_1,\,\min\InnovRemMarked{[\infectee:\TotalRemovals]}_{\CRemoval,1} \wedge t_\infector]\,.
+\]
+We have already seen that \(\InnovInfMarkedA{\infector<\infectee}_1\) is obtained by censoring some potential infections belonging to \(\InnovInfMarkedB{*}{\infector<\infectee}_1\) and, in the event that \(\lfe^\infectee_1\ge 0\), possibly perpetuating an infection at time \(\lfe^\infectee_1\). However, only potential infections of the form \(\Infection_t^{\infector< \infectee}\) belonging to the (possibly empty) process-time interval \([\itp^{\infectee-1}_0,\,\nfz^\infectee_1]\) are censored (since these would connect the path \(\overrightarrow\itp_0\) to the new no-fly zone \(\overrightarrow\nfz_1\) on timeline \(\infectee\)); 
+almost surely the Poisson process 
+\(\InnovInfMarkedB{*}{\infector<\infectee}_1\) 
+contains no such infections[^1] within the process-time interval
+\([\itp^{\infectee-1}_1(i_0)\vee \nfz^\infectee_1,\, \min\InnovRemMarked{[\infectee:\TotalRemovals]}_{\CRemoval,1}\wedge t_\infector)\).
+Thus the only possible difference on this time interval between the sets \(\InnovInfMarkedA{\infector<\infectee}_1\) and 
+\(\InnovInfMarkedB{*}{\infector<\infectee}_1\) is the potential presence in the former of a perpetuated infection 
+at time \(\lfe^\infectee_1\); the final term in Equation (-@eq-update-itp-direct2) accounts for this possibility.
+:::
+[^1]: Almost surely there will not be an infection \(\Infection_t^{\infector< \infectee}\) _exactly_ at time \(\nfz^\infectee_1\): @lem-update-nfz shows that \(\nfz^\infectee_1\) is a function of two Poisson processes which are independent of \(\InnovInfMarkedB{*}{\infector<\infectee}_1\).
+
+
+By construction, the path \(\overrightarrow\itp_1(I_{0-,0})\) will satisfy the conditioning, and hence the portrait Inequalities (-@eq-event-order), since the acceptance/rejection decisions for each potential removal and infection during the update from \(\Epidemic_0\) to \(\Epidemic_1\) were each made to ensure that this infection path would maintain precisely the correct set of conditioned removal times. 
+The next result describes the outcomes of proposing either an increase or decrease to the number of initial infectives during the update to \(\Epidemic_1\).
+
+
+<!-- Furthermore, if \(i_0\) is such that  -->
+<!-- \(\nfz_1^\infectee = -\infty\) for all timelines  -->
+<!-- \(\infectee \le R_{0-}+i_0\) -->
+<!-- and  -->
+<!-- \(\lfe^\infectee_1 \ge 0\) for all timelines  -->
+<!-- \(\infectee > R_{0-}+i_0\), -->
+<!-- then the path  -->
+<!-- \(\overrightarrow\itp_1(i_0)\)  -->
+<!-- _must_ satisfy the conditioning: from Equation (-@eq-update-itp-direct2) it is clear that \(\itp^\infectee_1(i_0)\)  -->
+<!-- avoids the no-fly zone \(\overrightarrow\nfz_1\), and also that  \(\itp^\infectee_1(i_0)\le \lfe^\infectee_1\), and so the epidemic portrait inequalities of @lem-portrait-inequalities are satisfied. -->
+
+
+
+<!-- :::{#cor-itp-monotonic-in-i0} -->
+<!-- Suppose that the \State \((\InnovRem_1,\InnovInf_1,i_0)\) yields an epidemic with \activated removals precisely at times \(t_1,\ldots,t_\TotalRemovals\). Decreasing the number of initial infectives cannot yield an earlier infection transmission path. -->
+<!-- That is, for any \(i'_0\in\support(I^*_1)\) with \(i'_0 < i_0\), -->
+<!-- \[ -->
+<!-- 	 \itp^\infectee_1(i_0) \quad \le \quad 	\itp^\infectee_1(i'_0)  -->
+<!-- \] -->
+<!-- for any timeline \(\infectee\). -->
+<!-- ::: -->
+
+<!-- :::{.proof} -->
+<!-- The assumption that \((\InnovRem_1,\InnovInf_1,i_0)\) satisfies the conditioning implies that \(\itp^\infectee_1(i_0) <\infty\) for each \(\infectee\), and that  -->
+<!-- <!-- Decreasing the number of initial infectives could yield an epidemic which fails to actvate all conditioned removals, i.e. for which \(\itp^\infectee_1(i'_0) = \infty\) for some timeline \(\infectee\); in this case the claim is trivially true.  --> 
+<!-- \(\itp^\infectee_1(i_0) = -\infty\) for timelines \(\infectee\le R_{0-}+i_0\) (@def-infection-transmission-path). For timelines \(\infectee > R_{0-}+i_0\) the claim holds by induction, using the observation that the expressions for \(\itp^\infectee_1(i_0)\) in @lem-update-itp are an increasing function of \(\itp^{\infectee-1}_1(i_0)\). -->
+<!-- ::: -->
+
+
+:::{#cor-itp-monotonic-in-i0}
+Consider \(i^-_0,i^+_0\in\support(I^*_1)\) satisfying \(i^-_0 < I_{0-,0} < i^+_0\). 
+A proposal of \(I^*_1=i^+_0\) will be accepted in the update to \(\Epidemic_1\) if and only if \(\nfz^\infectee_1 = -\infty\) for all timelines \(j\le i^+_0\). 
+Furthermore, attempting to decrease the number of initial infectives cannot yield an earlier infection transmission path: for every timeline \(\infectee\),
+\[
+	 \itp^\infectee_1(I_{0-,0}) \quad \le \quad 	\itp^\infectee_1(i^-_0) \,.
+\] {#eq-itp-monotonic-in-i0}
+:::
+
+Note that Equation (-@eq-itp-monotonic-in-i0) includes the possibility that \(\itp^\infectee_1(i^-_0)=\infty\) for some \(\infectee\), in which case a proposal of \(I^*_1=i^-_0\) would necessarily be rejected. (This can happen if there is a timeline \(i^-_0<\infectee \le I_{0-,0}\) with \(\lfe^\infectee_1=-\infty\), but for which the set of infections over which the minimum is taken in Equation (-@eq-update-itp-direct2) is empty; that is, when there is no way for the infection path starting from \(i^-_0\) initial infectives to reach timeline \(\infectee\) before the conditioned removal time \(t_\infectee\).)
+
+:::{.proof}
+Suppose that there is a non-trivial no-fly zone on some timeline \(\infectee \le i^+_0\), i.e. that \(\nfz^\infectee_1 \ge 0\). By @def-infection-transmission-path, the transmission path with \(i^+_0\) initial infectives satisfies \(\itp^\infectee_1(i^+_0) = -\infty\), and thus the epidemic portrait Inequalities of (-@eq-event-order) are broken on timeline \(\infectee\): a proposal of \(I^*_1=i^+_0\) would therefore be rejected.
+
+Conversely, suppose that \(\nfz^\infectee_1 = -\infty\) for all timelines \(j\le i^+_0\). 
+We just need to check that the portrait inequalities 
+\[
+  \nfz^\infectee_1 \quad\le\quad \itp^\infectee_1(i^+_0) \quad\le\quad \lfe^\infectee_1
+\]
+are satisfied for all timelines \(\infectee > i^+_0\).
+
+From Equation (-@eq-update-itp-direct2) it is immediate that \(\nfz^\infectee_1 \le \itp^\infectee_1(i^+_0)\), and moreover that
+\(\itp^\infectee_1(i_0)\) is an increasing function of \(\itp^{\infectee-1}_1(i_0)\); induction shows that 
+\(\itp^\infectee_1(i^+_0) \le \itp^\infectee_1(I_{0-,0})\) for all \(\infectee\). 
+We have observed that \((\InnovRem_1,\InnovInf_1,I_{0-,0})\) satisfies the conditioning, by construction, and so \(\itp^\infectee_1(I_{0-,0}) \le \lfe^\infectee_1\) for all \(\infectee\). Thus the required inequalities are satisfied, meaning that a proposed value of \(I^*_1=i^+_0\) would be accepted.
+
+It remains to prove the inequality in (-@eq-itp-monotonic-in-i0). 
+Since \((\InnovRem_1,\InnovInf_1,I_{0-,0})\) satisfies the conditioning, we know that \(\itp^\infectee_1(I_{0-,0}) <\infty\) for each \(\infectee\), and
+<!-- Decreasing the number of initial infectives could yield an epidemic which fails to actvate all conditioned removals, i.e. for which \(\itp^\infectee_1(i'_0) = \infty\) for some timeline \(\infectee\); in this case the claim is trivially true.  -->
+\(\itp^\infectee_1(I_{0-,0}) = -\infty\) for timelines \(\infectee\le I_{0-,0}\) (@def-infection-transmission-path). For timelines \(\infectee > I_{0-,0}\) the claim holds by induction, once again using the observation that the expressions for \(\itp^\infectee_1(i_0)\) in @lem-update-itp are increasing functions of \(\itp^{\infectee-1}_1(i_0)\).
+:::
+
+
+
+
+Monotonicity {#sec-monotonicity}  {- .unlisted}
+------------
+We have just seen that the epidemic portrait
+\[
+\Epidemic_{n-1} = (\overrightarrow\InnovRem_{\Removal,n-1}, \overrightarrow\nfz_{n-1}, I_{0-,n-1}, \overrightarrow\itp_{n-1}, \overrightarrow\lfe_{n-1}, \overrightarrow\InnovRem_{\CRemoval,n-1})
+\]
+may be updated using the \ExtendedInnovation 
+\((\InnovRemMarked{*}_n, \InnovInfMarkedA{*}_n, I^*_n, \InnovResampling^*_n)\),
+to produce the portrait \(\Epidemic_n\) in four simple steps:
+
+  1. **Removals:** construct \(\overrightarrow\InnovRem_{\Removal,n}\) and \(\overrightarrow\InnovRem_{\CRemoval,n}\) as functions of  \(\overrightarrow\InnovRem_{\CRemoval,n-1}\), \(\overrightarrow\itp_{n-1}\), \(\InnovRemMarked{*}_n\)
+and \(\InnovResampling^*_n\) (@lem-update-removals).
+  2. **Laziest feasible epidemic:** construct \(\overrightarrow\lfe_{n}\) as a function of \(\overrightarrow\InnovRem_{\CRemoval,n}\), \(\overrightarrow\itp_{n-1}\) and \(\InnovInfMarkedA{*}_n\) (@lem-update-lfe).
+  3. **No-fly zone:** construct \(\overrightarrow\nfz_{n}\) as a function of \(\overrightarrow\itp_{n-1}\), \(\overrightarrow\InnovRem_{\Removal,n}\) and \(\InnovInfMarkedA{*}_n\) (@lem-update-nfz). 
+  4. **Infection transmission path:** construct \(\overrightarrow\itp_{n}\) and \(I_{0-,n}\) as a function of \(\overrightarrow\InnovRem_{\CRemoval,n}\),  \(\overrightarrow\nfz_{n}\), \(\overrightarrow\lfe_{n}\), \(\InnovInfMarkedA{*}_n\), 
+  \(I_{0-,n-1}\) and \(I^*_n\) (@lem-update-itp). 
+
+
+However, further consideration of this construction shows that, of all the information contained in \(\Epidemic_{n-1}\), only the values of 
+\(I_{0-,n-1}\),  \(\overrightarrow\itp_{n-1}\) and \(\overrightarrow\InnovRem_{\CRemoval,n-1}\) are used in the update to \(\Epidemic_n\). 
+This implies that the _epidemic projection_ 
+\[
+\ProjEpi_n = (I_{0-,n},  \overrightarrow\itp_{n}, \overrightarrow\InnovRem_{\CRemoval,n}) \,,
+\]
+which tracks only the number of initial infectives, the infection transmission path, and the allocation of conditioned removals to timelines, is a discrete-time Markov chain. Its state-space is 
+\[\mathcal{X} = \support(I^*) \times [-\infty,T]^\TotalRemovals \times \mathcal{P}_\TotalRemovals \,,\]
+where \(\mathcal{P}_\TotalRemovals\) denotes the set of ordered length-\(\TotalRemovals\) partitions of the set \(\{1,\dots,\TotalRemovals\}\). In this section we shall explore monotonicity of this chain with respect to a certain partial order, and then exploit this monotonicity to produce a CFTP algorithm to sample from the stationary distribution of \(\ProjEpi\).
+
+:::{#def-epidemic-ordering}
+### Partial order for epidemic projections
+Consider two projections of conditioned epidemics \(\slower{\ProjEpi}_n\) and \(\faster{\ProjEpi}_n\). 
+Write \(\slower{\ProjEpi}_n \trianglelefteq \faster{\ProjEpi}_n\) if and only if 
+the following three relations hold:
+\[
+\begin{aligned}
+\slower{I}_{0-,n}\quad &\le \quad \faster{I}_{0-,n} \,; & \\
+\slower{\itp}^\infectee_{n}\quad &\ge \quad \widehat{\itp}^\infectee_{n} &\quad \text{for all timelines \(\infectee=1,\dots,\TotalRemovals\);} \\
+\slower{\Pi}^{\textup{rem},[\infectee:\TotalRemovals]}_{\CRemoval,n} \quad &\subseteq \quad 
+\faster{\Pi}^{\textup{rem},[\infectee:\TotalRemovals]}_{\CRemoval,n} &\quad \text{for all timelines \(\infectee=1,\dots,\TotalRemovals\).}
+\end{aligned}
+\]
+:::
+
+
+The intuition here is that \(\faster{\ProjEpi}_n\)
+describes an epidemic that spreads through the population _no slower_ than \(\slower{\ProjEpi}_n\).
+The \(I_{0-}\) and \ITP inequalities in @def-epidemic-ordering ensure that  \(\faster{\ProjEpi}_n\) has at least as many initial infectives as \(\slower{\ProjEpi}_n\), as well as an earlier transmission path  (and so the period of time for which each timeline is infected is at least as long in \(\faster{\ProjEpi}_n\) as in \(\slower{\ProjEpi}_n\)). Similarly, the final requirement forces each conditioned removal to be assigned to a timeline in \(\faster{\ProjEpi}_n\) with index at least as great as in \(\slower{\ProjEpi}_n\).
+(Recall that the timeline to which a conditioned removal \(t_\infectee\) is assigned must be infected before time \(t_\infectee\),
+and so assigning it to a higher timeline can only lead to an earlier infection transmission path.)
+
+
+This partial ordering admits two extremal states, which we shall refer to as the "fastest" and "slowest" projections, and denote by \(\ProjEpi\fastest\) and \(\ProjEpi\slowest\), respectively. These extremal states have the earliest / latest possible transmission paths, given the pattern of conditioned removals, and any projection  \(\ProjEpi\) of a conditioned epidemic will satisfy \(\ProjEpi\slowest \trianglelefteq \ProjEpi \trianglelefteq \ProjEpi\fastest\). They are defined as follows, and were illustrated in @fig-fastest-slowest for the case when \(I^*\equiv 1\).
+
+  - **Fastest epidemic:**
+  \( \ProjEpi\fastest = (I_{0-}^\textup{fastest}, \overrightarrow\itp\fastest, \overrightarrow\InnovRemMarkedC{\textup{fastest}})\), where:
+
+      - \(I_{0-}^\textup{fastest} = \max\support(I^*) \);
+      
+      - \(\overrightarrow\itp\fastest\) is given by
+      \[
+      \itp\fastest[,\infectee] = \begin{cases}
+      -\infty \quad &\quad 1 \le \infectee\le I_{0-}^\textup{fastest} \\
+      0 \quad & \quad I_{0-}^\textup{fastest} < \infectee \le\TotalRemovals \,;
+      \end{cases}
+      \]
+      
+      - \(\InnovRemMarkedC{\textup{fastest}, \TotalRemovals} = \{t_1,t_2,\ldots,t_\TotalRemovals\}\), and \(\InnovRemMarkedC{\textup{fastest}, \infectee} = \emptyset\) for all \(\infectee<\TotalRemovals\)  
+      (i.e. all conditioned removals are assigned to timeline \(\TotalRemovals\)).
+     
+  Note that in the event that \(\max\support(I^*) < \TotalRemovals\), \( \ProjEpi\fastest\) is realisable as the projection of an epidemic \State with \(I_{0-}^\textup{fastest}\) initial infectives and a set of time-0 infections which lead to all timelines being infected instantaneously at time 0, as in @fig-fastest.
+
+
+  - **Slowest epidemic:** 
+  \(\ProjEpi\slowest = (I_{0-}^\textup{slowest}, \overrightarrow\itp\slowest, \overrightarrow\InnovRemMarkedC{\textup{slowest}})\), where:
+    
+      - \(I_{0-}^\textup{slowest} = \min\support(I^*) \);
+      
+      - the infection path \(\overrightarrow\itp\slowest\) reaches timeline \(\infectee\) at the last possible moment, just as timeline \(\infectee{-}1\) is removed at time \(t_{\infectee-1}\):
+      \[
+      \itp\slowest[,\infectee] = \begin{cases}
+      -\infty \quad &\quad 1 \le \infectee\le I_{0-}^\textup{slowest} \\
+      t_{\infectee-1} \quad & \quad I_{0-}^\textup{slowest} < \infectee \le\TotalRemovals \,;
+      \end{cases}
+      \]
+    
+      - \(\InnovRemMarkedC{\textup{fastest}, \infectee} = \{t_{\infectee}\}\) for \(1\le \infectee \le \TotalRemovals\) 
+      (i.e. exactly one conditioned removal is assigned to each timeline).
+
+
+:::{#thm-update-preserve-ordering}
+Suppose that two projected epidemics satisfy \(\slower{\ProjEpi}_{n-1} \trianglelefteq \faster{\ProjEpi}_{n-1}\) for some \(n\in\Integers\). After updating both using the (common) \ExtendedInnovation \((\InnovRemMarked{*}_n, \InnovInfMarkedA{*}_n, I^*_n, \InnovResampling^*_n)\), this ordering is preserved: \(\slower{\ProjEpi}_{n} \trianglelefteq \faster{\ProjEpi}_{n}\).
+:::
+
+:::{.proof}
+\(\ProjEpi_n\) is obtained as a projection of the epidemic \(\Epidemic_n\). 
+Given \(\slower{\ProjEpi}_{n-1}  \trianglelefteq \faster{\ProjEpi}_{n-1}\), we construct \(\slower{\ProjEpi}_{n}\) and \(\faster{\ProjEpi}_{n}\) by considering the effect of updating removals and then infections, following the four steps identified at the start of this section.
+
+**1. Removals.** 
+Recall the two stages of updating removals as described in @lem-update-removals. For potential removals we 
+  obtain:
+  \[
+  \begin{aligned}
+  \faster{\Pi}^{\text{rem},\infectee}_{\Removal,n} \quad &= \quad  \{t\,:\, \Removal_t^\infectee \in \InnovRemMarked{*}_n [0, \widehat{\itp}^\infectee_{n-1}) \} \\
+  &\subseteq \quad \{t\,:\, \Removal_t^\infectee \in \InnovRemMarked{*}_n [0, \itp^\infectee_{n-1}) \} \\
+  &= \quad  \slower{\InnovRemMarked{\infectee}}_{\Removal,n}  \,.
+  \end{aligned}
+  \] {#eq-removals_order}  
+For conditioned removals, the ordering at time \(n-1\) ensures that
+  \[ 
+  \slower{\Pi}^{\textup{rem},[\infectee:\TotalRemovals]}_{\CRemoval,{n-1}} \quad \subseteq \quad 
+\faster{\Pi}^{\textup{rem},[\infectee:\TotalRemovals]}_{\CRemoval,{n-1}}\,.
+  \]
+
+The reassignment to timelines at time \(n\) of conditioned removal times follows an acceptance/rejection procedure, with the proposed new timeline \(m_\infectee\) for removal time \(t_\infectee\) being determined by the innovation \(\InnovResampling^*_n\); furthermore, the rejection rule in @lem-update-removals is monotonic in \(\slower{\itp}^{m_\infectee}_{n-1} \ge \widehat{\itp}^{m_\infectee}_{n-1}\). This implies that
+\[
+  \slower{\Pi}^{\textup{rem},[\infectee:\TotalRemovals]}_{\CRemoval,{n}} \quad \subseteq \quad 
+\faster{\Pi}^{\textup{rem},[\infectee:\TotalRemovals]}_{\CRemoval,{n}}\,,
+\] {#eq-conditioned-ordering-after-update}  
+as required.
+
+**2. Laziest feasible epidemic.**  
+It is immediate from @lem-update-lfe that, given \(\InnovInfMarkedA{*}_n\), the laziest feasible epidemic \(\lfe^\infectee_n\) is increasing in both \(\itp^\infectee_{n-1}\) and \(\min\slower{\Pi}^{\textup{rem},[\infectee:\TotalRemovals]}_{\CRemoval,{n}}\). It follows from the assumption that \(\slower{\ProjEpi}_{n-1} \trianglelefteq \faster{\ProjEpi}_{n-1}\), combined with (-@eq-conditioned-ordering-after-update), that \(\slower{\lfe}^\infectee_n\ge \widehat{\lfe}^\infectee_n\).
+
+**3: No-fly zone.** 
+In (-@eq-removals_order) we established that 
+\( \faster{\Pi}^{\text{rem},\infectee}_{\Removal,n} \subseteq \slower{\InnovRemMarked{\infectee}}_{\Removal,n}\), 
+and the assumption that \(\slower{\ProjEpi}_{n-1} \trianglelefteq \faster{\ProjEpi}_{n-1}\) tells us that \(\slower{\itp}^\infectee_{n-1} \ge \widehat{\itp}^\infectee_{n-1}\). From @lem-update-nfz we see that \(\nfz^\infectee_n\) is increasing in \(\max \InnovRemMarked{[1:\infectee]}_{\Removal,n} \) and \(\itp^\infectee_{n-1}\), thus \(\slower{\nfz}^\infectee_n\ge \widehat{\nfz}^\infectee_n\).
+
+**4. Infection transmission path.** 
+The ordering at time \(n-1\) tells us that \(\slower{I}_{0-,n-1}\le \faster{I}_{0-,n-1}\). We first of all need to examine whether or not the proposed value \(I^*_n\) is accepted/rejected in the updates of the two processes at time \(n\). There are two cases which could potentially break monotonicity, and which therefore need to be ruled out:
+
+  1. \(I^*_n < \slower{I}_{0-,n-1}\)
+  , with \(I^*_n\) being _accepted_ in the update to \(\faster{\ProjEpi}_n\) but _rejected_ in the update to \(\slower{\ProjEpi}_n\).
+
+  2. \(\faster{I}_{0-,n-1} < I^*_n \)
+  , with \(I^*_n\) being _rejected_ in the update to \(\faster{\ProjEpi}_n\) but _accepted_ in the update to \(\slower{\ProjEpi}_n\).
+  
+In both cases we shall argue by contradiction. Recall that the proposed value is rejected if and only if the resulting epidemic portrait inequalities of @lem-portrait-inequalities are broken on some timeline; i.e. 
+\(I^*_n\) is rejected in the update to \(\slower{\ProjEpi}_n\) if 
+\(\slower{\itp}^\infectee_n(I^*_n) \notin [\slower{\nfz}^\infectee_n,\slower{\lfe}^\infectee_n]\)
+for some \(\infectee\), and similarly for \(\faster{\ProjEpi}_n\). 
+
+For Case 1, we remarked following @lem-update-itp that, by construction, the updated infection path will satisfy the conditioning if we do not change the initial number of infectives: \(\slower{\nfz}^\infectee_n \le \slower{\itp}^\infectee_n(I_{0-,n-1}) \le \slower{\lfe}^\infectee_n\). Furthermore, @cor-itp-monotonic-in-i0 shows that decreasing the number of initial infectives can only possibly delay the infection path: \(\slower{\itp}^\infectee_n(I^*_n) \ge \slower{\itp}^\infectee_n(I_{0-,n-1})\). 
+Combining these observations shows that the only way in which the proposed \(I^*_n\) value can be rejected in \(\slower{\ProjEpi}_n\) is if there is a timeline \(\infectee\) for which 
+\[
+\slower{\lfe}^\infectee_n \quad<\quad \slower{\itp}^\infectee_n(I^*_n)\,.
+\] {#eq-I0-monotonicity1}
+
+Any timeline \(\infectee\le I^*_n\) satisfies \(\infectee\le I_{0-,n-1}\): 
+this means that \(\slower{\itp}^\infectee_n(I_{0-,n-1}) = \slower{\nfz}^\infectee_n = -\infty\) (since using the previous number of initial infectives cannot break the ordering in (-@eq-event-order)). 
+The first part of @lem-update-itp then implies that \(\slower{\itp}^\infectee_n(I^*_n) = -\infty\), 
+and so (-@eq-I0-monotonicity1) cannot hold for any timeline \(\infectee\le I^*_n\). 
+
+Suppose instead that \(\infectee > I^*_n\). By (-@eq-update-itp-direct2), if \(\slower{\lfe}^\infectee_n\) is non-negative, the infection transmission path with 
+\(I^*_n\) initial infectives will certainly satisfy 
+\(\slower{\itp}^\infectee_n(I^*_n) \le \slower{\lfe}^\infectee_n\). 
+However, if \(\slower{\lfe}^\infectee_n = -\infty\) then Step 2 above shows that \(\widehat{\lfe}^\infectee_n = -\infty\); since we are assuming that the update to 
+\(I^*_n\) is accepted in \(\faster{\ProjEpi}_n\), this forces
+\(\widehat{\itp}^\infectee_n(I^*_n) =-\infty\) in order for the portrait inequalities to hold; but then @lem-update-itp shows that this is only possible if timeline \(\infectee\) satisfies 
+\(\infectee \le I^*_n\), which is a contradiction. This rules out Case 1.
+
+For Case 2, observe from @cor-itp-monotonic-in-i0 that \(I^*_n > \slower{I}_{0-,n-1}\) 
+being accepted in the update to \(\slower{\ProjEpi}_n\) implies that 
+\(\slower{\nfz}^\infectee_1 = -\infty\) for all \(\infectee\le I^*_n\). 
+Step 3 above then implies that \(\widehat{\nfz}^\infectee_1 = -\infty\) for all \(\infectee\le I^*_n\), and a second use of @cor-itp-monotonic-in-i0 shows that 
+\(I^*_n > \faster{I}_{0-,n-1}\) would also be accepted in the update to \(\faster{\ProjEpi}_n\). Thus Case 2 cannot occur, and we conclude that \(\slower{I}_{0-,n}\le \faster{I}_{0-,n}\).
+
+<!-- For Case 2, @lem-update-nfz and @cor-itp-monotonic-in-i0 now show that rejection of \(I^*_n\) in the update to \(\faster{\ProjEpi}_n\) can only occur if there is a timeline \(\infectee\) with -->
+<!-- \begin{equation} -->
+<!-- \widehat{\itp}^\infectee_n(I^*_n) < \widehat{\nfz}^\infectee_n \,. -->
+<!-- \label{eq-I_{0-}-monotonicity2} -->
+<!-- \end{equation} -->
+<!-- @lem-update-itp once again implies that this would force \(\infectee \le R_{0-}+I^*_n\), in which case \(\widehat{\itp}^\infectee_n(I^*_n) = -\infty\). However, in order for \(I^*_n\) to be accepted in the update to \(\slower{\ProjEpi}_n\), it must be the case that \(\slower{\nfz}^\infectee_n = -\infty\), since otherwise  -->
+<!-- \(I^*_n > i_{0,n}^{\max}\). But then by Step 3 above it follows that \(\widehat{\nfz}^\infectee_n = -\infty\), which contradicts (-@eq-I_{0-)-monotonicity2}; this rules out Case 2. -->
+<!-- It follows that \(\slower{I}_{0,n}\le \faster{I}_{0,n}\). -->
+
+Finally, we need to demonstrate that for all timelines \(\infectee\),
+\[
+  \widehat{\itp}^\infectee_n(\faster{I}_{0-,n}) \quad\le\quad \slower{\itp}^\infectee_n(\slower{I}_{0-,n})\,.
+\]
+Observe from @lem-update-itp that \(\widehat{\itp}^\infectee_n(\faster{I}_{0-,n}) = -\infty\) for \(\infectee \le \faster{I}_{0-,n}\) and for any \(\infectee\) for which \(\widehat{\lfe}^\infectee_n = -\infty\) (since \(\faster{\ProjEpi}_n\) will necessarily satisfy the portrait inequalities). For all other values of \(\infectee\), the required inequality follows
+by induction, using the fact that the transmission path in (-@eq-update-itp-direct2) is an increasing function of \(\nfz^\infectee_n\), \(\min\Pi^{\textup{rem},[\infectee:\TotalRemovals]}_{\CRemoval,{n}}\) and \(\lfe^\infectee_n\), along with the results of Steps 1--3 above.
+
+Taken together, the results of Steps 1--4 show that 
+\(\slower{\ProjEpi}_{n} \trianglelefteq \faster{\ProjEpi}_{n}\),
+as required.
+:::
+
+
+:::{.callout-note #nte-note-about-monotonicity}
+### Conjectural note
+I guess that effectively the same proof should show that monotonicity is still maintained if \(\slower{\ProjEpi}_{n-1}\) is updated using innovation \((\InnovRemMarked{*}_n, \InnovInfMarkedA{*}_n, \slower{I}^*_n, \InnovResampling^*_n)\)
+and \(\faster{\ProjEpi}_{n-1}\) updated using innovation \((\InnovRemMarked{*}_n, \InnovInfMarkedA{*}_n, \faster{I}^*_n, \InnovResampling^*_n)\), 
+as long as 
+
+  - \(\slower{I}^*_n \le \faster{I}^*_n \)
+  - and we never have \(\slower{I}^*_n < \faster{I}^*_n < \slower{I}_{0-,n-1}\) or
+  \(\faster{I}_{0-,n-1} < \slower{I}^*_n < \faster{I}^*_n \) (since these could potentially lead to a bad reject/accept outcome).
+
+This means that something like a RWMH sampler for updating \(I_{0-}\) should be ok.
+:::
+
+
+CFTP for the epidemic projection  {- .unlisted}
+--------------------------------
+The existence of two extremal states, and the observation that our partial order is preserved by the evolution in \algorithmictime of our coupled Markov chains, nicely sets the scene for an implementation of a CFTP algorithm for sampling from the equilibrium distribution of an epidemic conditioned to infect all individuals before the conditioned removal times. Starting from time \(-n<0\) for some positive integer \(n\), evolve two copies of the process \(\slower\ProjEpi\) and \(\faster\ProjEpi\) beginning at states \(\slower\ProjEpi_{-n} = \ProjEpi\slowest\) and \(\faster\ProjEpi_{-n} = \ProjEpi\fastest\), and using the same \ExtendedInnovation sequence. The monotonicity arguments laid out above ensure that \(\slower\ProjEpi_m \trianglelefteq \faster\ProjEpi_m\) for \(m{=}-(n-1){,\dots,}0\). If \(\slower\ProjEpi_0 = \faster\ProjEpi_0\) then return their common value as a draw from equilibrium; if not, then set \(n\leftarrow 2n\) and repeat, reusing the previously generated \ExtendedInnovation at any step \(m\ge -n\). 
+
+The use of 'binary backoff' (doubling the value of \(n\) any time that coalescence has not been achieved, and a new iteration of the algorithm is begun) is an efficient approach to finding the backwards coalescence time of the two bounding chains, and is commonly used in CFTP algorithms. Note that if during some iteration of the algorithm we begin at time \(-2n\) with \((\slower\ProjEpi_{-2n},\faster\ProjEpi_{-2n}) = (\ProjEpi\slowest,\ProjEpi\fastest)\), then at time \(-n\) these realisations will of course satisfy 
+\[ 
+\ProjEpi\slowest \quad\trianglelefteq\quad \slower\ProjEpi_{-n}\quad \trianglelefteq \quad \faster\ProjEpi_{-n}\quad  \trianglelefteq \quad \ProjEpi\fastest \,.
+\]
+Reuse of the innovations \(m\ge -n\) will ensure that \(\slower\ProjEpi\) and \(\faster\ProjEpi\) will be 'sandwiched' over this period between chains started from the extremal states at time \(-n\).
+
+Note that once \(\slower{\ProjEpi}_{n-1} = \faster{\ProjEpi}_{n-1}\), we will necessarily have agreement of the _entire_ epidemic portraits at the next update: \(\slower{\Epidemic}_n = \widehat{\Epidemic}_n\). (This can be seen by looking at the four steps of updating the epidemic portrait chain, as outlined at the start of the previous section on monotonicity.)
+
+
+:::{#thm-CFTP-works}
+The coalescence time of the \CFTP algorithm sketched above is almost surely finite (and thus the algorithm samples from the equilibrium distribution of (the projection of) an \SIR epidemic conditioned upon the conditioned removal times).
+:::
+
+In the language of stochastic stability, the proof of @thm-CFTP-works shows that the entire state-space \(\mathcal{X}\) is a _small set of lag 2_; for any given state \(\ProjEpi_{n-1}=x\), with probability \(\gamma\eps>0\) (to be defined below) the value of \(\ProjEpi_{n+1}\) can be drawn from a distribution on \(\mathcal{X}\) which is independent of \(x\). This is equivalent to the chain being uniformly ergodic (@MeynTweedie-1993), and also to the existence of a CFTP algorithm for sampling from its equilibrium distribution (@FossTweedie-1998).
+
+:::{.proof}
+We shall work under the assumption that \(0<t_1\), i.e. that the first conditioned removal time is strictly positive; the case when \(t_1=0\) is very similar. 
+
+Fix some constant \(\delta \in (0,t_1)\). Given \(\delta\), we shall identify a set \(F_\delta \subset \mathcal{X}\) of epidemic projections which satisfies the following three properties:
+
+  1. there exists \(\gamma>0\) such that
+      \[ \inf_{x\in\mathcal{X}} \Prob{\ProjEpi_n\in F_\delta\,|\, \ProjEpi_{n-1}=x} \quad \ge \quad \gamma\,; \]
+  
+  2. \(F_\delta\) is at the 'top' of the state-space, meaning that
+	   \(\slower{\ProjEpi}_n \trianglelefteq \faster{\ProjEpi}_n\) and 
+	   \(\slower{\ProjEpi}_n \in F_\delta\) then \(\faster{\ProjEpi}_n \in F_\delta\);		
+	   
+  3. there exists \(\eps>0\) such that  
+      \[ 
+      \inf_{x,\faster{x}\, \in\, F_\delta} \Prob{\slower{\ProjEpi}_{n+1} =
+      \faster{\ProjEpi}_{n+1} \,|\, \slower{\ProjEpi}_n = x \trianglelefteq \faster{x} = \faster{\ProjEpi}_n} 
+      \quad\ge\quad
+      \eps \,.
+      \]
+
+Item 1 shows that the time taken for a chain \(\ProjEpi\) started from the bottom state \(\ProjEpi\slowest\) to enter the set \(F_\delta\) is dominated by a geometric random variable with mean \(1/\gamma\); Items 2 and 3 show that whenever this event occurs, the chain \(\faster\ProjEpi\) -- started from the top state \(\ProjEpi\fastest\) and coupled to lie above \(\slower\ProjEpi\) -- will also lie within \(F_\delta\), and with probability at least \(\eps>0\) the two projections will coalesce at the next time point. We deduce that their coalescence time is almost surely finite. 
+
+It remains to identify a set \(F_\delta\) for which Items 1-3 above are satisfied. Let \(F_\delta\) be the set of epidemics for which the epidemic \trajectory reaches the highest timeline \(\TotalRemovals\) (so all individuals are infected) by time \(\delta\): 
+<!-- (see Figure~\ref{fig:small_set}): -->
+\[
+	F_\delta \quad=\quad
+	\{ (I_{0-},  \overrightarrow\itp, \overrightarrow\InnovRem_{\CRemoval} )\in \mathcal{X} \,:\, \itp^\TotalRemovals \le \delta\} \,.
+\]
+ This clearly satisfies Item 2, since if \(\slower{\ProjEpi}_n \trianglelefteq \faster{\ProjEpi}_n\) and \(\slower{\itp}^\TotalRemovals_n \le \delta\), then \(\widehat{\itp}^\TotalRemovals_n \le \delta\) follows from @def-epidemic-ordering, and thus \(\faster{\ProjEpi}_n\in F_\delta\).
+
+For Item 1 consider, for \(x = (I_{0-,n-1},  \overrightarrow\itp_{n-1}, \overrightarrow\InnovRem_{\CRemoval,n-1} ) \),
+\[
+\begin{aligned}
+	\Prob{\ProjEpi_n \in F_\delta\,|\, \ProjEpi_{n-1}=x} \quad&\ge\quad 
+	\Prob{\ProjEpi_n\in F_\delta\,|\, \InnovRem_{\Removal,n} =\emptyset,\, \ProjEpi_{n-1}=x}\Prob{\InnovRem_{\Removal,n} =\emptyset\,|\, \ProjEpi_{n-1}=x}   \\
+	&=
+	\quad \Prob{\ProjEpi_n\in F_\delta\,|\, \InnovRem_{\Removal,n}=\emptyset,\, \ProjEpi_{n-1}=x} 
+	\prod_{\infectee> I_{0-,n-1}} \exp(-\beta\, \itp^\infectee_{n-1} ) \\
+	&\ge
+	\quad \Prob{\ProjEpi_n\in F_\delta\,|\, \InnovRem_{\Removal,n}=\emptyset,\, \ProjEpi_{n-1}=x} \exp(-\beta\sum_{\infectee=1}^{\TotalRemovals} t_\infectee) \,,
+\end{aligned}
+\] {#eq-F_delta_bound}  
+where in this final step we have bounded \(\Prob{\InnovRem_{\Removal,n}=\emptyset\,|\, \ProjEpi_{n-1}=x} \) uniformly over \(x\in \mathcal{X}\) by the probability that the Poisson process \(\InnovRem_{\Removal,n}\) puts no potential removals on any timeline \(\infectee\) before the corresponding conditioned removal time \(t_\infectee\). 
+
+Thanks to the monotonicity in \(I_{0-}\) (@cor-itp-monotonic-in-i0), the remaining probability in (-@eq-F_delta_bound) may now be bounded below, uniformly for all values of \(\ProjEpi_{n-1}\), by the probability that the Poisson process \(\InnovInfMarkedA{*}_n\) contains a set of potential infections which would lead to an infection transmission path starting from \(I_{0-}=1\) reaching level \(\TotalRemovals\) by time \(\delta\), given that there are no in\activated removals to avoid (since we have conditioned on the event that \(\InnovRem_{\Removal,n}=\emptyset\)).
+
+One possible bound is given by dividing the interval \([0,\delta]\) into subintervals of length \(\delta/(\TotalRemovals-1)\), and requiring there to be at least one infection incident which would lead to the transmission path advancing from timeline \(\infector\) to \(\infector+1\) during the \(\infector^\text{th}\) interval, for \(\infector = 1,\dots,\TotalRemovals-1\): this gives a lower bound of 
+	\[ 
+		\Prob{\ProjEpi_n\in F_\delta\,|\, \InnovRem_{\Removal,n}=\emptyset,\, \ProjEpi_{n-1}=x} \quad\ge\quad \prod_{\infector=1}^{\TotalRemovals-1}(1- e^{-\infector(\Population-\infector)\alpha\delta/(\TotalRemovals-1)})\,.
+	\]
+Putting this bound into (-@eq-F_delta_bound) demonstrates that \(F_\delta\) satisfies the requirement of Item 1.
+
+Finally, consider Item 3. Let \(A_{n+1}\) denote the event that the Poisson process \(\InnovInfMarkedA{*}_{n+1}[\delta,t_1)\) contains a set of potential infections which, in the absence of any removal events, would cause an infection transmission path starting from timeline 1 _at process-time \(\delta\)_ to reach timeline \(\TotalRemovals\) before process-time \(t_1\). The events \(\{A_n\}\) are i.i.d., have positive probability, and \(A_{n+1}\) is independent of both \(\slower{\ProjEpi}_{n}\) and \(\faster{\ProjEpi}_{n}\). 
+Let \(I^{*,\max} = \max\{\support(I^*)\}\) denote the largest possible number of initial infectives that can be proposed in an update.
+We now look at the update \((\slower{\ProjEpi}_{n}, \faster{\ProjEpi}_{n}) \mapsto (\slower{\ProjEpi}_{n+1}, \faster{\ProjEpi}_{n+1})\), and shall show that Item 3 holds with 
+\[
+  \eps \quad=\quad e^{-\beta \TotalRemovals \delta}\, 
+  \frac{(\TotalRemovals-1)!}{\Population^{\TotalRemovals-1}} \, 
+  \Prob{A_{n+1}} \,
+  \Prob{I^*_{n+1} = I^{*,\max}} \quad > \quad 0\,.
+\] {#eq-eps-defn}
+
+Given that \(\slower\ProjEpi_{n}\in F_\delta\), any potential removal belonging to \(\slower{\InnovRem}_{\Removal,n+1}\) must lie in the process-time interval \([0,\delta]\); i.e. \(\slower{\InnovRem}_{\Removal,n+1}\) will be a subset of the innovation Poisson process \(\InnovRemMarked{*}_{n+1}[0,\delta]\). Thus we can easily bound the probability that \(\slower{\InnovRem}_{\Removal,n+1}\) is empty:
+\[ 
+ \Prob{\slower{\InnovRem}_{\Removal,n+1} = \emptyset \,|\, \slower\ProjEpi_{n} \in F_\delta} 
+ \quad\ge\quad
+  \Prob{\InnovRemMarked{*}_{n+1}[0,\delta] = \emptyset} 
+  \quad = \quad
+ e^{-\beta \TotalRemovals \delta} \,.
+\]
+On this event, the coupling of \(\slower{\ProjEpi}\) and \(\faster{\ProjEpi}\) ensures that the set \(\faster{\Pi}^{\text{rem}}_{\Removal,n+1}\) is also empty (see the proof of @thm-update-preserve-ordering), and @lem-update-nfz shows that the no-fly zone boundaries \(\widehat{\nfz}^\infectee_{n+1}\) and \(\slower{\nfz}^\infectee_{n+1}\) both take the value \(-\infty\) on all timelines \(\infectee\). 
+
+Next consider the reassignment of conditioned removals to timelines. 
+When we reassign the conditioned removal \(t_\target\), we look at the proposed timeline \(m_\target\) in the innovation \(\InnovResampling^*_{n+1}\): recall that each \(m_\target\) is an independent uniform draw from the set \(\{1,\dots,\Population\}\). 
+Since, in both \(\slower{\ProjEpi}_{n}\) and \(\faster{\ProjEpi}_{n}\), the transmission path reaches timeline \(\TotalRemovals\) before process-time \(\delta< t_1\), we know that each timeline \(\target\) must be infectious over the window of process-time \([\delta,t_\target]\). This means that for each \(\target=1,\dots,\TotalRemovals\), _all_ timelines \(\targetm \in\{\target,\dots,\TotalRemovals\}\) are infectious at time \(t_\target\) (since the conditioned removal times are non-decreasing). 
+Thus if \(m_\target\in \{\target,\dots,\TotalRemovals\}\), this proposal will be accepted in the update to both \(\slower{\ProjEpi}_{n+1}\) and \(\faster{\ProjEpi}_{n+1}\).
+
+Let \(B_{n+1}\) be the event that in the innovation \(\InnovResampling^*_{n+1}\), \(m_1 = \TotalRemovals\) and \(m_\target\in\{\target,\dots,\TotalRemovals\}\) for \(2\le \target < \TotalRemovals\). As explained above, on the event \(B_{n+1}\), the allocation of conditioned removals to timelines in  
+\(\slower{\ProjEpi}_{n+1}\) and \(\faster{\ProjEpi}_{n+1}\) will agree,
+with the earliest conditioned removal \(t_1\) assigned to timeline \(\TotalRemovals\).
+It follows that 
+\[
+\begin{aligned}
+  &\Prob{t_1 \in \slower{\Pi}^{\text{rem},\TotalRemovals}_{\CRemoval,n+1},\,
+		\slower{\overrightarrow\Pi}^{\text{rem}}_{\CRemoval,n+1} =
+		\faster{\overrightarrow\Pi^{\text{rem}}_{\CRemoval,n+1}}
+		\,|\,
+	\slower{\ProjEpi}_n=x \trianglelefteq \faster{x} = \faster{\ProjEpi}_n, x\in F_\delta}
+		\\
+		& \qquad \ge\quad \Prob{B_{n+1} }
+		\quad=\quad  
+		\frac{1}{\Population} \prod_{\target=2}^{\TotalRemovals-1} \frac{\TotalRemovals-(\target-1)}{\Population}
+      \quad=\quad  
+    \frac{(\TotalRemovals-1)!}{\Population^{\TotalRemovals-1}} 
+		\,.
+\end{aligned}
+\]
+
+ We now claim that on the event 
+\[
+  C_{n+1} = 
+  \{\slower{\InnovRem}_{\Removal,n+1} = \emptyset\} \cap
+  \{ t_1 \in \slower{\Pi}^{\text{rem},\TotalRemovals}_{\CRemoval,n+1},\,
+		\slower{\overrightarrow\Pi}^{\text{rem}}_{\CRemoval,n+1} =
+		\faster{\overrightarrow\Pi^{\text{rem}}_{\CRemoval,n+1}}
+		\}
+		\cap A_{n+1} 
+		\cap \{I^*_{n+1} = I^{ *,\max}\}
+\]
+the laziest feasible epidemics and infection transmission paths in \(\slower{\Epidemic}_{n+1}\) and \(\widehat{\Epidemic}_{n+1}\) must necessarily agree. Recall from @lem-update-lfe that the laziest feasible epidemic \(\slower\lfe_{n+1}\) is composed of infections which either belong to the Poisson process of innovations \(\InnovInfMarkedA{*}_{n+1}\) or which are perpetuated from the transmission path \(\slower\itp_n\). On the event \(C_{n+1}\) the laziest feasible epidemic \(\slower\lfe_{n+1}\) must reach timeline \(\TotalRemovals\) before time \(t_1\), in order to activate that conditioned removal: given that \(\slower{\ProjEpi}_n\in F_\delta\) the path \(\slower{\itp}_n\) reaches timeline \(\TotalRemovals\) during the interval \([0,\delta]\), and on the event \(A_{n+1}\) the Poisson process 
+\(\InnovInfMarkedA{*}_{n+1}\) includes a potential infection path from timeline 1 to timeline \(\TotalRemovals\) over the interval \([\delta,t_1)\). 
+It follows that _no_ infections belonging to \(\slower{\itp}_n\) will be perpetuated.
+
+Given the coupling between \(\slower\ProjEpi\) and \(\faster\ProjEpi\), exactly the same is true for \(\faster{\ProjEpi}\), and so we see that \(\slower\lfe_{n+1} = \widehat\lfe_{n+1}\). 
+We have already observed above that the event \( \{\InnovRemMarked{*}_{n+1}[0,\delta] = \emptyset\}\) forces the no-fly zone boundaries to agree in \(\slower{\Epidemic}_{n+1}\) and \(\widehat{\Epidemic}_{n+1}\), and it follows from @lem-update-itp that the infection transmission paths \(\slower{\overrightarrow\itp}_{n+1}(i_0)\) and \(\widehat{\overrightarrow\itp}_{n+1}(i_0)\) will agree for any given number \(i_0\) of initial infectives. 
+Furthermore, when we update the number of initial infectives, the proposed value 
+\[
+  I^*_{n+1} \quad=\quad I^{ *,\max} \quad\ge\quad \max\{\slower{I}_{0,n}, \faster{I}_{0,n}\}
+\]
+will be accepted in both \(\slower\ProjEpi\) and \(\faster\ProjEpi\), thanks to @cor-itp-monotonic-in-i0 (remembering once again that on the event \(C_{n+1}\) the no-fly zone boundaries \(\widehat{\nfz}^\infectee_{n+1}\) and \(\slower{\nfz}^\infectee_{n+1}\) both take the value \(-\infty\) on all timelines \(\infectee\)).
+
+Thus, given that \(\slower{\ProjEpi}_n\in F_\delta\) and that \(\slower{\ProjEpi}_n\trianglelefteq\faster{\ProjEpi}_n\), 
+on the event \(C_{n+1}\) we get coalescence of \(\slower\ProjEpi_{n+1}\) and \(\faster\ProjEpi_{n+1}\). (We actually get coalescence of the entire epidemic portraits, in fact.) 
+Putting this all together we arrive at the following: for all \(\slower{x},\faster{x}\in F_\delta\),
+\[
+	\Prob{\slower{\ProjEpi}_{n+1} =
+      \faster{\ProjEpi}_{n+1} \,|\, \slower{\ProjEpi}_n = x \trianglelefteq \faster{x} = \faster{\ProjEpi}_n} 
+	\quad\ge\quad  \Prob{C_{n+1}} \quad\ge\quad\eps\,,
+\]
+where \(\eps\) was defined in equation (-@eq-eps-defn). In the final calculation here we have made use of the fact that the four events in the definition of \(C_{n+1}\) are determined by independent innovation processes 
+(potential removals \(\InnovRemMarked{*}_{n+1}\),
+allocation of conditioned removals \(\InnovResampling^*_{n+1}\),
+potential infections \(\InnovInfMarkedA{*}_{n+1}\),
+and 
+proposed update to the number of initial infectives \(I^*_{n+1}\),
+respectively).
+:::
+
+

@@ -1,0 +1,38 @@
+
+Question of infections at time zero^[[_NOT FOR PUBLICATION_]{.mark}] {#sec-time-zero}
+===================================
+
+
+Beware when there is an observed removal at time \(0\) _and_ \(I_{0-}{-}R_{0-}{\leq}1\)!
+
+Probably sorted out now, but @sec-monotonicity-CFTP needs checking.
+
+1. In the case of a conditioned activated removal at time \(0\)
+(required in applications where the _first_ observed removal
+occurs at time zero),
+then the prior distribution of the initial \(I_{0-}\) 
+should satisfy \(\Prob{I_{0-}{-}R_{0-}>1}{>}0\) if the epidemic is not to die out at time \(0\).
+
+2. If \(R_{0-}{=}0\)
+and there is a conditioned removal at time zero,
+and if additionally \(I_{0-}{\equiv}1\) (so \(I_{0-}{-}R_0{=}0\)),
+then in principle _either_ 
+a special infection has to be introduced at time \(0\) which
+is activated immediately _or_ the epidemic has to die out immediately.
+There would then need to be special provision for proposals to resample the target mark
+of the initial infection, in order to ensure irreducibility for the \CFTP.
+Thus a Bayesian prior (for \(I_{0-}\))
+that does not respect the observed behaviour of the epidemic
+can be fixed by introducing an infection at time \(0\),
+but only at the cost of complicating the algorithm to require
+re-sampling of the target mark of such an infection!
+
+3. I argue that a principled Bayesian argument is preferable:
+if the epidemic may not die out immediately then 
+the prior distribution of \(I_{0-}\) ought to give positive chance
+to \(I_{0-}{>}1\). Updates carried out using the algorithm would
+then _never_ choose \(I_{0-}{=}1\), as free innovations would 
+never supply an infection at \(0\) and therefore a choice of \(I_{0-}{=}1\)
+would lead to conditioned removals not being observed!
+
+

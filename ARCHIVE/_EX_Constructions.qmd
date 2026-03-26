@@ -1,0 +1,723 @@
+Constructions^[[_PROTOTYPE FOR NEWER VERSION_]{.mark}] {#sec-constructions}
+=============
+@thm-simplified-construction describes a single step in algorithmic time 
+of a trajectory-valued Markov chain 
+of epidemics conditioned to have \activated removals only at process-times
+\(t_1{<\ldots<}t_\TotalRemovals\) in \([0,\Duration)\).
+At algorithmic time \(0\) the
+initial \State is \((\InnovRem_0, \InnovInf_0, I_{0-,0})\).
+Let \(\InnovRemCA\), respectively \(\InnovRemCB\), be the set of conditioned,
+respectively in\activated, removal incidents at algorithmic time \(0\).
+Set \(\OldPerpetuates\subset \InnovInf_0\) to be the list of \activated infection incidents from the initial \historylist:
+so \(\OldPerpetuates=(\oldinfection_{r+1}, \oldinfection_{r+2}, \ldots, \oldinfection_\TotalRemovals)\)
+(where \(r=I_{0-,0}\)) for \activated infection incidents \(\oldinfection_a\): 
+some of these old infections
+may be perpetuated to the next step in algorithmic time.
+
+In order to introduce some useful notation, we review
+the four-step construction of
+the epidemic after a single step of algorithmic time
+(so at algorithmic time \(2\Duration\)) using
+an \ExtendedInnovation \((\InnovRemMarked{*}_1, \InnovInfMarkedA{*}_1, I_1^*,\InnovResampling^*_1)\):
+
+
+1. Delete all in\activated removals (\(\InnovRemRA\))
+and insert only those in\activated removals from \(\InnovRemMarked{*}_1\) _not_ lying in the infected region of the original epidemic,
+namely \(\InnovRemRB\).
+We can ignore removals in the removed region, as these never affect the epidemic evolution; 
+we will focus on those lying in the susceptible region, forming the set
+\[
+\InnovRemAvailR\quad=\quad
+\bigsqcup_{\target=1}^\Population
+\InnovRemMarkedRB{\target}[0,\itp^\target)\,,
+\] 
+where \(\itp^\target\) is the process-time at which timeline \(\target\) is infected (@def-epidemic-attributes).
+2. Re-sample the marks for the conditioned removals in \(\InnovRemCA\)
+using only the first \(\TotalRemovals\) marks \(m_1{,\ldots,}m_\TotalRemovals\) from \(\InnovResampling^*_1\) as proposals,
+rejecting proposals which will lead to failure of activation of some conditioned removals.
+This results in a new set \(\InnovRemCB\) of conditioned removals. The re-sampling step ensures that 
+the epidemic starting at \(I_{0-,0}\) and using \(\InnovInf_0\) activates all removals in \(\InnovRemCB\) and no other removals.
+3. Process the infections. All infections in \(\InnovInf_0\) are deleted _except_ for those which may be perpetuated;
+these all belong to the list \(\OldPerpetuates\) from algorithmic time \(0\) as mentioned above.
+Infections from \(\InnovInf_1\) plus
+with targets in the removed region can be ignored: the remaining potential infections of \(\InnovInf_1\) form
+\[
+\InnovInfAvail\quad=\quad
+\left(
+\bigsqcup_{\target=1}^{\TotalRemovals}
+\bigsqcup_{\infectee=\target+1}^{\Population}
+\InnovInfMarkedAA{\target<\infectee}[0,t_\target]
+\right)
+\sqcup
+\left(
+\bigsqcup_{\infectee=\TotalRemovals+2}^\Population
+\InnovInfMarkedAA{[\TotalRemovals+1:\infectee-1]<\infectee}
+\right)
+\,.
+\]
+Allowing for possible perpetuations, 
+infections in \(\InnovInf_1\) form a subset of \(\InnovInfAvail\sqcup\OldPerpetuates\). 
+The subset is
+chosen to ensure
+the resulting epidemic started at \(I_{0-,0}\) 
+is the \(\trianglelefteq\)-fastest possible epidemic which 
+will activate no removals other than 
+the re-marked conditional removals in \(\InnovRemCB\)
+(more precisely, will not activate any potential removals in \(\InnovRemAvailR\)).
+4. Finally consider \(I_1^*\) as a proposal to replace \(I_{0-,0}\);
+this proposal is accepted if the epidemic started at \(I_{0-,1}\) infectives activates precisely
+the removals in \(\InnovRemCB\).
+
+:::{.callout-note #nte-review}
+### Review for notational purposes
+Express more economically?
+Trying to avoid cross-referencing to previous section.
+:::
+
+Construction of the Laziest Feasible Epidemic (\LFE)  {- .unlisted}
+----------------------------------------------------
+Recall the weak ordering \(\trianglelefteq\) of histories (@def-history-ordering).
+We study conditioned epidemics with \activated removals precisely at times
+\(t_1{<\ldots<}t_\TotalRemovals\) in \([0,\Duration)\);
+so \(\trianglelefteq\) becomes a partial
+ordering; we now show the ordering has the lattice property. 
+
+:::{#lem-lattice-ordering}
+### Lattice ordering for histories
+Recall \(\InnovRemCB\),
+and let \(\widetilde{\InnovInf}\) be a collection of
+potential infections.
+Form the \chronology 
+\(\Chronology\) from 
+\(\InnovRemCB\sqcup\widetilde{\InnovInf}\)
+and
+consider
+the set 
+\(\SubSet{=}\SubSet(\Chronology)\) 
+containing each possible \history \(\History\)
+with \(\InnovRemCB\subseteq\HistoryList\subseteq\Chronology\)
+(recall that
+an epidemic with specified 
+\history \(\History\)
+must activate the conditioned
+removals in \(\InnovRemCB\subseteq\HistoryList\)).
+The weak ordering \(\trianglelefteq{=}\trianglelefteq_\Chronology\),
+has the _lattice property_:
+for
+\(\History_1,\History_2\in\SubSet\)
+there is a unique maximum
+\(\History_1 \vee \History_2\in\SubSet\) and a unique minimum
+\(\History_1 \wedge \History_2\in\SubSet\), 
+such that for every \(\History\in\SubSet\)
+\begin{align}
+& 
+\History\;\trianglelefteq \;
+\History_1 \vee \History_2\;
+\qquad
+\text{ if and only if }\;
+\History\;\trianglelefteq\;
+\History_1
+\;\text{ and }\; 
+\History\;\trianglelefteq\;
+\History_2 \,,
+\label{eq-lattice-ordering1}
+\\
+&
+\History_1 \wedge \History_2
+\;\trianglelefteq \;\History\;
+\qquad
+\text{ if and only if }\; 
+\History_1\;\trianglelefteq\;\History 
+\;\text{ and }\; 
+\History_2\;\trianglelefteq\;\History \,.
+\label{eq-lattice-ordering2}
+\end{align} 
+:::
+
+:::{.proof}
+Note that \(\SubSet\) 
+it always contains the \history \(\History\)
+with \(\HistoryInit{=}(0,\Population,0)\) and
+\(\HistoryList{=}\InnovRemCB\).
+
+
+We only prove \eqref{eq-lattice-ordering2}: the proof of \eqref{eq-lattice-ordering1} is entirely analogous.
+Suppose \(\Tau_1\), \(\Tau_2\) are the trajectories for
+\(\History_1, \History_2\in\SubSet\),
+extended over \(\Chronology\) as in @def-epidemic-attributes. Form the trajectory \(\Tau_1\wedge\Tau_2\) as follows:
+for corresponding \(3\)-vectors \((S^{(1)}{,}I^{(1)}{,}R^{(1)}){\in}\Tau_1\), \((S^{(2)}{,}I^{(2)}{,}R^{(2)}){\in}\Tau_2\),
+if \(I^{(1)}\leq I^{(2)}\) then
+place \((S^{(1)}{,}I^{(1)}{,}R^{(1)})\) in the corresponding position in \(\Tau_1\wedge\Tau_2\),
+otherwise use \((S^{(2)}{,}I^{(2)}{,}R^{(2)})\).
+
+Note \((S^{(1)}{,}I^{(1)}{,}R^{(1)}){=}(\Population{-}I^{(1)}{-}R^{(1)}{,}I^{(1)}{,}R^{(1)})\)
+and \((S^{(2)}{,}I^{(2)}{,}R^{(2)}){=}(\Population{-}I^{(2)}{-}R^{(2)}{,}I^{(2)}{,}R^{(2)})\).
+Since \(R^{(1)}{=}R^{(2)}\) (because \activated removals have to be shared), if \(I^{(1)}{=}I^{(2)}\) then it follows that
+\((S^{(1)}{,}I^{(1)}{,}R^{(1)}){=}(S^{(2)}{,}I^{(2)}{,}R^{(2)})\).
+Consequently \(\Tau_1\wedge\Tau_2\) is indeed the unique \(\trianglelefteq\)-largest trajectory
+\(\trianglelefteq\)-smaller than both \(\Tau_1\) and \(\Tau_2\), as all such histories must agree with \(\Tau_1\wedge\Tau_2\) over \(\Chronology\).
+
+We can now reconstruct a \history 
+\(\History_1 \wedge \History_2\)
+from the trajectory \(\Tau_1\wedge\Tau_2\) by inserting the corresponding incident
+from \(\Chronology\) whenever a \(3\)-vector from \(\Tau_1\wedge\Tau_2\) is followed by a different \(3\)-vector,
+and 
+\eqref{eq-lattice-ordering2}
+is proved for 
+\(\History_1 \wedge \History_2\)
+by noting that we have shown the analogous equation for trajectories.
+
+To show 
+\(\History_1 \wedge \History_2\in\SubSet\),
+we must check it activates the conditioned removals of \(\InnovRemCB\).
+But if \(t\) is the time of an \activated removal \(\Removal_t^\target\) for both \(\History_1\) and \(\History_2\)
+then the corresponding \(3\)-vectors \((S^{(1)}{,}I^{(1)}{,}R^{(1)})\),
+\((S^{(2)}{,}I^{(2)}{,}R^{(2)})\) corresponding to \(\Removal_t^\target\) for \(\History_1\) and \(\History_2\)
+must have \(R^{(a)}<\target\leq I^{(a)}\) for \(a=1,2\). This implies both \(R^{(1)}\wedge R^{(2)}<\target\)
+and \(\target\leq I^{(1)}\wedge I^{(2)}\).
+Thus \(\Removal_t^\target\) will be activated by 
+\(\History_1 \wedge \History_2\)
+as well.
+
+It follows that 
+\(\History_1 \wedge \History_2\)
+also belongs to \(\SubSet\).
+:::
+
+
+:::{.callout-note #nte-verbose-lattice}
+### Verbosity concern
+Is the proof of @lem-lattice-ordering too verbose? Have I hidden a needle in a haystack here?
+:::
+
+
+:::{.callout-caution #cau-switching}
+### Switching
+Be more explicit here? Difference between two of these epidemics depends only on infections
+in the respective histories (conditioned removals cancel out), and switching is implemented
+in a manner very close to that of examining excursions from zero of a simple random walk!
+
+One can derive \(\History_1\wedge\History_2\) directly from \(\History_1\) and \(\History_2\). 
+Let \(\Tau_1, \Tau_2, \Tau_1\wedge\Tau_2\) be the trajectories corresponding
+to \(\History_1, \History_2, \History_1\wedge\History_2\) for the chronology 
+\(\Chronology\).
+
+The \activated removals for \(\History_1\), \(\History_2\) and \(\History_1\wedge\History_2\) all agree.
+Consider an incident in the chronology.
+We have seen in @lem-lattice-ordering that 
+if it is an \activated removal in one of \(\History_1\), \(\History_2\) and \(\History_1\wedge\History_2\)
+then it must be an \activated removal in all of them. 
+It follows that the \(R\) components in corresponding \(3\)-vectors for _any_ incident in the chronology
+must all be equal.
+
+Consider an infection incident in the chronology.
+If \(I^{(1)}<I^{(2)}\) for corresponding \(3\)-vectors for \(\Tau_1\) and \(\Tau_2\) then the corresponding incident in 
+\(\History_1\wedge\History_2\) has to agree with the incident in \(\History_1\) (and _vice versa_ if \(I^{(1)}>I^{(2)}\)).
+If \(I^{(1)}=I^{(2)}\) for corresponding \(3\)-vectors in \(\Tau_1\) and \(\Tau_2\) then check the \(I^{(1)}\), \(I^{(2)}\)
+values for the \(3\)-vectors corresponding to the next incident:
+
+(a) if they both agree with the previous \(I^{(1)}{=}I^{(2)}\) 
+then the original incidents do not occur in the respective \(\History_1\), \(\History_2\)
+and equally do not occur in the history \(\History_1\wedge\History_2\);
+(b) if the next \(I^{(1)}\) is less than the previous \(I^{(1)}{=}I^{(2)}\) then the original incident in \(\History_1\) is an \activated removal and so must be an \activated removal in both \(\History_2\) 
+and \(\History_1\wedge\History_2\);
+(c) if the next \(I^{(1)}\) is greater than the original \(I^{(1)}{=}I^{(2)}\) 
+then the previous incident in \(\History_1\) is an \activated infection,
+and will only be included in \(\History_1\wedge\History_2\) if it is also present in \(\History_2\)
+(and in that case the next \(I^{(2)}\) equals the next \(I^{(1)}\) 
+so is also greater than the previous \(I^{(1)}{=}I^{(2)}\));
+(d) the analogous argument holds if \(I^{(2)}\) is greater than the original \(I^{(1)}{=}I^{(2)}\).
+:::
+
+The lattice-ordered \(\SubSet\) in @lem-lattice-ordering is of finite cardinality, so possesses a unique \(\trianglelefteq\)-infimum.
+
+:::{#def-LFE}
+## The Laziest Feasible Epidemic, \LFE
+The \LFE is the unique \(\trianglelefteq\)-infimum of the set \(\SubSet\) 
+as defined in @lem-lattice-ordering.
+:::
+
+Thus the \LFE is the _slowest_ epidemic to be produced from 
+
+(a) re-marked conditioned removals in \(\InnovRemCB\); 
+(b) potential infectives given by the selection 
+of some _subset_ of \(\InnovInfAvail\sqcup\OldPerpetuates\),
+(c) (and incidentally varying possible initial infective numbers \(I_{0-,1}\)).
+
+where the choice of the subset in (b) and  of \(I_{0-,1}\) in (c)
+are constrained by requiring the \activated removal times 
+in the resulting epidemic must be precisely
+those specified by the re-marked \(\InnovRemCB\). 
+
+
+@lem-lattice-ordering has an simple but important corollary.
+
+:::{#cor-upper-bound}
+Using the notation of @lem-lattice-ordering, suppose
+\(\History\in\SubSet\).
+Then \(\SubSet\) has the same \(\trianglelefteq\)-infimum
+as the restriction of \(\SubSet\) to histories which are
+\(\trianglelefteq\)-smaller than or equal to 
+\(\History\in\SubSet\).
+:::
+
+:::{.proof}
+This follows because
+\(
+\left(
+\History_1\wedge \text{\history}
+\right)
+\wedge
+\left(
+\History_2\wedge \text{\history}
+\right)
+\trianglelefteq
+\History_1 \wedge \History_2\,.
+\)
+:::
+
+:::{.callout-warning #wrn-lattice-exercise}
+### Exercise for the reader
+Prove @cor-upper-bound! (It's an exercise in lattice theory ...)
+:::
+
+This explains why there is no need to insert the removals of
+\(\InnovRemAvail\) in the chronology used to define \(\SubSet\):
+if we ensure that \(\widetilde{\InnovInf}\) 
+contains the complete epidemic with \(I_{0-}\) initial infectives
+and incident list \(\OldPerpetuates\sqcup\InnovRemCB\) (taken from 
+the state at 
+algorithmic time epoch \(0\))
+then its \trajectory will necessarily lie below all
+potential removals from \(\InnovRemAvail\),
+and @cor-upper-bound explains why then the
+\(\trianglelefteq\)-infimum of \(\SubSet\) would not be altered
+by inserting the removals of \(\InnovRemAvail\).
+
+The \LFE usefully represents the geometry of the infections from \(\OldPerpetuates\)
+which actually _are_ perpetuated (namely, infections in the intersection of the \LFE and \(\OldPerpetuates\)). 
+The \LFE can never be higher than a viable proposed epidemic: 
+for if this were the case then the proposed epidemic would fail to activate one or more of the conditioned removals.
+
+By construction, the \LFE is determined by the following requirements:
+
+1. The \LFE is defined by a 
+sequence of infections
+\(x_{\infectee+1}, \ldots, x_\TotalRemovals\) infecting timelines
+\(\infectee{+}1{,\ldots,}\TotalRemovals\)
+(**NB:** no conditioned epidemic can have fewer than the
+\(\infectee\) initial infectives of the \LFE);
+2. The \LFE cannot occur _before_ the old epidemic (with initial infective number 
+\(I_{0-}\) and icident list \(\OldPerpetuates\sqcup\InnovRemCB\)), therefore
+\(x_\infectee\succeq\oldinfection_\infectee\) for \(\infectee=r, \ldots, \TotalRemovals\);
+3. It must occur _before_ relevant conditioned removals:
+\(x_\infectee\preceq \inf \InnovRemMarkedCB{\infectee}\);
+4. It must use one of the possible available infections
+\(\InnovInfAvailMarked{[1:\infectee{-}1]}{\infectee}\left[0, \inf \InnovRemMarkedCB{\infectee}\right]\);
+5. The defining sequence of infections \(x_{\infectee+1}, \ldots, x_\TotalRemovals\)
+must be the earliest possible sequence such that the above requirements
+are satisfied.
+
+These considerations prove the following lemma, which enables efficient progressive
+computation of the \LFE, and so helps towards efficient implementation of the construction in @thm-simplified-construction.
+
+:::{#lem-LFE-recursion}
+### Characterization of the \LFE
+The sequence of infections
+\(x_{\infectee+1}, \ldots, x_\TotalRemovals\) defining the \LFE is characterized by:
+\[
+\begin{aligned}
+x_\TotalRemovals \quad&=\quad
+\oldinfection_\TotalRemovals \vee
+\sup\;\InnovInfAvailMarked{[1:\TotalRemovals{-}1]}{\TotalRemovals}\left[0, \inf\; \InnovRemMarkedCB{\TotalRemovals}\right]
+\,,
+\\
+x_u \quad&=\quad
+\oldinfection_u \vee
+\sup\;\InnovInfAvailMarked{[1:u{-}1]}{u}\left[0, 
+x_{u+1}\wedge\inf\; \InnovRemMarkedCB{u}\right]
+&&
+\text{when }u=r, \ldots, \TotalRemovals{-}1
+\,,
+\\
+x_u \quad&=\quad
+\sup\;\InnovInfAvailMarked{[1:u{-}1]}{u}\left[0, 
+x_{u+1}\wedge\inf\; \InnovRemMarkedCB{u}\right]
+&& 
+\text{when }u=\infectee{+}1, \ldots, r{-}1
+\,.
+\end{aligned}
+\]{#eq-lfe-recursion}
+:::
+
+Finally, monotonicity follows rather directly from the explicit construction of @def-LFE.
+
+:::{#thm-LFE-monotonicity}
+## Monotonicity for the \LFE
+Consider two possible epidemics
+at algorithmic time \(0\), with histories monotonically related by
+\[
+({}^\text{slow}I_{0-},\OldSlowPerpetuates\sqcup{}^\text{slow}\InnovRemCB)
+\quad\trianglelefteq\quad 
+({}^\text{fast}I_{0-},\OldFastPerpetuates\sqcup{}^\text{fast}\InnovRemCB)
+\,.
+\]
+Note that marks for conditioned removals 
+must be larger in the fast than in the slow version.
+Given the same \(\InnovRemCB\) and \(\InnovInfAvail\),
+the resulting \LFE are similarly monotonically related by
+\[
+{}^\text{slow}\operatorname{\LFE} \quad\trianglelefteq\quad {}^\text{fast}\operatorname{\LFE}
+\,.
+\]
+:::
+
+:::{.proof}
+Using @def-LFE, the \({}^\text{fast}\operatorname{\LFE}\) is the
+\(\trianglelefteq\)-infimum of the \(\SubSet\) of epidemic histories 
+formed using subsets of 
+the chronology
+ for which \(\OldFastPerpetuates\) is used instead of \(\OldPerpetuates\) and
+the resulting \activated / conditioned removals are based precisely at times
+\(t_1{<\ldots<}t_\TotalRemovals\) in \([0,\Duration)\)
+using the larger marks for the conditioned removals.
+
+The family of such subsets of 
+\(\InnovRemCB\sqcup\InnovInfAvail\sqcup\OldFastPerpetuates\)
+can only be increased if we 
+move from \({}^\text{fast}\InnovRemCB\)
+to employ the slower marks 
+of the conditioned removals of \({}^\text{slow}\InnovRemCB\), and _increasing_ 
+the family \(\SubSet\) will
+_\(\trianglelefteq\)-reduce_ its 
+\(\trianglelefteq\)-infimum.
+
+Adding \(\OldSlowPerpetuates\) will further
+increase the family of such subsets, 
+since we would then work with
+\(\InnovRemCB\sqcup\InnovInfAvail\sqcup\OldFastPerpetuates\sqcup\OldSlowPerpetuates\),
+and thus further \(\trianglelefteq\)-reduce 
+the \(\trianglelefteq\)-infimum.
+
+But then this \(\trianglelefteq\)-infimum must be the same
+as the \(\trianglelefteq\)-minimum of itself and 
+\(\OldSlowPerpetuates\)
+(using @cor-upper-bound).
+Because of this, and
+since 
+the old slow epidemic is \(\trianglelefteq\)-dominated by
+the old fast epidemic,
+\(\OldSlowPerpetuates\trianglelefteq\OldFastPerpetuates\)
+we may deduce that the 
+\(\trianglelefteq\)-infimum for the \(\SubSet\) based on
+of 
+\(\InnovRemCB\sqcup\InnovInfAvail\sqcup\OldFastPerpetuates\sqcup\OldSlowPerpetuates\)
+must be the same as the one based on
+\(\InnovRemCB\sqcup\InnovInfAvail\sqcup\OldSlowPerpetuates\),
+which is precisely the
+\({}^\text{slow}\operatorname{\LFE}\).
+The result follows.
+:::
+
+Construction of the No-fly zone (\NFZ)  {- .unlisted}
+--------------------------------------
+The \NFZ is the region of \Timelinespace characterized by
+the following property: if any part of the \NFZ is infected then
+this implies the activation of a removal incident which 
+was not conditioned and therefore should
+remain in\activated.
+
+It is convenient to define the \NFZ in terms of _shards_, 
+one shard corresponding to each \(y{\in}\InnovRemAvailR\)
+(in\activated removals with targets \(\target\) 
+lying _strictly above_ \(\OldPerpetuates\)) and delineating the region
+of \Timelinespace lying strictly above \(\OldPerpetuates\)
+whose infection would imply activation of \(y\).
+
+:::{#def-shard}
+## The shard corresponding to an in\activated removal
+Suppose \(y{=}\Removal_t^\target{\in}\InnovRemAvailR\) is an in\activated removal.
+Consider the subset \(\SubSet'_y\) of histories \(\History\) 
+using \(\InnovInfAvail[0,t]\) and
+lying strictly above  (never touching)
+\(\OldPerpetuates\) and infecting \(y\).
+Then
+\[
+\Shard{y}
+\quad=\quad
+\bigcup\left\{\text{graph of \(I\) defined by }\History\;:\;
+\History\in\SubSet'_y\right\}
+\]
+Its lower boundary \(\ShardBoundary{y}\) is determined by 
+the \trajectory
+for the \(\trianglelefteq\)-smallest epidemic of \(\SubSet'_y\),
+extended to a generalized trajectory with \(I{=}\infty\) for all incidents
+\(y'{\succ}y\).
+:::
+
+There is a natural extension of the relation \(\trianglelefteq\) 
+to include such generalized
+trajectories.
+
+:::{.callout-caution}
+We do need the closed time interval \([0,t]\) for the definition of
+\(\SubSet'_y\) (\(y{=}\Removal_t^\target\)) here!
+:::
+
+:::{#def-NFZ}
+## No-fly zone, \NFZ
+The \NFZ is the union of the shards of all inactivated removals:
+\[
+\NFZ \quad=\quad \bigcup_{y\in \InnovRemAvailR} \Shard{y}\,.
+\]
+Being a union of shards, the intersection of \NFZ with a timeline
+\(\infectee\) is an interval which increases monotonically with \(\infectee\),
+and the interval left-end-point is \(0\) once the interval is non-empty.
+
+The lower boundary \(\NFZBoundary\) of the \NFZ is the \(\trianglelefteq\)-infimum
+of \(\ShardBoundary{y}\) for all \(y{\in}\InnovRemAvailR\).
+:::
+
+The \NFZ usefully represents the geometry of potential infections which if \activated would lead
+to activation of a non-conditioned removal incident in \(\InnovRemAvailR\), thus violating the
+conditioning constraint. Thus a viable proposed epidemic should be _strictly_ \(\trianglelefteq\)-smaller
+than \(\NFZBoundary\).
+
+As with \LFE, there is a computationally useful
+backwards recursion.
+
+:::{#lem-Shard-characterization}
+## Characterization of a \(\Shard{}\)
+Recall \(\OldPerpetuates=(\oldinfection_{r+1}, \oldinfection_{r+2}, \ldots, \oldinfection_\TotalRemovals)\).
+Suppose \(y{\in}\InnovRemAvailR\) survives the first sweep so does not lie in the infected zone.
+(If \(y\) does not survive then \(\Shard{y}{=}\emptyset\).)
+Suppose \(y{=}\Removal_t^\target\):
+so \(\target\) is its target mark and \(t_\target\) its time.
+Then \(\Shard{y}\) is the union of the following recursively defined timeline intervals:
+
+ * For \(\infectee\geq \target\), use the timeline interval \([0,t_\target)\times\{\infectee\}\)
+(and set \(y_\infectee=y\));
+ * For \(\infectee<\target\), 
+ if \(\InnovInfAvailMarked{[1:\infectee{-}1]}{\infectee}\left[0, \oldinfection_{\infectee}\wedge y_{\infectee+1}\right]\neq\emptyset\), 
+ let \(t_\infectee\) be the time of 
+\[
+y_\infectee \quad=\quad
+\inf \; \InnovInfAvailMarked{[1:\infectee{-}1]}{\infectee}\left[0, \oldinfection_{\infectee}\wedge y_{\infectee+1}\right]\,.
+\]{#eq-shard-recursion}
+and use the timeline interval \([0,t_\infectee)\times\{\infectee\}\)
+where \(t_\infectee\) is the time of \(y_\infectee\);
+ * once we find \(\InnovInfAvailMarked{[1:\infectee{-}1]}{\infectee}\left[0, \oldinfection_{\infectee}\wedge y_{\infectee+1}\right]=\emptyset\)
+then \(\Shard{y}\) does not intersect the timeline \([0,\Duration)\times\{u\}\) for _all_ \(u\leq\infectee\).
+:::
+
+
+:::{.proof}
+1. For timeline segments \([0,t_\target)\times\{\infectee\}\) with \(\infectee\geq\target\),
+infection of the timeline by the time \(t_\target\) would also imply infection of 
+timeline \(\target\) by the time \(t_\target\), in turn forces activation of the removal \(y\)
+and so this cannot be allowed.
+Thus the shard must contain \([0,t_\target)\times\{\infectee\}\) for all \(\infectee\geq\target\).
+Set \(y_\infectee=y\).
+2. For \(\infectee<\target\) suppose \(y_{\infectee+1}\) is defined.
+Consider \(\InnovInfAvailMarked{[1:\infectee]}{\infectee{+}1}[0,y_{\infectee+1}]\).
+   - Any infection in this set occurring _after_ \(\oldinfection_\infectee\)
+   would infect timeline \(\infectee{+}1\)
+   in time to infect \(z_{\infectee+1}\) 
+   (when considered at the appropriate stage of the "two-sweeps"
+   construction)
+   and so would be rejected outright by the construction at that stage.
+   - If the infection occurs _before_ \(\oldinfection_\infectee\) then
+   the algorithm would accept it, **but** 
+   infections of the timeline \(\infectee\) before the infection
+   would trigger its activation and thus infection of timeline \(\infectee{+}1\)
+   in time to infect \(z_{\infectee+1}\).
+   - For this reason the shard must contain \([0,t_\infectee]\times\{\infectee\}\) where \(t_\infectee\) is the time of \(y_\infectee\), 
+   determined by the backwards recursion @eq-shard-recursion,
+unless \(\InnovInfAvailMarked{[1:\infectee{-}1]}{\infectee}\left[0, \oldinfection_{\infectee}\wedge y_{\infectee+1}\right]=\emptyset\),
+in which case timelines at \(\infectee\) and below will not intersect \(\Shard{y}\).
+:::
+
+:::{#thm-NFZ-monotonicity}
+## Monotonicity for the \NFZ
+Consider two possible epidemics
+at algorithmic time \(0\), monotonically related by
+\[
+({}^\text{slow}I_{0-},\OldSlowPerpetuates\sqcup{}^\text{slow}\InnovRemCB)
+\quad\trianglelefteq\quad 
+({}^\text{fast}I_{0-},\OldFastPerpetuates\sqcup{}^\text{fast}\InnovRemCB)
+\,.
+\]
+Given the same \(\InnovRemCB\) and \(\InnovInfAvail\),
+the resulting \NFZ are similarly monotonically related by
+\[
+{}^\text{slow}\NFZBoundary \quad\trianglelefteq\quad {}^\text{fast}\NFZBoundary
+\,.
+\]
+:::
+
+:::{.proof}
+By the backwards recursion specified by Equation (-@eq-shard-recursion),
+the shard corresponding to \(y\in\InnovRemAvailR\) decreases as the old epidemic \history
+gets faster. 
+(If the old epidemic \history rises above \(y\) then the shard disappears altogether.)
+The \NFZ is the union of all such shards derived from \(y\in\InnovRemAvailR\),
+and therefore the set \NFZ decreases monotonically as the old epidemic \history
+gets faster.
+:::
+
+
+Monotonicity for the epidemic  {- .unlisted}
+-----------------------------
+The key to the \CFTP construction is the following monotonicity theorem.
+
+:::{#thm-epidemic-monotonicity}
+## Monotonicity for conditioned epidemics
+The conditioned epidemic at algorithmic time \(2\Duration\).
+as produced by the construction described in @thm-simplified-construction,
+depends \(\trianglelefteq\)-monotonically on its predecessor
+conditioned epidemic at algorithmic time \(0\).
+:::
+
+
+:::{.callout-caution #cau-constructions}
+### \textcolor{red}{\textbf{NEARLY DONE!!}}
+This section moderately complete to this point.
+The remaining text needs some re-working.
+:::
+
+
+
+:::{.proof}
+Consider two conditioned epidemics at algorithmic time \(0\),
+one of which is slow and one of which is fast, in the sense that their
+respective histories satisfy
+\[
+{}^\text{old slow}\History \quad\trianglelefteq\quad {}^\text{old fast}\History_2\,.
+\]
+We seek to prove monotonicity for the successors
+at algorithmic time \(2\Duration\):
+\({}^\text{slow}\History\trianglelefteq{}^\text{fast}\History\).
+
+Because of @thm-LFE-monotonicity and @thm-NFZ-monotonicity, it suffices
+to show that if 
+\({}^\text{slow}\LFE \trianglelefteq {}^\text{fast}\LFE\) and
+\({}^\text{fast}\NFZBoundary \subseteq {}^\text{slow}\NFZBoundary\)
+then \({}^\text{slow}\History\trianglelefteq{}^\text{fast}\History\).
+
+Begin by considering the relationship between 
+\({}^\text{slow}\History'\) and \({}^\text{fast}\History'\),
+produced from \({}^\text{old slow}\History\) and \({}^\text{old fast}\History\)
+using steps 1, 2, 3 only of @thm-simplified-construction, hence using 
+\({}^\text{old slow}\History\) and \({}^\text{old fast}\History\) together with 
+an \ExtendedInnovation \((\InnovRemMarked{*}, \InnovInfMarkedA{*}, I^*,\InnovResampling^*)\),
+but _not yet_ determining new initial \(3\)-vectors 
+to yield \({}^\text{slow}\History\) and \({}^\text{fast}\History\)
+using step 4 of @thm-simplified-construction.
+
+The construction of \({}^\text{old slow}\History\) and \({}^\text{old fast}\History\)
+depends on \(\InnovInfAvail\) and also respectively on 
+\begin{align*}
+  \text{(slow case)} &\qquad {}^\text{old slow}\HistoryInitMarked{1}\,, {}^\text{slow}\LFE\,, {}^\text{slow}\NFZBoundary\,,   &\text{ and}  
+\\
+  \text{(fast case)} &\qquad {}^\text{old fast}\HistoryInitMarked{2}\,, {}^\text{fast}\LFE\,, {}^\text{fast}\NFZBoundary\,.   &  
+\end{align*}
+
+:::{.callout-caution #cau-coupling}
+### Coupling issue
+How best to express coupling between 
+\({}^\text{old slow}\History\) and \({}^\text{old fast}\History\),
+and also between
+\({}^\text{slow}\History\) and \({}^\text{fast}\History\)?
+:::
+
+The construction of \({}^\text{slow}\History\) 
+starts with \({}^\text{old slow}\HistoryInitMarked{1}\), then considers in turn each potential infection
+in \(\InnovInfAvail\) _and_ \({}^\text{slow}\LFE\), and each conditioned removal in \({}^\text{slow}\InnovRemCB\), 
+first checking whether it would be \activated as in @def-free-epidemic then accepting the proposed activation if
+this doesn't infect \({}^\text{slow}\NFZBoundary\). This derives \({}^\text{slow}\History'\). 
+The use of potential infections from \({}^\text{slow}\LFE\) is enough to insure
+that \({}^\text{slow}\History'\) does not drop below \({}^\text{slow}\LFE\) and therefore activates \({}^\text{slow}\InnovRemCB\);
+the use of \({}^\text{slow}\NFZBoundary\) ensures that \({}^\text{slow}\History'\) stays strictly below \({}^\text{slow}\NFZBoundary\).
+
+The construction of \({}^\text{fast}\History'\) follows the corresponding steps using \(\InnovInfAvail\) and fast versions of the slow
+objects mentioned above.
+
+Suppose the number of infectives for \({}^\text{slow}\History'\) does not exceed the number for
+\({}^\text{fast}\History'\) just before an incident \(z\) in the underlying chronology.
+This is certainly the case at the start of the chronology, because \({}^\text{slow}\History'.\text{init}={}^\text{old slow}\HistoryInit\),
+which we know will not register more infectives than for \({}^\text{fast}\History'.\text{init}={}^\text{old fast}\HistoryInit\).
+
+:::{.callout-warning}
+Should be possible to make the following argument clearer!
+:::
+
+
+The proposal resulting from \(z\) can change the number \(I\) of infected only by \(\pm1\), therefore after \(z\) we could only have 
+crossover (number of infectives for \({}^\text{slow}\History'\) rising _above_ the number for \({}^\text{fast}\History'\)) if 
+\({}^\text{slow}\History'\) is actually equal to \({}^\text{fast}\History'\) just before \(z\). So suppose this is true.
+
+If \(z\) is a conditioned removal
+then by construction it will be 
+activated for both \({}^\text{slow}\History'\) and \({}^\text{fast}\History'\),
+as neither is strictly \(\trianglelefteq\)-smaller than their \(\LFE\). So crossover cannot occur in this case.
+
+If \(z\) is a potential infection from \(\InnovInfAvail\)
+then it is not possible for its activation to be proposed for \({}^\text{slow}\History'\) and not \({}^\text{fast}\History'\)
+(since \({}^\text{slow}\History'\) is actually equal to \({}^\text{fast}\History'\) just before \(z\)). 
+The proposed activation would be denied for \({}^\text{fast}\History'\) only if \({}^\text{fast}\History'\)
+were just one unit below \({}^\text{fast}\NFZBoundary\) just before \(z\): since
+\({}^\text{slow}\History'\trianglelefteq{}^\text{slow}\NFZBoundary \trianglelefteq {}^\text{fast}\NFZBoundary\)
+it follows that \({}^\text{slow}\History'\) would then equally be just one unit below \({}^\text{slow}\NFZBoundary\)
+just before \(z\), so the proposed activation would then also be denied for \({}^\text{slow}\History'\).
+So crossover cannot occur in this case either.
+
+The only other case to consider is of \(z\) being a potential infection from \({}^\text{slow}\LFE\setminus\InnovInfAvail\),
+since this would potentially affect \({}^\text{slow}\History'\) and not \({}^\text{fast}\History'\). However
+\({}^\text{slow}\History'\) is actually equal to \({}^\text{fast}\History'\) just before \(z\): 
+since
+\({}^\text{slow}\LFE\trianglelefteq{}^\text{fast}\LFE\trianglelefteq{}^\text{fast}\History'\)
+it follows that \({}^\text{fast}\History'\) must also equal \({}^\text{fast}\LFE\) at \(z\)
+and indeed \({}^\text{fast}\LFE\) must supply a potential infection at \(z\) in order not to sink below 
+\({}^\text{slow}\LFE\).
+It follows that the potential infection must be accepted for both  \({}^\text{slow}\History'\) and \({}^\text{fast}\History'\),
+so crossover again cannot occur.
+
+This rules out crossover for all cases; therefore it follows 
+that the number of infectives for \({}^\text{slow}\History'\) will not exceed the number for
+\({}^\text{fast}\History'\) at the incident \(z\) either.
+
+Hence \({}^\text{slow}\History'\trianglelefteq{}^\text{fast}\History'\).
+
+:::{.callout-caution #cau-initial-proposal}
+### Initial proposal
+Tricky bit here is to develop a good argument that works well in all cases. We need to know:
+
+(i) proposal always bigger for fast epidemic;
+(ii) if proposal not accepted for fast epidemic then crossover won't occur.
+
+Need to be able to deal with independence samplers and simple RWM.
+Maybe the above needs to be reduced to a "no crossover" theorem?
+:::
+
+:::
+
+The standard \CFTP argument can now be used to return a perfect draw from the
+conditioned \SIR epidemic equilibrium: work with a sequence of 
+extended innovations running backwards in time,
+carry out starts at algorithmic times \(-2^n\Duration\) from the extreme states of fastest possible and slowest possible
+epidemics (these are specified at the end of @sec-graphical
+and illustrated in @fig-fastest-slowest),
+and cease once the resulting fast and slow epidemics at algorithmic time \(0\)
+agree. 
+
+Note that the small set of lag \(3\), described in @thm-convergence,
+guarantees eventual termination of this algorithm.
+Indeed, 
+let the probability of this small set occurring over times \(1-2^n\Duration,2-2^n\Duration,3-2^n\Duration\) be 
+\(p>0\) (perhaps small, but positive).
+If we start the \CFTP with \(n=2\) and increment \(n\) by \(1\) for each \CFTP
+cycle, then almost surely the small set will eventually occur, and then
+for that cycle 
+the fast and slow epidemics at algorithmic time \(0\) will agree.
+(Of course in practice coalescence will happen at a much faster rate.)
+

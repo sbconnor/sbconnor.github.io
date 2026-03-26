@@ -21,9 +21,6 @@ website:
       - icon: mastodon
         href: https://mathstodon.xyz/@stephenconnor
         target: _blank
-      - icon: github
-        href: https://github.com/sbconnor
-        target: _blank
   page-footer: 
     right: Created with {{< iconify simple-icons:quarto>}} [Quarto](https://quarto.org/){target=_blank} and {{< iconify mdi:github>}} [GitHub](https://github.com/sbconnor/sbconnor.github.io){target=_blank}.
 
