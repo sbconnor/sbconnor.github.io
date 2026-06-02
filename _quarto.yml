@@ -23,6 +23,12 @@ website:
         target: _blank
   page-footer: 
     right: Created with {{< iconify simple-icons:quarto>}} [Quarto](https://quarto.org/){target=_blank} and {{< iconify mdi:github>}} [GitHub](https://github.com/sbconnor/sbconnor.github.io){target=_blank}.
+  announcement: 
+    icon: info-circle
+    dismissable: true
+    content: "I'm helping to organise the **LMS Northern Regional Meeting and Workshop on Applied Algebra and Geometry**. [Sign up here!](https://sites.google.com/york.ac.uk/lms-york-2026/){target=_blank}"
+    type: primary
+    position: below-navbar
 
         
 format:
