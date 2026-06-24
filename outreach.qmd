@@ -56,13 +56,13 @@ Penney Ante is a simple coin-tossing game with some very counter-intuitive prope
 ***
 
 ### Patterns and problem solving
-A workshop in which students are challenged to spot patterns and conjecture solutions to problems involving cake cutting, drawing graphs, and sharing gold between pirates\
+A workshop in which students are challenged to spot patterns and conjecture solutions to problems involving cake cutting, drawing graphs, and sharing gold between pirates.\
 {{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 5
 
 ***
 
 ### Mathematical proof
-This workshop inroduces students to the idea of mathematical proof. 
+This workshop introduces students to the idea of mathematical proof. 
 We talk about why mathematicians care so much about proof, and see examples of some famous theorems. 
 We then look at proof by contradiction and by induction, with the students working through plenty of examples of each type.\
 {{< iconify mdi:arrow-right-bottom>}} [Suitable for:]{style="color:#5cb85c;"} Key Stage 5
